@@ -1,4 +1,22 @@
-<p>
-  nav-bar Gene420!!!!
-  <button (click)="myFunction()">Hello</button>
-</p>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button"
+              class="navbar-toggle collapsed"
+              (click)="toggleState()">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand">Project Manager</a>
+    </div>
+    <div class="collapse navbar-collapse"
+         [ngClass]="{ 'in': isIn }">
+      <ul class="nav navbar-nav">
+        <li><a>Link 1</a></li>
+        <li><a>Link 2</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>

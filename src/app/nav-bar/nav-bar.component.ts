@@ -7,13 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavBarComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit() {
+  ngOnInit(){
   }
 
-  myFunction(){
-    //do rounting..
+  isIn = false;   // store state
+  constructor() { }
+
+  toggleState() { // click handler
+    let bool = this.isIn;
+    this.isIn = bool === false ? true : false;
   }
 
 }
