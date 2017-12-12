@@ -19,13 +19,13 @@
     <div class="collapse navbar-collapse"
          [ngClass]="{ 'in': isIn }">
       <ul class="nav navbar-nav">
-        <li><a>Home</a></li>
-        <li><a>Science</a></li>
-        <li><a>Contact</a></li>
+        <li><a [routerLink]="'/home'">Home</a></li>
+        <li><a [routerLink]="'/science'">Science</a></li>
+        <li><a [routerLink]="'/contact'">Contact</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right" style="margin:5px;border:1px">
-        <li><a>Sign In</a></li>
-        <li><a>Sign Up</a></li>
+        <li><a [routerLink]="'/sign-in'">Sign In</a></li>
+        <li><a [routerLink]="'/sign-up'">Sign Up</a></li>
       </ul>
     </div>
 
