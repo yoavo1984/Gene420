@@ -1,5 +1,5 @@
-<nav class="navbar navbar-inverse navbar-fixed-top">
-  <div class="container-fluid">
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid" style="margin-top:15px;">
     <div class="navbar-header">
       <button type="button"
               class="navbar-toggle collapsed"
@@ -9,14 +9,26 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand">Project Manager</a>
+      <div>
+        <a class="navbar-brand" href="#" class="align-top">
+          <img src="/assets/gene_420_logo.png" width="120" height="60"  alt="">
+        </a>
+      </div>
+
     </div>
     <div class="collapse navbar-collapse"
          [ngClass]="{ 'in': isIn }">
       <ul class="nav navbar-nav">
-        <li><a>Link 1</a></li>
-        <li><a>Link 2</a></li>
+        <li><a>Home</a></li>
+        <li><a>Science</a></li>
+        <li><a>Contact</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right" style="margin:5px;border:1px">
+        <li><a>Sign In</a></li>
+        <li><a>Sign Up</a></li>
       </ul>
     </div>
+
   </div>
 </nav>
+
