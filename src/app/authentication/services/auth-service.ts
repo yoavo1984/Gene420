@@ -31,6 +31,11 @@ export class AuthService {
 
   }
 
+  getCurrentUserUid(){
+    return firebase.auth().currentUser.uid;
+  }
+
+
   /**
    * Logs out the current user
    */

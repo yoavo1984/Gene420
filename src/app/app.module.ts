@@ -19,7 +19,8 @@ const appRoutes: Routes = [
   {path: 'science', component: ScienceComponent},
   {path: 'contact', component: ContactComponent},
   {path: 'sign-in', component: SignInComponent},
-  {path: 'sign-up', component: SignUpComponent}
+  {path: 'sign-up', component: SignUpComponent},
+  {path: 'user', component: UserComponent}
 
   //{ path: '**', redirectTo: 'pageNotFound', pathMatch: 'full' }
 ];
@@ -27,6 +28,10 @@ const appRoutes: Routes = [
 import { AvatarComponent } from './avatar/avatar.component';
 import { SignInUpNavComponent } from './authentication/sign-in-up-nav/sign-in-up-nav.component';
 import {AuthService} from "./authentication/services/auth-service";
+import { UserComponent } from './users/user/user.component';
+import { UidPipe } from './users/pipes/uid.pipe';
+import {UserDaoService} from "./users/services/user-dao.service";
+import {AngularFireDatabase} from "angularfire2/database";
 
 
 export const firebaseConfig = {
@@ -48,7 +53,9 @@ export const firebaseConfig = {
     ScienceComponent,
     ContactComponent,
     AvatarComponent,
-    SignInUpNavComponent
+    SignInUpNavComponent,
+    UserComponent,
+    UidPipe
 
   ],
   imports: [
@@ -56,7 +63,7 @@ export const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [AuthService, AngularFireAuth],
+  providers: [UserDaoService, AuthService, AngularFireDatabase, AngularFireAuth],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
