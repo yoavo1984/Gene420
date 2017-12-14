@@ -11,7 +11,14 @@ import {AuthService} from "../authentication/services/auth-service";
 export class AvatarComponent implements OnInit {
 
   private loggedIn = false;
+
+  //user details
   private displayName;
+  private email;
+  private photoUrl;
+  private emailVerified;
+  private uid;
+
   constructor(private authService:AuthService, private changeDetector:ChangeDetectorRef) {
     this.registerOnAuthStateChange();
   }
@@ -30,11 +37,20 @@ export class AvatarComponent implements OnInit {
     return this.authService.logout();
   }
 
+  navigateToPrivateArea() {
+    //TODO: complete
+  }
+
+
   registerOnAuthStateChange(){
     firebase.auth().onAuthStateChanged((user)=> {
       if (user) {
         this.loggedIn = true;
         this.displayName = user.displayName;
+        this.email = user.email;
+        this.photoUrl = user.photoURL;
+        this.emailVerified = user.emailVerified;
+        this.uid = user.uid;
 
       }
       else {
