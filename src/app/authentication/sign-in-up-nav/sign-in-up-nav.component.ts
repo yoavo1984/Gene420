@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import * as firebase from 'firebase/app';
 import {AuthService} from "../services/auth-service";
 
@@ -11,8 +11,15 @@ export class SignInUpNavComponent implements OnInit {
   private loggedIn = false;
 
 
-  constructor(private authService:AuthService) {
-    this.authService.subscribeToOnAuthStateChanged((user)=>{this.onAuthStateChanged()});
+  constructor(private authService:AuthService, private changeDetector:ChangeDetectorRef) {
+    this.registerOnAuthStateChange();
+  }
+
+  ngOnInit() {
+
+  }
+
+  registerOnAuthStateChange(){
     firebase.auth().onAuthStateChanged((user)=> {
       if (user) {
         this.loggedIn = true;
@@ -20,15 +27,8 @@ export class SignInUpNavComponent implements OnInit {
       else {
         this.loggedIn = false;
       }
+      this.changeDetector.detectChanges();
     });
-  }
-
-  ngOnInit() {
-
-  }
-
-  onAuthStateChanged(){
-    this.loggedIn = true;
   }
 
 }

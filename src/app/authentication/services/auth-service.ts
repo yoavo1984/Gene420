@@ -15,12 +15,6 @@ export class AuthService {
 
   }
 
-  subscribeToOnAuthStateChanged(callback){
-    this.callbacks.push(callback);
-
-
-  }
-
   /**
    * Logs in the user
    * @returns {firebase.Promise<FirebaseAuthState>}
@@ -29,9 +23,6 @@ export class AuthService {
     firebase.auth().onAuthStateChanged((user)=> {
       if (user) {
         // User is signed in
-        for (let callback of this.callbacks){
-          callback(user);
-        }
         this.router.navigate(['home']);
         // ...
       }
