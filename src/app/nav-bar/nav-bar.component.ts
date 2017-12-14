@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+
 @Component({
   selector: 'gene420-nav-bar',
   templateUrl: './nav-bar.component.html',
@@ -8,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class NavBarComponent implements OnInit {
 
   ngOnInit(){
+
   }
 
   isIn = false;   // store state
@@ -17,5 +19,7 @@ export class NavBarComponent implements OnInit {
     let bool = this.isIn;
     this.isIn = bool === false ? true : false;
   }
+
+
 
 }

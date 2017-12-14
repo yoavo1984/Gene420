@@ -14,8 +14,6 @@ import { ScienceComponent } from './science/science.component';
 import { ContactComponent } from './contact/contact.component';
 
 const appRoutes: Routes = [
-  //{ path: '', redirectTo: 'home', pathMatch: 'full' },\
-  { path: 'login', component: LoginTestComponent },
   {path: '', component: HomeComponent},
   {path: 'home', component: HomeComponent},
   {path: 'science', component: ScienceComponent},
@@ -25,9 +23,10 @@ const appRoutes: Routes = [
 
   //{ path: '**', redirectTo: 'pageNotFound', pathMatch: 'full' }
 ];
-import { LoginTestComponent } from './login-test/login-test.component';
 
-import {AF} from "./providers/af";
+import { AvatarComponent } from './avatar/avatar.component';
+import { SignInUpNavComponent } from './authentication/sign-in-up-nav/sign-in-up-nav.component';
+import {AuthService} from "./authentication/services/auth-service";
 
 
 export const firebaseConfig = {
@@ -42,13 +41,14 @@ export const firebaseConfig = {
 @NgModule({
   declarations: [
     AppComponent,
-    LoginTestComponent,
     HomeComponent,
     NavBarComponent,
     SignInComponent,
     SignUpComponent,
     ScienceComponent,
-    ContactComponent
+    ContactComponent,
+    AvatarComponent,
+    SignInUpNavComponent
 
   ],
   imports: [
@@ -56,7 +56,7 @@ export const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [AF, AngularFireAuth],
+  providers: [AuthService, AngularFireAuth],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { AF } from "./providers/af";
 import { Router } from "@angular/router";
+import {AuthService} from "./authentication/services/auth-service";
+import * as firebase from 'firebase/app';
 
 @Component({
   selector: 'app-root',
@@ -11,28 +12,7 @@ import { Router } from "@angular/router";
 export class AppComponent {
   title = 'Gene420';
   public isLoggedIn: boolean;
-  constructor(public afService: AF, private router: Router) {
-    // This asynchronously checks if our user is logged it and will automatically
-    // redirect them to the Login page when the status changes.
-    // This is just a small thing that Firebase does that makes it easy to use.
-    this.afService.af.auth.onAuthStateChanged(
-      (auth) => {
-        if(auth == null) {
-          console.log("Not Logged in.");
-          this.router.navigate(['login']);
-          this.isLoggedIn = false;
-        }
-        else {
-          console.log("Successfully Logged in.");
-          this.isLoggedIn = true;
-          // UPDATE: I forgot this at first. Without it when a user is logged in and goes directly to /login
-          // the user did not get redirected to the home page.
-          this.router.navigate(['']);
-        }
-      }
-    );
-  }
-  logout() {
-    this.afService.logout();
+  constructor(public afService: AuthService, private router: Router) {
+
   }
 }
