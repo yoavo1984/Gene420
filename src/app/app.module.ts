@@ -40,6 +40,7 @@ import { StrainBrowserComponent } from './browsers/strain-browser/strain-browser
 import { StrainComponent } from './cannabis/strain/strain.component';
 import {StrainDaoService} from "./cannabis/services/strain-dao.service";
 import { LoadingComponent } from './loading/loading.component';
+import { RatingComponent } from './rating/rating.component';
 
 
 export const firebaseConfig = {
@@ -70,7 +71,8 @@ export const firebaseConfig = {
     GeneticsComponent,
     StrainBrowserComponent,
     StrainComponent,
-    LoadingComponent
+    LoadingComponent,
+    RatingComponent
 
   ],
   imports: [

@@ -3,8 +3,7 @@
     <div class="navbar-header"></div>
     <div class="collapse navbar-collapse" style="align-items:stretch;">
       <ul class="nav navbar-nav">
-        <li [ngClass]="getIsCurrentStrainView('latest-ratings') ? 'active': ''"><a [routerLink]="'/latest-ratings'">Latest Ratings</a></li>
-        <li [ngClass]="getIsCurrentStrainView('top-ratings') ? 'active': ''"><a [routerLink]="'/top-ratings'">Top Ratings</a></li>
+        <li [ngClass]="getIsCurrentStrainView('my-ratings') ? 'active': ''"><a [routerLink]="'/my-ratings'">My Ratings</a></li>
         <li [ngClass]="getIsCurrentStrainView('browse-strains') ? 'active': ''"><a [routerLink]="'/browse-strains'">Browse Strains</a></li>
       </ul>
     </div>

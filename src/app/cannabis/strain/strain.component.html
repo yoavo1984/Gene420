@@ -1,9 +1,13 @@
-<div class="card card-outline-primary mb-3" style="width: 30rem;">
+<div class="card" style="width: 30rem;box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);">
   <img class="card-img-top" [src]="imageUrl" width="80" height="100">
   <div class="card-block">
-    <h4 class="card-title">{{name}}</h4>
+    <h4 class="card-title">
+      {{name}}
+      <i class="fa fa-share-alt" aria-hidden="true"></i>
+      <i class="fa fa-pencil" aria-hidden="true"></i>
+    </h4>
     <p class="card-text">Company: {{seedCompany}}</p>
-
-    <!--<p class="card-text">#ocpc: {{ocpc}}</p>-->
+    <p><i class="fa fa-flask" aria-hidden="true"></i> DNA match: {{getDnaMatch()}}%</p>
+    <p><gene420-rating [stars]="getRating()"></gene420-rating></p>
   </div>
 </div>
