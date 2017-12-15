@@ -12,19 +12,7 @@ import { SignUpComponent } from './authentication/sign-up/sign-up.component';
 import {Routes, RouterModule} from "@angular/router";
 import { ScienceComponent } from './science/science.component';
 import { ContactComponent } from './contact/contact.component';
-
-const appRoutes: Routes = [
-  {path: '', component: HomeComponent},
-  {path: 'home', component: HomeComponent},
-  {path: 'science', component: ScienceComponent},
-  {path: 'contact', component: ContactComponent},
-  {path: 'sign-in', component: SignInComponent},
-  {path: 'sign-up', component: SignUpComponent},
-  {path: 'user', component: UserComponent}
-
-  //{ path: '**', redirectTo: 'pageNotFound', pathMatch: 'full' }
-];
-
+import { BsModalModule } from 'ng2-bs3-modal';
 import { AvatarComponent } from './avatar/avatar.component';
 import { SignInUpNavComponent } from './authentication/sign-in-up-nav/sign-in-up-nav.component';
 import {AuthService} from "./authentication/services/auth-service";
@@ -41,7 +29,21 @@ import { StrainComponent } from './cannabis/strain/strain.component';
 import {StrainDaoService} from "./cannabis/services/strain-dao.service";
 import { LoadingComponent } from './loading/loading.component';
 import { RatingComponent } from './rating/rating.component';
+import { ReviewStrainModalComponent } from './cannabis/review-strain-modal/review-strain-modal.component';
+import {RatingModule} from "ngx-bootstrap";
+import {FormsModule} from "@angular/forms";
 
+const appRoutes: Routes = [
+  {path: '', component: HomeComponent},
+  {path: 'home', component: HomeComponent},
+  {path: 'science', component: ScienceComponent},
+  {path: 'contact', component: ContactComponent},
+  {path: 'sign-in', component: SignInComponent},
+  {path: 'sign-up', component: SignUpComponent},
+  {path: 'user', component: UserComponent}
+
+  //{ path: '**', redirectTo: 'pageNotFound', pathMatch: 'full' }
+];
 
 export const firebaseConfig = {
     apiKey: "AIzaSyCKUXFzVX7dCQwM91uoj67rrlUWuyu-9Xk",
@@ -72,13 +74,17 @@ export const firebaseConfig = {
     StrainBrowserComponent,
     StrainComponent,
     LoadingComponent,
-    RatingComponent
+    RatingComponent,
+    ReviewStrainModalComponent
 
   ],
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(firebaseConfig),
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    RatingModule,
+    FormsModule,
+    BsModalModule
   ],
   providers: [UserDaoService, StrainDaoService, AuthService, AngularFireDatabase, AngularFireAuth],
   bootstrap: [AppComponent]

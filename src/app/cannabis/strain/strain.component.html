@@ -4,7 +4,7 @@
     <h4 class="card-title">
       {{name}}
       <i class="fa fa-share-alt" aria-hidden="true"></i>
-      <i class="fa fa-pencil" aria-hidden="true"></i>
+      <button (click) ="review()" ><i class="fa fa-pencil" aria-hidden="true"></i></button>
     </h4>
     <p class="card-text">Company: {{seedCompany}}</p>
     <p><i class="fa fa-flask" aria-hidden="true"></i> DNA match: {{getDnaMatch()}}%</p>

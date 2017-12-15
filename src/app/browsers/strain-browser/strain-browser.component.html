@@ -5,8 +5,11 @@
         [name]="strain['name']"
         [imageUrl]="strain['image']"
         [ocpc]="strain['ocpc']"
-        [seedCompany]="strain['seedCompany']['name']">
+        [seedCompany]="strain['seedCompany']['name']"
+        (onReview)="reviewStrain($event)"
+      >
       </gene420-strain>
     </li>
   </ul>
 </div>
+<gene420-review-strain-modal #reviewStrainModal></gene420-review-strain-modal>

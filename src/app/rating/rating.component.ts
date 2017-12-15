@@ -40,4 +40,8 @@ export class RatingComponent implements OnInit {
 
   }
 
+  getStarsCssClass(){
+
+  }
+
 }

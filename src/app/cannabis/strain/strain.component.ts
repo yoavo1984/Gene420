@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input, EventEmitter, Output} from '@angular/core';
 
 @Component({
   selector: 'gene420-strain',
@@ -11,6 +11,7 @@ export class StrainComponent implements OnInit {
   @Input() imageUrl;
   @Input() ocpc;
   @Input() seedCompany;
+  @Output() onReview = new EventEmitter<any>();
 
   private dnaMatchComputed:boolean;
   private ratingComputed:boolean;
@@ -45,6 +46,10 @@ export class StrainComponent implements OnInit {
     }
     return this.rating;
 
+  }
+
+  review(){
+    this.onReview.emit({name:this.name, imageUrl:this.imageUrl});
   }
 
 }

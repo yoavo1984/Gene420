@@ -1,0 +1,19 @@
+<bs-modal #reviewStrainModal>
+  <form #modalForm="ngForm">
+    <bs-modal-header [showDismiss]="true">
+      <h4 class="modal-title">Review Strain: {{name}}</h4>
+
+    </bs-modal-header>
+    <bs-modal-body style="text-align: center;">
+      <img [src]="imageUrl" width="150" height="150"/>
+      <!--TODO: rating not responsive yet -->
+      <gene420-rating [stars]="3.5"></gene420-rating>
+      <h4>What do you think about this strain?</h4>
+      <textarea rows="10" cols="75"></textarea>
+    </bs-modal-body>
+    <bs-modal-footer>
+      <button type="button" class="btn btn-default">Save</button>
+    </bs-modal-footer>
+  </form>
+</bs-modal>
+
