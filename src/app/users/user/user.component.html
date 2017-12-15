@@ -2,8 +2,19 @@
   Currently logged user: {{uid}}!
 
   <div class="panel panel-info">
-    <div class="panel-heading">Genetic Overview</div>
-    <div class="panel-body">{{user | async | json}}</div>
+    <div class="panel-heading">Genetic Overview <i class="fa fa-lightbulb-o" aria-hidden="true"></i></div>
+    <div class="panel-body">
+      <ul>
+        <li *ngFor="let phenotype of user | async | genetics;">
+          <div *ngIf="phenotype.has">
+            <i [ngClass]="getIconClass(phenotype.trait)" aria-hidden="true"></i>
+
+          </div>
+      </ul>
+
+
+
+    </div>
 
   </div>
 
