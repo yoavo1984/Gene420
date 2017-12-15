@@ -33,6 +33,8 @@ import { UidPipe } from './users/pipes/uid.pipe';
 import {UserDaoService} from "./users/services/user-dao.service";
 import {AngularFireDatabase} from "angularfire2/database";
 import { GeneticsPipe } from './users/pipes/genetics.pipe';
+import { UserNavBarComponent } from './users/user-nav-bar/user-nav-bar.component';
+import { AgePipe } from './users/pipes/age.pipe';
 
 
 export const firebaseConfig = {
@@ -57,7 +59,9 @@ export const firebaseConfig = {
     SignInUpNavComponent,
     UserComponent,
     UidPipe,
-    GeneticsPipe
+    GeneticsPipe,
+    UserNavBarComponent,
+    AgePipe
 
   ],
   imports: [

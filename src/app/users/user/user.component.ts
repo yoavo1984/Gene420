@@ -18,6 +18,9 @@ export class UserComponent implements OnInit {
     "dependence": "fa fa-heart",
     "decision": "fa fa-lightbulb-o"
   };
+  private email;
+  private displayName;
+  private photoUrl;
 
   constructor(private authService:AuthService, private usersDao:UserDaoService) { }
 
@@ -26,10 +29,13 @@ export class UserComponent implements OnInit {
   ngOnInit() {
     this.uid = this.authService.getCurrentUserUid();
     this.user = this.usersDao.getUser(this.uid).valueChanges();
+    this.email = this.authService.getCurrentUserEmail();
+    this.displayName = this.authService.getCurrentUserDisplayName();
+    this.photoUrl = this.authService.getCurrentUserPhotoUrl();
   }
 
   getIconClass(phenotype){
-    return this.iconByPhenotype[phenotype];
+    return this.iconByPhenotype[phenotype] +' fa-3x';
   }
 
 }

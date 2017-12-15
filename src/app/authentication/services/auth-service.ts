@@ -35,6 +35,18 @@ export class AuthService {
     return firebase.auth().currentUser.uid;
   }
 
+  getCurrentUserEmail(){
+    return firebase.auth().currentUser.email;
+  }
+
+  getCurrentUserDisplayName(){
+    return firebase.auth().currentUser.displayName;
+  }
+
+  getCurrentUserPhotoUrl(){
+    return firebase.auth().currentUser.photoURL;
+  }
+
 
   /**
    * Logs out the current user
