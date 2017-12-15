@@ -11,31 +11,28 @@ export class UserComponent implements OnInit {
   private uid;
   private user;
 
-  private iconByPhenotype = {
-    "craving": "fa fa-birthday-cake",
-    "psychosis": "fa fa-bullseye",
-    "memory": "fa fa-floppy-o",
-    "dependence": "fa fa-heart",
-    "decision": "fa fa-lightbulb-o"
-  };
   private email;
   private displayName;
   private photoUrl;
+  private currentStrainView;
 
   constructor(private authService:AuthService, private usersDao:UserDaoService) { }
 
 
 
   ngOnInit() {
+    this.currentStrainView = "browse-strains";
     this.uid = this.authService.getCurrentUserUid();
-    this.user = this.usersDao.getUser(this.uid).valueChanges();
+    this.user = this.usersDao.getUser(this.uid);
     this.email = this.authService.getCurrentUserEmail();
     this.displayName = this.authService.getCurrentUserDisplayName();
     this.photoUrl = this.authService.getCurrentUserPhotoUrl();
   }
 
-  getIconClass(phenotype){
-    return this.iconByPhenotype[phenotype] +' fa-3x';
+  getIsCurrentStrainView(strainViewName){
+    if (strainViewName == this.currentStrainView){
+      return true;
+    }
   }
 
 }

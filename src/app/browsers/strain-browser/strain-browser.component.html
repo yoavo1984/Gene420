@@ -1,0 +1,11 @@
+<div style="height:600px; width:850px; overflow-y: scroll;">
+  <ul class="list-inline" style="text-align: center">
+    <li *ngFor="let strain of strains | async;">
+      <gene420-strain
+        [name]="strain['name']"
+        [imageUrl]="strain['image']"
+        [ocpc]="strain['ocpc']"
+        [seedCompany]="strain['seedCompany']['name']">
+      </gene420-strain>
+  </ul>
+</div>

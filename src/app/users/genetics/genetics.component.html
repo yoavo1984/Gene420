@@ -1,0 +1,16 @@
+<ul class="list-inline" style="text-align: center">
+  <li *ngFor="let phenotype of user | async | genetics;">
+    <div style="display:inline-block; text-align: center;">
+      <i [ngClass]="getIconClass(phenotype.trait)" aria-hidden="true"></i>
+      <div style="display:block;">
+        {{phenotype.trait}}
+      </div>
+      <div *ngIf="phenotype.has" style="display:block;">
+        <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+      </div>
+      <div *ngIf="!phenotype.has" style="display:block;">
+        <i class="fa fa-check-circle" aria-hidden="true"></i>
+      </div>
+    </div>
+</ul>
+

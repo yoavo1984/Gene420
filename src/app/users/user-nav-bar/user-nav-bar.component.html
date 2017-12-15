@@ -1,11 +1,11 @@
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default" style="display:flex;">
   <div class="container-fluid" style="margin-top:0px;">
     <div class="navbar-header"></div>
-    <div class="collapse navbar-collapse">
+    <div class="collapse navbar-collapse" style="align-items:stretch;">
       <ul class="nav navbar-nav">
-        <li><a [routerLink]="'/latest-ratings'">Latest Ratings</a></li>
-        <li><a [routerLink]="'/top-ratings'">Top Ratings</a></li>
-        <li><a [routerLink]="'/browse-strains'">Browse Strains</a></li>
+        <li [ngClass]="getIsCurrentStrainView('latest-ratings') ? 'active': ''"><a [routerLink]="'/latest-ratings'">Latest Ratings</a></li>
+        <li [ngClass]="getIsCurrentStrainView('top-ratings') ? 'active': ''"><a [routerLink]="'/top-ratings'">Top Ratings</a></li>
+        <li [ngClass]="getIsCurrentStrainView('browse-strains') ? 'active': ''"><a [routerLink]="'/browse-strains'">Browse Strains</a></li>
       </ul>
     </div>
 

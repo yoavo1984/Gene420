@@ -7,7 +7,7 @@ export class UserDaoService {
   constructor(private angularFire: AngularFireDatabase) { }
 
   getUser(uid){
-    return this.angularFire.object('/users/'+uid);
+    return this.angularFire.object('/users/'+uid).valueChanges();
   }
 
 }

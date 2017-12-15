@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 
 @Component({
   selector: 'gene420-user-nav-bar',
@@ -7,9 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserNavBarComponent implements OnInit {
 
+  @Input() currentStrainView:string;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  getIsCurrentStrainView(currentStrainView:string){
+    if (this.currentStrainView == currentStrainView){
+      return true;
+    }
   }
 
 }

@@ -35,6 +35,11 @@ import {AngularFireDatabase} from "angularfire2/database";
 import { GeneticsPipe } from './users/pipes/genetics.pipe';
 import { UserNavBarComponent } from './users/user-nav-bar/user-nav-bar.component';
 import { AgePipe } from './users/pipes/age.pipe';
+import { GeneticsComponent } from './users/genetics/genetics.component';
+import { StrainBrowserComponent } from './browsers/strain-browser/strain-browser.component';
+import { StrainComponent } from './cannabis/strain/strain.component';
+import {StrainDaoService} from "./cannabis/services/strain-dao.service";
+import { LoadingComponent } from './loading/loading.component';
 
 
 export const firebaseConfig = {
@@ -61,7 +66,11 @@ export const firebaseConfig = {
     UidPipe,
     GeneticsPipe,
     UserNavBarComponent,
-    AgePipe
+    AgePipe,
+    GeneticsComponent,
+    StrainBrowserComponent,
+    StrainComponent,
+    LoadingComponent
 
   ],
   imports: [
@@ -69,7 +78,7 @@ export const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [UserDaoService, AuthService, AngularFireDatabase, AngularFireAuth],
+  providers: [UserDaoService, StrainDaoService, AuthService, AngularFireDatabase, AngularFireAuth],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

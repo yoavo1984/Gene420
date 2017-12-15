@@ -35,6 +35,7 @@ export class AvatarComponent implements OnInit {
   }
 
   logout() {
+    this.router.navigateByUrl('/home');
     return this.authService.logout();
   }
 
