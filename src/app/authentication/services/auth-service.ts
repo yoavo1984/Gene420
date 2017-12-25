@@ -31,6 +31,10 @@ export class AuthService {
 
   }
 
+  getCurrentUser(){
+    return firebase.auth().currentUser;
+  }
+
   getCurrentUserUid(){
     return firebase.auth().currentUser.uid;
   }

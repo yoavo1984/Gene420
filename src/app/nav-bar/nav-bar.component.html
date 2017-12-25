@@ -11,7 +11,7 @@
       </button>
       <div>
         <a class="navbar-brand" href="#" class="align-top">
-          <img src="/assets/gene_420_logo.png" width="120" height="60"  alt="">
+          <img src="/assets/gene_420_logo.png" width="53.75" height="83.25"  alt="">
         </a>
       </div>
 
@@ -19,9 +19,9 @@
     <div class="collapse navbar-collapse"
          [ngClass]="{ 'in': isIn }">
       <ul class="nav navbar-nav">
-        <li><a [routerLink]="'/home'">Home</a></li>
-        <li><a [routerLink]="'/science'">Science</a></li>
-        <li><a [routerLink]="'/contact'">Contact</a></li>
+        <li class="nav-button"><a [routerLink]="'/home'">Home</a></li>
+        <li class="nav-button"><a [routerLink]="'/science'">Science</a></li>
+        <li class="nav-button"><a [routerLink]="'/contact'">Contact</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right" style="margin:5px;border:1px">
         <gene420-sign-in-up-nav></gene420-sign-in-up-nav>
