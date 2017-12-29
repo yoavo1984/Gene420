@@ -9,8 +9,8 @@ export class StrainComponent implements OnInit {
 
   @Input() name;
   @Input() imageUrl;
-  @Input() ocpc;
-  @Input() seedCompany;
+  @Input() thc;
+  @Input() strainType;
   @Output() onReview = new EventEmitter<any>();
 
   private dnaMatchComputed:boolean;
