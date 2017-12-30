@@ -16,6 +16,7 @@ export class AuthService {
   }
 
   signUp(email:string, password:string, name:string, photoUrl?:string){
+    //noinspection TypeScriptUnresolvedFunction
     firebase.auth().createUserWithEmailAndPassword(email, password)
       .then(()=>{
         this.sendVerificationEmail();
@@ -38,19 +39,21 @@ export class AuthService {
   }
 
   sendVerificationEmail(){
+    //noinspection TypeScriptUnresolvedFunction
     firebase.auth().currentUser.sendEmailVerification().then(function() {
       console.log("verification email sent");
-    }).catch(function(error) {
+    }).catch((error)=> {
       console.log("error in sending verification email: "+error)
     });
   }
 
   login(email, password){
+    //noinspection TypeScriptUnresolvedFunction
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then(()=>{
         this.router.navigate(['home']);
       })
-      .catch(function(error) {
+      .catch((error)=> {
       // Handle Errors here.
       var errorCode = error.code;
       var errorMessage = error.message;
