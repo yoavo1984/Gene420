@@ -43,16 +43,23 @@ export class AvatarComponent implements OnInit {
     this.router.navigateByUrl('/user');
   }
 
+  resolvePhotoUrl(user){
+    if (!user.photoUrl || user.photoUrl ==""){
+      return "/assets/photo.jpg"
+    }
+    else {
+      return user.photoUrl;
+    }
+  }
 
   registerOnAuthStateChange(){
     firebase.auth().onAuthStateChanged((user)=> {
-      if (user) {
+      if (user && user.emailVerified) {
         this.loggedIn = true;
-        this.displayName = user.displayName;
-        this.email = user.email;
-        this.photoUrl = user.photoURL;
-        this.emailVerified = user.emailVerified;
-        this.uid = user.uid;
+        this.displayName = this.authService.getCurrentUserDisplayName();
+        this.email = this.authService.getCurrentUserEmail();
+        this.photoUrl = this.authService.getCurrentUserPhotoUrl();
+        this.uid = this.authService.getCurrentUserUid();
 
       }
       else {

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthService} from "../services/auth-service";
 
 @Component({
   selector: 'gene420-sign-up',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SignUpComponent implements OnInit {
 
-  constructor() { }
+  constructor(public authService: AuthService) { }
 
   ngOnInit() {
+  }
+
+  signUp(form:any){
+    this.authService.signUp(form.email, form.password, form.firstName+" "+form.lastName);
+
   }
 
 }

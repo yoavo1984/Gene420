@@ -15,6 +15,49 @@ export class AuthService {
 
   }
 
+  signUp(email:string, password:string, name:string, photoUrl?:string){
+    firebase.auth().createUserWithEmailAndPassword(email, password)
+      .then(()=>{
+        this.sendVerificationEmail();
+        this.updateUserDetails(name, photoUrl);
+        this.router.navigate(['home']);
+      })
+      .catch(function(error) {
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      console.log("error in signup "+errorMessage);
+    });
+
+  }
+
+  updateUserDetails(name, photoUrl){
+    console.log("updating profile with "+name +" photoUrl"+photoUrl);
+    firebase.auth().currentUser.updateProfile({
+      displayName: name, photoURL:photoUrl?photoUrl:""
+    });
+  }
+
+  sendVerificationEmail(){
+    firebase.auth().currentUser.sendEmailVerification().then(function() {
+      console.log("verification email sent");
+    }).catch(function(error) {
+      console.log("error in sending verification email: "+error)
+    });
+  }
+
+  login(email, password){
+    firebase.auth().signInWithEmailAndPassword(email, password)
+      .then(()=>{
+        this.router.navigate(['home']);
+      })
+      .catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      // ...
+    });
+  }
+
   /**
    * Logs in the user
    * @returns {firebase.Promise<FirebaseAuthState>}
@@ -48,7 +91,11 @@ export class AuthService {
   }
 
   getCurrentUserPhotoUrl(){
-    return firebase.auth().currentUser.photoURL;
+    let photoUrl = firebase.auth().currentUser.photoURL
+    if (!photoUrl || photoUrl == ""){
+      photoUrl = "/assets/photo.jpg";
+    }
+    return photoUrl;
   }
 
 

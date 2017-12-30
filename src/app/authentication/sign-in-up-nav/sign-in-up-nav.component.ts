@@ -21,7 +21,7 @@ export class SignInUpNavComponent implements OnInit {
 
   registerOnAuthStateChange(){
     firebase.auth().onAuthStateChanged((user)=> {
-      if (user) {
+      if (user && user.emailVerified) {
         this.loggedIn = true;
       }
       else {
