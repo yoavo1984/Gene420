@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -9,16 +10,17 @@ import { Component, OnInit } from '@angular/core';
 export class NavBarComponent implements OnInit {
 
   ngOnInit(){
-
   }
 
   isIn = false;   // store state
-  constructor() { }
+  constructor(private router:Router) { }
 
   toggleState() { // click handler
     let bool = this.isIn;
     this.isIn = bool === false ? true : false;
   }
+
+
 
 
 

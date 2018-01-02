@@ -14,5 +14,19 @@ export class AppComponent {
   public isLoggedIn: boolean;
   constructor(public afService: AuthService, private router: Router) {
 
+
+  }
+
+  shouldShowNavBar(){
+    return this.router.url != "/user";
+  }
+
+  getTopMargin(){
+    if (this.shouldShowNavBar()){
+      return "120px";
+    }
+    else {
+      return 0;
+    }
   }
 }
