@@ -18,7 +18,7 @@ export class AppComponent {
   }
 
   shouldShowNavBar(){
-    return this.router.url != "/user";
+    return this.router.url != "/dashboard";
   }
 
   getTopMargin(){

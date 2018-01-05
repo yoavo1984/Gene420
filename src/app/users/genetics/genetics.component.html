@@ -1,4 +1,4 @@
-<ul class="list-inline" style="text-align: center">
+<!--<ul class="list-inline" style="text-align: center">
   <li *ngFor="let phenotype of user | async | genetics;">
     <div style="display:inline-block; text-align: center;">
       <i [ngClass]="getIconClass(phenotype.trait)" aria-hidden="true"></i>
@@ -12,5 +12,21 @@
         <i class="fa fa-check-circle" aria-hidden="true"></i>
       </div>
     </div>
-</ul>
+</ul>-->
+<div style="display: block;">
+  <div>
+    <div style="display: block">
+      <canvas baseChart align="center"
+              [datasets]="barChartData"
+              [labels]="barChartLabels"
+              [options]="barChartOptions"
+              [legend]="barChartLegend"
+              [chartType]="barChartType"
+              (chartHover)="chartHovered($event)"
+              (chartClick)="chartClicked($event)"></canvas>
+    </div>
+    <!--<button (click)="randomize()">Update</button>-->
+  </div>
+</div>
+
 

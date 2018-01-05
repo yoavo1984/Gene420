@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default" style="display:flex;">
+<!--<nav class="navbar navbar-default" style="display:flex;">
   <div class="container-fluid" style="margin-top:0px;">
     <div class="navbar-header"></div>
     <div class="collapse navbar-collapse" style="align-items:stretch;">
@@ -9,6 +9,46 @@
     </div>
 
   </div>
-</nav>
+</nav>-->
+<!--<div class="icon-bar">
+  <a class="active" href="#"><i class="fa fa-home" aria-hidden="true"></i></a>
+  <a href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
+  <a href="#"><i class="fa fa-envelope" aria-hidden="true"></i></a>
+  <a href="#"><i class="fa fa-globe" aria-hidden="true"></i></a>
+  <a href="#"><i class="fa fa-trash" aria-hidden="true"></i></a>
+</div>-->
+
+  <nav id="sidebar">
+    <div class="sidebar-header">
+      <div style="display:block;">
+        <gene420-avatar [showBasicNavigation]="false"></gene420-avatar>
+      </div>
+      <div style="display:block; margin-top: 40px;">
+        <gene420-genetics></gene420-genetics>
+      </div>
+    </div>
+
+    <div>
+      <ul class="list-unstyled components">
+        <li>
+          <a href="#">Home</a>
+          <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Strains</a>
+          <ul class="collapse list-unstyled" id="pageSubmenu">
+            <li><a href="#">By Type</a></li>
+            <li><a href="#">By Effect</a></li>
+            <li><a href="#">By THC</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">Help</a>
+        </li>
+        <li>
+          <a href="#">Contact</a>
+        </li>
+      </ul>
+    </div>
+
+
+  </nav>
 
 

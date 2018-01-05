@@ -20,6 +20,8 @@ export class AvatarComponent implements OnInit {
   private emailVerified;
   private uid;
 
+  @Input() showBasicNavigation = true;
+
   constructor(private authService:AuthService, private changeDetector:ChangeDetectorRef, private router:Router) {
     this.registerOnAuthStateChange();
   }
@@ -40,7 +42,7 @@ export class AvatarComponent implements OnInit {
   }
 
   navigateToPrivateArea() {
-    this.router.navigateByUrl('/user');
+    this.router.navigateByUrl('/dashboard');
   }
 
   resolvePhotoUrl(user){

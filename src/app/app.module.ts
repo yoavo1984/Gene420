@@ -32,6 +32,8 @@ import { RatingComponent } from './rating/rating.component';
 import { ReviewStrainModalComponent } from './cannabis/review-strain-modal/review-strain-modal.component';
 import {RatingModule} from "ngx-bootstrap";
 import {FormsModule} from "@angular/forms";
+import {ChartsModule} from "ng2-charts";
+import { DashboardComponent } from './users/dashboard/dashboard.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
@@ -40,7 +42,10 @@ const appRoutes: Routes = [
   {path: 'contact', component: ContactComponent},
   {path: 'sign-in', component: SignInComponent},
   {path: 'sign-up', component: SignUpComponent},
-  {path: 'user', component: UserComponent}
+  {path: 'dashboard', component: DashboardComponent,
+    children: [
+    { path: '', component:UserComponent, pathMatch: 'full' },
+  ]},
 
   //{ path: '**', redirectTo: 'pageNotFound', pathMatch: 'full' }
 ];
@@ -75,7 +80,8 @@ export const firebaseConfig = {
     StrainComponent,
     LoadingComponent,
     RatingComponent,
-    ReviewStrainModalComponent
+    ReviewStrainModalComponent,
+    DashboardComponent
 
   ],
   imports: [
@@ -84,7 +90,8 @@ export const firebaseConfig = {
     RouterModule.forRoot(appRoutes),
     RatingModule,
     FormsModule,
-    BsModalModule
+    BsModalModule,
+    ChartsModule
   ],
   providers: [UserDaoService, StrainDaoService, AuthService, AngularFireDatabase, AngularFireAuth],
   bootstrap: [AppComponent]
