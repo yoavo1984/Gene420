@@ -4,3 +4,10 @@
   margin-top: 20px;
   height:300px;
 }
+
+.float-over{
+  position: absolute;
+  margin-top:20px;
+  top: 0;
+  left: 0;
+}

@@ -31,10 +31,10 @@
     <div>
       <ul class="list-unstyled components">
         <li>
-          <a href="#">Home</a>
+          <a [routerLink]="['user']">Home</a>
           <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Strains</a>
           <ul class="collapse list-unstyled" id="pageSubmenu">
-            <li><a href="#">By Type</a></li>
+            <li><a [routerLink]="['strains']">By Type</a></li>
             <li><a href="#">By Effect</a></li>
             <li><a href="#">By THC</a></li>
           </ul>

@@ -84,8 +84,8 @@ a, a:hover, a:focus {
   left: 0;
   height: 100vh;
   z-index: 999;
-  background: lightgreen;
-  color: #fff;
+  background: #F7F7F7;
+  color: darkgreen;
   transition: all 0.3s;
 }
 
@@ -97,12 +97,12 @@ a, a:hover, a:focus {
   display:block;
   margin-top: 20px;
   padding:10px;
-  background: lightgreen;
+  background: #F7F7F7;
 }
 
 #sidebar ul.components {
   padding: 20px 0;
-  border-bottom: 1px solid lightgreen;
+  border-bottom: 1px solid #F7F7F7;
 }
 
 #sidebar ul p {
@@ -122,8 +122,8 @@ a, a:hover, a:focus {
 }
 
 #sidebar ul li.active > a, a[aria-expanded="true"] {
-  color: #fff;
-  background: lightgreen;
+  color: black;
+  background: #F7F7F7;
 }
 
 a[data-toggle="collapse"] {
@@ -146,7 +146,7 @@ a[aria-expanded="true"]::before {
 ul ul a {
   font-size: 0.9em !important;
   padding-left: 30px !important;
-  background: lightgreen;
+  background: #F7F7F7;
 }
 
 ul.CTAs {

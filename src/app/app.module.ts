@@ -44,7 +44,8 @@ const appRoutes: Routes = [
   {path: 'sign-up', component: SignUpComponent},
   {path: 'dashboard', component: DashboardComponent,
     children: [
-    { path: '', component:UserComponent, pathMatch: 'full' },
+    { path: '', component:UserComponent},
+    { path: 'strains', component:StrainBrowserComponent}
   ]},
 
   //{ path: '**', redirectTo: 'pageNotFound', pathMatch: 'full' }

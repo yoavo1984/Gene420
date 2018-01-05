@@ -3,6 +3,7 @@ import {AngularFireModule} from 'angularfire2';
 import {AngularFireAuth} from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import {Router} from "@angular/router";
+import {UserDaoService} from "../../users/services/user-dao.service";
 
 
 @Injectable()
@@ -10,7 +11,7 @@ export class AuthService {
 
   private callbacks;
 
-  constructor(public af: AngularFireAuth, private router:Router) {
+  constructor(public af: AngularFireAuth, private router:Router, private userDao:UserDaoService) {
     this.callbacks = [];
 
   }
@@ -36,6 +37,13 @@ export class AuthService {
     firebase.auth().currentUser.updateProfile({
       displayName: name, photoURL:photoUrl?photoUrl:""
     });
+    this.userDao.updateUserGenetics(this.getCurrentUserUid(), {
+      "craving": 2,
+        "psychosis": 3,
+        "memory": 0,
+        "dependence": 1,
+        "decision": 4
+    })
   }
 
   sendVerificationEmail(){
