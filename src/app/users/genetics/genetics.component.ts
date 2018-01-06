@@ -1,4 +1,7 @@
 import {Component, OnInit, Input} from '@angular/core';
+import {UserDaoService} from "../services/user-dao.service";
+import {AuthService} from "../../authentication/services/auth-service";
+import {Genetics} from "../model/Genetics";
 
 @Component({
   selector: 'gene420-genetics',
@@ -15,16 +18,17 @@ export class GeneticsComponent implements OnInit {
     "dependence": "fa fa-heart",
     "decision": "fa fa-lightbulb-o"
   };
-  constructor() { }
+  constructor(private userDao:UserDaoService, private authService:AuthService) { }
 
   ngOnInit() {
+    this.getUserGenetics();
   }
 
   getIconClass(phenotype){
     return this.iconByPhenotype[phenotype] +' fa-3x';
   }
 
-  public barChartOptions:any = {
+  public geneticsChartOptions:any = {
     scale: {
       ticks: {
         display:false,
@@ -34,12 +38,12 @@ export class GeneticsComponent implements OnInit {
     },
     responsive: true
   };
-  public barChartLabels:any[] = ["Craving", 'Psychosis', 'Memory', 'Dependence', 'Decision'];
-  public barChartType:string = 'radar';
-  public barChartLegend:boolean = false;
+  public geneticsChartLabels:any[] = ["Craving", 'Decision', 'Dependence', 'Memory', 'Psychosis'];
+  public geneticsChartType:string = 'radar';
+  public geneticsChartLegend:boolean = false;
 
-  public barChartData:any[] = [
-    {data: [2, 3, 5, 0, 3,], label: ''},
+  public geneticsChartData:any[] = [
+    {data: [0, 0, 0, 0, 0,], label: ''},
     //{data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'}
   ];
 
@@ -52,49 +56,15 @@ export class GeneticsComponent implements OnInit {
     console.log(e);
   }
 
-  public randomize():void {
-    // Only Change 3 values
-    let data = [
-      Math.round(Math.random() * 100),
-      59,
-      80,
-      (Math.random() * 100),
-      56,
-      (Math.random() * 100),
-      40];
-    let clone = JSON.parse(JSON.stringify(this.barChartData));
-    clone[0].data = data;
-    this.barChartData = clone;
-    /**
-     * (My guess), for Angular to recognize the change in the dataset
-     * it has to change the dataset variable directly,
-     * so one way around it, is to clone the data, change it and then
-     * assign it;
-     */
+  getUserGenetics():void{
+    let geneticArray = [];
+    let genetics = this.userDao.getGenetics(this.authService.getCurrentUserUid());
+    genetics.subscribe((geneticData)=>{
+      for (let phenotype in geneticData){
+        geneticArray.push(geneticData[phenotype]);
+      }
+      this.geneticsChartData = JSON.parse(JSON.stringify(geneticArray));
+    });
   }
 
 }
-
-/**
-yAxes: [{
-  ticks: {
-    fontFamily: 'FontAwesome'
-    //beginAtZero: true,
-    //maxTicksLimit: 5,
-    // Create scientific notation labels
-    /callback: function(value, index, values) {
-     return value + ' €';
-     }
-  }
-}],
-  xAxes: [{
-  //categoryPercentage: 1.0,
-  //barPercentage: 0.6,
-  ticks: {
-    callback: function(value, index, values) {
-      return '';
-    }
-  }
-
-
-}]*/

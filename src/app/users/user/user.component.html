@@ -1,1 +1,12 @@
-<h1>Welcome!</h1>
+<nav class="navbar navbar-default" style="display:flex;">
+  <div class="container-fluid" style="margin-top:0px;">
+    <div class="navbar-header"></div>
+    <div class="collapse navbar-collapse" style="align-items:stretch;width:500px;">
+      <ul class="nav navbar-nav">
+        <li [ngClass]="getIsCurrentStrainView('my-ratings') ? 'active': ''"><a [routerLink]="'/my-ratings'">Latest Ratings</a></li>
+        <li [ngClass]="getIsCurrentStrainView('top-ratings') ? 'active': ''"><a [routerLink]="'/top-ratings'">Top Ratings</a></li>
+        <li [ngClass]="getIsCurrentStrainView('wish-list') ? 'active': ''"><a [routerLink]="'/wish-list'">Wish List</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>

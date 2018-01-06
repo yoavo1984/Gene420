@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {AngularFireDatabase} from "angularfire2/database";
+import {Genetics} from "../model/Genetics";
 
 @Injectable()
 export class UserDaoService {
@@ -28,12 +29,4 @@ export class UserDaoService {
 
   }
 
-}
-
-interface Genetics{
-  craving:number;
-  psychosis:number;
-  memory:number;
-  dependence:number;
-  decision:number;
 }
