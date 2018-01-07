@@ -34,6 +34,9 @@ import {RatingModule} from "ngx-bootstrap";
 import {FormsModule} from "@angular/forms";
 import {ChartsModule} from "ng2-charts";
 import { DashboardComponent } from './users/dashboard/dashboard.component';
+import { StrainTypePipe } from './cannabis/pipes/strain-type.pipe';
+import {EventBusService} from "./services/event-bus.service";
+import { StrainNamePipe } from './cannabis/pipes/strain-name.pipe';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
@@ -82,7 +85,9 @@ export const firebaseConfig = {
     LoadingComponent,
     RatingComponent,
     ReviewStrainModalComponent,
-    DashboardComponent
+    DashboardComponent,
+    StrainTypePipe,
+    StrainNamePipe
 
   ],
   imports: [
@@ -94,7 +99,7 @@ export const firebaseConfig = {
     BsModalModule,
     ChartsModule
   ],
-  providers: [UserDaoService, StrainDaoService, AuthService, AngularFireDatabase, AngularFireAuth],
+  providers: [UserDaoService, StrainDaoService, AuthService, AngularFireDatabase, AngularFireAuth, EventBusService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

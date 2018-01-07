@@ -12,11 +12,13 @@ export class StrainComponent implements OnInit {
   @Input() thc;
   @Input() strainType;
   @Output() onReview = new EventEmitter<any>();
+  @Output() onHover = new EventEmitter<any>();
 
   private dnaMatchComputed:boolean;
   private ratingComputed:boolean;
   private dnaMatch;
   private rating;
+  private currentStrainName;
 
   constructor() { }
 
@@ -50,6 +52,14 @@ export class StrainComponent implements OnInit {
 
   review(){
     this.onReview.emit({name:this.name, imageUrl:this.imageUrl});
+  }
+
+  mouseEnter(){
+    this.currentStrainName = this.name;
+  }
+
+  mouseLeave(){
+    this.onHover.emit({name:this.currentStrainName})
   }
 
 }

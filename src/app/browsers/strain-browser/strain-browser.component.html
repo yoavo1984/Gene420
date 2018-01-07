@@ -1,5 +1,6 @@
 <div>
   <ul class="list-inline" style="text-align: center">
+    <!--<li *ngFor="let strain of strains | async | strainType:'Indica';">-->
     <li *ngFor="let strain of strains | async;">
       <gene420-strain
         [name]="strain['name']"
@@ -7,6 +8,7 @@
         [thc]="strain['thc']"
         [strainType]="strain['type']"
         (onReview)="reviewStrain($event)"
+        (onHover)="strainHovered($event)"
       >
       </gene420-strain>
     </li>

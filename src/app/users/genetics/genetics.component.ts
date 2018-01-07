@@ -63,8 +63,13 @@ export class GeneticsComponent implements OnInit {
       for (let phenotype in geneticData){
         geneticArray.push(geneticData[phenotype]);
       }
-      this.geneticsChartData = JSON.parse(JSON.stringify(geneticArray));
+      this.geneticsChartData = JSON.parse(JSON.stringify([{data:geneticArray}]));
     });
+  }
+
+  addData(data){
+    this.geneticsChartData[1] = {data: new Array(data)};
+    this.geneticsChartData = JSON.parse(JSON.stringify(this.geneticsChartData));
   }
 
 }
