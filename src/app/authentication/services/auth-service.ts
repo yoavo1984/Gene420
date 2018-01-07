@@ -59,12 +59,15 @@ export class AuthService {
     //noinspection TypeScriptUnresolvedFunction
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then(()=>{
-        this.router.navigate(['home']);
+
+        this.handleSuccessfulLogin();
       })
       .catch((error)=> {
       // Handle Errors here.
+
       var errorCode = error.code;
       var errorMessage = error.message;
+      alert("could not sign in: "+ errorMessage);
       // ...
     });
   }
@@ -77,12 +80,27 @@ export class AuthService {
     firebase.auth().onAuthStateChanged((user)=> {
       if (user) {
         // User is signed in
-        this.router.navigate(['home']);
+        this.handleSuccessfulLogin();
         // ...
       }
     });
     return this.af.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
 
+  }
+
+  handleSuccessfulLogin(){
+    if (this.isEmailVerified()){
+      this.router.navigate(['dashboard']);
+    }
+    else {
+      alert("Please verify your email before logging in");
+      this.router.navigate(['home']);
+    }
+
+  }
+
+  isEmailVerified(){
+    return firebase.auth().currentUser.emailVerified;
   }
 
   getCurrentUser(){

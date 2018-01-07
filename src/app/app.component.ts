@@ -14,7 +14,6 @@ export class AppComponent {
   public isLoggedIn: boolean;
   constructor(public afService: AuthService, private router: Router) {
 
-
   }
 
   shouldShowNavBar(){
