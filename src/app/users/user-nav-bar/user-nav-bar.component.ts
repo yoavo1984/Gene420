@@ -26,7 +26,7 @@ export class UserNavBarComponent implements OnInit {
       let strain = this.strainDao.getStrainByName(data.name);
       if (strain){
         //A TEST
-        this.genetics.addData([1,0,4,5,2]);
+        this.genetics.addData([1,0,3,2,2]);
       }
     })
   }
