@@ -24,7 +24,7 @@ import { GeneticsPipe } from './users/pipes/genetics.pipe';
 import { UserNavBarComponent } from './users/user-nav-bar/user-nav-bar.component';
 import { AgePipe } from './users/pipes/age.pipe';
 import { GeneticsComponent } from './users/genetics/genetics.component';
-import { StrainBrowserComponent } from './browsers/strain-browser/strain-browser.component';
+import { StrainBrowserComponent } from './browsers/strains/strain-browser/strain-browser.component';
 import { StrainComponent } from './cannabis/strain/strain.component';
 import {StrainDaoService} from "./cannabis/services/strain-dao.service";
 import { LoadingComponent } from './loading/loading.component';
@@ -37,6 +37,8 @@ import { DashboardComponent } from './users/dashboard/dashboard.component';
 import { StrainTypePipe } from './cannabis/pipes/strain-type.pipe';
 import {EventBusService} from "./services/event-bus.service";
 import { StrainNamePipe } from './cannabis/pipes/strain-name.pipe';
+import { StrainTypeSelectorComponent } from './browsers/strains/strain-type-selector/strain-type-selector.component';
+import { StrainExplorerComponent } from './explorers/strains/strain-explorer/strain-explorer.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
@@ -48,7 +50,7 @@ const appRoutes: Routes = [
   {path: 'dashboard', component: DashboardComponent,
     children: [
     { path: '', component:UserComponent},
-    { path: 'strains', component:StrainBrowserComponent}
+    { path: 'strain-browser', component:StrainBrowserComponent}
   ]},
 
   //{ path: '**', redirectTo: 'pageNotFound', pathMatch: 'full' }
@@ -87,7 +89,9 @@ export const firebaseConfig = {
     ReviewStrainModalComponent,
     DashboardComponent,
     StrainTypePipe,
-    StrainNamePipe
+    StrainNamePipe,
+    StrainTypeSelectorComponent,
+    StrainExplorerComponent
 
   ],
   imports: [

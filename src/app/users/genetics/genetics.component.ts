@@ -82,9 +82,14 @@ export class GeneticsComponent implements OnInit {
     });
   }
 
-  addData(data){
+  addStrainData(data:number[]){
     let newData = [this.geneticsChartData[0], {data:data}];
     this.geneticsChartData = JSON.parse(JSON.stringify(newData));
+    this.reloadChart();
+  }
+
+  resetToUserData(){
+    this.geneticsChartData = JSON.parse(JSON.stringify([{data: this.geneticsChartData[0].data}]));
     this.reloadChart();
   }
 

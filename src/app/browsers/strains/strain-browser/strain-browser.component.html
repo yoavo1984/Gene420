@@ -1,0 +1,50 @@
+<h2 style="margin-top:15px; text-align: center;">
+  Browse Cannabis Strains
+</h2>
+<div style="text-align: center;float:left;clear:none;">
+  <div style="display:inline-block;">
+    <div class="panel panel-default">
+      <div class="panel-heading">Filter</div>
+      <div class="panel-body">
+        <h3>Type</h3>
+        <p><input type="checkbox">Indica</p>
+        <p><input type="checkbox">Sativa</p>
+        <p><input type="checkbox">Hybrid</p>
+        <hr/>
+        <h3>THC Content</h3>
+        <p><input type="checkbox">0-10%</p>
+        <p><input type="checkbox">11-45%</p>
+        <p><input type="checkbox">46-100%</p>
+      </div>
+    </div>
+  </div>
+  <!--strain list-->
+  <div style="display:inline-block; float:right;">
+    <gene420-loading [loaded]="loaded"></gene420-loading>
+  </div>
+
+  <div style="width:85%;display:inline-block;height:100vh; overflow-y: scroll; float:right;" *ngIf="loaded">
+
+    <ul class="list-inline" style="text-align: center" >
+      <!--<li *ngFor="let strain of strains | async | strainType:'Indica';">-->
+      <li *ngFor="let strain of strains | async;">
+        <gene420-strain
+          [name]="strain['name']"
+          [imageUrl]="strain['image']"
+          [thc]="strain['thc']"
+          [strainType]="strain['type']"
+          (onReview)="reviewStrain($event)"
+          (onHover)="strainHovered($event)"
+          (onHoverEnded)="strainHoverEnded($event)"
+        >
+        </gene420-strain>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!--<div style="text-align: center;margin-top: 15%;">
+  <gene420-strain-type-selector></gene420-strain-type-selector>
+</div>-->
+
+<gene420-review-strain-modal #reviewStrainModal></gene420-review-strain-modal>

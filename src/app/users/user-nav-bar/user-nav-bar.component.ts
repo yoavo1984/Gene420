@@ -11,6 +11,8 @@ import {StrainDaoService} from "../../cannabis/services/strain-dao.service";
 })
 export class UserNavBarComponent implements OnInit {
 
+  private currentName = "";
+
   @Input() currentStrainView:string;
   @ViewChild('genetics') genetics;
 
@@ -24,11 +26,16 @@ export class UserNavBarComponent implements OnInit {
   ngOnInit() {
     this.eventBus.subscribe("StrainHovered", (data)=>{
       let strain = this.strainDao.getStrainByName(data.name);
-      if (strain){
-        //A TEST
-        this.genetics.addData([1,0,3,2,2]);
+      if (strain && this.currentName!=data.name){
+        this.genetics.addStrainData(this.strainDao.getStrainGenetics(data.name));
+        this.currentName = data.name;
       }
-    })
+    });
+
+    this.eventBus.subscribe("StrainHoverEnded", (data)=>{
+      this.genetics.resetToUserData();
+    });
+
   }
 
   getIsCurrentStrainView(currentStrainView:string){

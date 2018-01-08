@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild, Input, Output, EventEmitter} from '@angular/core';
-import {StrainDaoService} from "../../cannabis/services/strain-dao.service";
-import {EventBusService} from "../../services/event-bus.service";
+import {StrainDaoService} from "../../../cannabis/services/strain-dao.service";
+import {EventBusService} from "../../../services/event-bus.service";
 
 @Component({
   selector: 'gene420-strain-browser',
@@ -9,13 +9,22 @@ import {EventBusService} from "../../services/event-bus.service";
 })
 export class StrainBrowserComponent implements OnInit {
   private strains;
+  private showList = false;
   @Input() navigation;
   @ViewChild('reviewStrainModal') reviewStrainModal;
+  private loaded = false;
 
   constructor(private strainDao:StrainDaoService, private eventBus:EventBusService) { }
 
   ngOnInit() {
     this.strains = this.strainDao.getAllStrains();
+    this.eventBus.subscribe("StrainsLoaded", ()=>{
+      //TODO: slow load, just an effect for now
+      window.setTimeout(()=>{
+        this.loaded = true;
+      }, 4000);
+
+    });
   }
 
   reviewStrain(event){
@@ -24,6 +33,10 @@ export class StrainBrowserComponent implements OnInit {
 
   strainHovered(data){
     this.eventBus.publish("StrainHovered", {name:data.name});
+  }
+
+  strainHoverEnded(data){
+    this.eventBus.publish("StrainHoverEnded", {name:data.name});
   }
 
 }

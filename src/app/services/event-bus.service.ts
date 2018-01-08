@@ -9,7 +9,7 @@ export class EventBusService {
 
   constructor() { }
 
-  publish(name, data){
+  publish(name, data?){
     if (this.observableByName[name]){
       this.observerByName[name].next(data);
     }
