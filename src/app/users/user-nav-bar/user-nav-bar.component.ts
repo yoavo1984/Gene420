@@ -44,6 +44,10 @@ export class UserNavBarComponent implements OnInit {
     }
   }
 
+  getDnaMatch(){
+    return Math.round(Math.min(100,Math.random()*100+30));
+  }
+
   logout(){
     this.router.navigateByUrl('/home');
     return this.authService.logout();

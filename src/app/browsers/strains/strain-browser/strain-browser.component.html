@@ -1,29 +1,43 @@
-<h2 style="margin-top:15px; text-align: center;">
-  Browse Cannabis Strains
-</h2>
-<div style="text-align: center;float:left;clear:none;">
-  <div style="display:inline-block;">
-    <div class="panel panel-default">
-      <div class="panel-heading">Filter</div>
-      <div class="panel-body">
-        <h3>Type</h3>
-        <p><input type="checkbox">Indica</p>
-        <p><input type="checkbox">Sativa</p>
-        <p><input type="checkbox">Hybrid</p>
-        <hr/>
-        <h3>THC Content</h3>
-        <p><input type="checkbox">0-10%</p>
-        <p><input type="checkbox">11-45%</p>
-        <p><input type="checkbox">46-100%</p>
-      </div>
+<div style="text-align: center;clear:none;">
+
+  <div style="height:35px; align-items: stretch; background-color: #f6f6f6;">
+    <div style="margin:5px;display: inline-block;">
+      <b>Type</b>
+      <select>
+        <option>Indica</option>
+        <option>Sativa</option>
+        <option>Hybrid</option>
+      </select>
     </div>
+
+    <div style="margin:5px;display: inline-block;">
+      <b>THC Content</b>
+      <select>
+        <option>0-10%</option>
+        <option>11-20%</option>
+        <option>21-30%</option>
+        <option>31+%</option>
+      </select>
+    </div>
+
+    <div style="margin:5px;display: inline-block;">
+      <b>CBD Content</b>
+      <select>
+        <option>0-10%</option>
+        <option>11-20%</option>
+        <option>21-30%</option>
+        <option>31+%</option>
+      </select>
+    </div>
+
+
   </div>
   <!--strain list-->
-  <div style="display:inline-block; float:right;">
+  <div style="display:inline-block;">
     <gene420-loading [loaded]="loaded"></gene420-loading>
   </div>
 
-  <div style="width:85%;display:inline-block;height:100vh; overflow-y: scroll; float:right;" *ngIf="loaded">
+  <div style="width:100%;display:block; overflow-y: auto;" *ngIf="loaded">
 
     <ul class="list-inline" style="text-align: center" >
       <!--<li *ngFor="let strain of strains | async | strainType:'Indica';">-->

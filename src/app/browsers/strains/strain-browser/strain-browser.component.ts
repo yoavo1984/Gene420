@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild, Input, Output, EventEmitter} from '@angular/core';
+import {Component, OnInit, ViewChild, Input, Output, EventEmitter, HostListener} from '@angular/core';
 import {StrainDaoService} from "../../../cannabis/services/strain-dao.service";
 import {EventBusService} from "../../../services/event-bus.service";
 
@@ -13,11 +13,15 @@ export class StrainBrowserComponent implements OnInit {
   @Input() navigation;
   @ViewChild('reviewStrainModal') reviewStrainModal;
   private loaded = false;
+  private shouldShowFilterPane = true;
+  private innerWidth;
 
   constructor(private strainDao:StrainDaoService, private eventBus:EventBusService) { }
 
+
   ngOnInit() {
     this.strains = this.strainDao.getAllStrains();
+    this.innerWidth = window.innerWidth;
     this.eventBus.subscribe("StrainsLoaded", ()=>{
       //TODO: slow load, just an effect for now
       window.setTimeout(()=>{
@@ -26,6 +30,7 @@ export class StrainBrowserComponent implements OnInit {
 
     });
   }
+
 
   reviewStrain(event){
     this.reviewStrainModal.open(event.name, event.imageUrl);
@@ -38,5 +43,17 @@ export class StrainBrowserComponent implements OnInit {
   strainHoverEnded(data){
     this.eventBus.publish("StrainHoverEnded", {name:data.name});
   }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.innerWidth = window.innerWidth;
+    if (this.innerWidth<1500){
+      this.shouldShowFilterPane = false;
+    }
+    else {
+      this.shouldShowFilterPane = true;
+    }
+  }
+
 
 }
