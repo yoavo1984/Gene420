@@ -1,4 +1,4 @@
-import {Injectable} from "@angular/core";
+import {Injectable, ChangeDetectorRef} from "@angular/core";
 import {AngularFireModule} from 'angularfire2';
 import {AngularFireAuth} from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
@@ -10,9 +10,12 @@ import {UserDaoService} from "../../users/services/user-dao.service";
 export class AuthService {
 
   private callbacks;
+  private loggedIn:boolean;
 
   constructor(public af: AngularFireAuth, private router:Router, private userDao:UserDaoService) {
     this.callbacks = [];
+
+    this.registerOnAuthStateChange();
 
   }
 
@@ -90,6 +93,7 @@ export class AuthService {
 
   handleSuccessfulLogin(){
     if (this.isEmailVerified()){
+      this.loggedIn = true;
       this.router.navigate(['dashboard']);
     }
     else {
@@ -97,6 +101,10 @@ export class AuthService {
       this.router.navigate(['home']);
     }
 
+  }
+
+  isLoggedIn():boolean{
+    return this.loggedIn;
   }
 
   isEmailVerified(){
@@ -120,11 +128,26 @@ export class AuthService {
   }
 
   getCurrentUserPhotoUrl(){
-    let photoUrl = firebase.auth().currentUser.photoURL
+    let photoUrl = firebase.auth().currentUser.photoURL;
     if (!photoUrl || photoUrl == ""){
       photoUrl = "/assets/photo.jpg";
     }
     return photoUrl;
+  }
+
+  /**
+   * TODO: unify this, also registered from the avatar
+   *
+   */
+  registerOnAuthStateChange(){
+    firebase.auth().onAuthStateChanged((user)=> {
+      if (user && user.emailVerified) {
+        this.loggedIn = true;
+      }
+      else {
+        this.loggedIn = false;
+      }
+    });
   }
 
 
@@ -132,6 +155,7 @@ export class AuthService {
    * Logs out the current user
    */
   logout() {
+    this.loggedIn = false;
     return this.af.auth.signOut();
   }
 }

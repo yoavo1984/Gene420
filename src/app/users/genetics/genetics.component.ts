@@ -3,6 +3,7 @@ import {UserDaoService} from "../services/user-dao.service";
 import {AuthService} from "../../authentication/services/auth-service";
 import {Genetics} from "../model/Genetics";
 import {BaseChartDirective} from "ng2-charts";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'gene420-genetics',
@@ -21,15 +22,20 @@ export class GeneticsComponent implements OnInit {
     "decision": "fa fa-lightbulb-o"
   };
   private initFlag;
-  constructor(private userDao:UserDaoService, private authService:AuthService) { }
+  constructor(private userDao:UserDaoService, private authService:AuthService, private router:Router) { }
 
   ngOnInit() {
+    //TODO: check how to unify this to all user related components
+    if (!this.authService.isLoggedIn()){
+      this.router.navigateByUrl('/home');
+      return;
+    }
     this.getUserGenetics();
     this.reloadChart();
   }
 
   reloadChart() {
-    if (this.chart !== undefined) {
+    if (this.chart !== undefined && this.chart.chart!==undefined) {
       this.chart.chart.destroy();
       this.chart.chart = 0;
 

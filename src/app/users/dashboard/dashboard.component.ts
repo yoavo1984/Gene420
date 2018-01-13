@@ -21,8 +21,9 @@ export class DashboardComponent implements OnInit {
   constructor(private authService:AuthService, private usersDao:UserDaoService, private router:Router) { }
 
   ngOnInit() {
-    if (!this.authService.getCurrentUser()){
-      this.router.navigateByUrl('/home')
+    if (!this.authService.isLoggedIn()){
+      this.router.navigateByUrl('/home');
+      return;
     }
     this.currentStrainView = "browse-strains";
     this.uid = this.authService.getCurrentUserUid();
