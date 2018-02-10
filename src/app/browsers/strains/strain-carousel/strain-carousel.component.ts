@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {CarouselComponent} from "angular2-carousel";
+import {StrainDaoService} from "../../../cannabis/services/strain-dao.service";
 
 @Component({
   selector: 'gene420-strain-carousel',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StrainCarouselComponent implements OnInit {
 
-  constructor() { }
+  private strains;
+  @ViewChild('carousel') carousel: CarouselComponent;
+  constructor(private strainDaoService:StrainDaoService) { }
 
   ngOnInit() {
+    this.strains = this.strainDaoService.getAllStrains();
   }
 
 }

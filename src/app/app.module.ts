@@ -41,6 +41,7 @@ import { StrainTypeSelectorComponent } from './browsers/strains/strain-type-sele
 import { StrainExplorerComponent } from './explorers/strains/strain-explorer/strain-explorer.component';
 import {CarouselModule} from "angular2-carousel";
 import { StrainCarouselComponent } from './browsers/strains/strain-carousel/strain-carousel.component';
+import { GeneticsFooterComponent } from './users/genetics-footer/genetics-footer.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
@@ -51,7 +52,7 @@ const appRoutes: Routes = [
   {path: 'sign-up', component: SignUpComponent},
   {path: 'dashboard', component: DashboardComponent,
     children: [
-    { path: '', component:UserComponent},
+    { path: '', component:StrainCarouselComponent},
     { path: 'strain-browser', component:StrainBrowserComponent},
     { path: 'type-browser', component:StrainTypeSelectorComponent},
     { path: 'carousel-browser', component:StrainCarouselComponent}
@@ -96,7 +97,8 @@ export const firebaseConfig = {
     StrainNamePipe,
     StrainTypeSelectorComponent,
     StrainExplorerComponent,
-    StrainCarouselComponent
+    StrainCarouselComponent,
+    GeneticsFooterComponent
 
   ],
   imports: [

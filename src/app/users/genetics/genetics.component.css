@@ -1,13 +1,17 @@
-.chart{
+.base-chart{
   display:flex;
   justify-content: center;
-  margin-top: 20px;
-  height:300px;
+}
+
+canvas{
+
+  width:400px !important;
+  height:250px !important;
+
 }
 
 .float-over{
   position: absolute;
-  margin-top:20px;
   top: 0;
   left: 0;
 }

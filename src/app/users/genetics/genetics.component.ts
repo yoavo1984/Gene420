@@ -55,9 +55,10 @@ export class GeneticsComponent implements OnInit {
         display:false,
         //showLabelBackdrop: false
       }
-
     },
+    maintainAspectRatio: false,
     responsive: true
+
   };
   public geneticsChartLabels:any[] = ["Craving", 'Decision', 'Dependence', 'Memory', 'Psychosis'];
   public geneticsChartType:string = 'radar';
