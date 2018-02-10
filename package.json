@@ -24,6 +24,7 @@
     "@angular/platform-browser-dynamic": "^5.1.1",
     "@angular/platform-server": "^5.1.1",
     "@angular/router": "^5.1.1",
+    "angular2-carousel": "^1.0.12",
     "angularfire2": "^5.0.0-rc.4",
     "cannabis-reports": "^1.1.9",
     "chart.js": "^2.7.1",
@@ -40,7 +41,7 @@
     "zone.js": "^0.8.14"
   },
   "devDependencies": {
-    "@angular/cli": "^1.6.4",
+    "@angular/cli": "^1.6.8",
     "@angular/compiler-cli": "^4.2.4",
     "@angular/language-service": "^4.2.4",
     "@types/jasmine": "~2.5.53",

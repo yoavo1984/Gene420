@@ -39,6 +39,8 @@ import {EventBusService} from "./services/event-bus.service";
 import { StrainNamePipe } from './cannabis/pipes/strain-name.pipe';
 import { StrainTypeSelectorComponent } from './browsers/strains/strain-type-selector/strain-type-selector.component';
 import { StrainExplorerComponent } from './explorers/strains/strain-explorer/strain-explorer.component';
+import {CarouselModule} from "angular2-carousel";
+import { StrainCarouselComponent } from './browsers/strains/strain-carousel/strain-carousel.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
@@ -50,7 +52,9 @@ const appRoutes: Routes = [
   {path: 'dashboard', component: DashboardComponent,
     children: [
     { path: '', component:UserComponent},
-    { path: 'strain-browser', component:StrainBrowserComponent}
+    { path: 'strain-browser', component:StrainBrowserComponent},
+    { path: 'type-browser', component:StrainTypeSelectorComponent},
+    { path: 'carousel-browser', component:StrainCarouselComponent}
   ]},
 
   //{ path: '**', redirectTo: 'pageNotFound', pathMatch: 'full' }
@@ -91,7 +95,8 @@ export const firebaseConfig = {
     StrainTypePipe,
     StrainNamePipe,
     StrainTypeSelectorComponent,
-    StrainExplorerComponent
+    StrainExplorerComponent,
+    StrainCarouselComponent
 
   ],
   imports: [
@@ -101,7 +106,9 @@ export const firebaseConfig = {
     RatingModule,
     FormsModule,
     BsModalModule,
-    ChartsModule
+    ChartsModule,
+    CarouselModule
+
   ],
   providers: [UserDaoService, StrainDaoService, AuthService, AngularFireDatabase, AngularFireAuth, EventBusService],
   bootstrap: [AppComponent]
