@@ -1,5 +1,4 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {CarouselComponent} from "angular2-carousel";
 import {StrainDaoService} from "../../../cannabis/services/strain-dao.service";
 
 @Component({
@@ -10,7 +9,6 @@ import {StrainDaoService} from "../../../cannabis/services/strain-dao.service";
 export class StrainCarouselComponent implements OnInit {
 
   private strains;
-  @ViewChild('carousel') carousel: CarouselComponent;
   constructor(private strainDaoService:StrainDaoService) { }
 
   ngOnInit() {

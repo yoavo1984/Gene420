@@ -24,7 +24,6 @@
     "@angular/platform-browser-dynamic": "^5.1.1",
     "@angular/platform-server": "^5.1.1",
     "@angular/router": "^5.1.1",
-    "angular2-carousel": "^1.0.12",
     "angularfire2": "^5.0.0-rc.4",
     "cannabis-reports": "^1.1.9",
     "chart.js": "^2.7.1",
