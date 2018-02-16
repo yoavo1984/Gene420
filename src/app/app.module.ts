@@ -39,7 +39,6 @@ import {EventBusService} from "./services/event-bus.service";
 import { StrainNamePipe } from './cannabis/pipes/strain-name.pipe';
 import { StrainTypeSelectorComponent } from './browsers/strains/strain-type-selector/strain-type-selector.component';
 import { StrainExplorerComponent } from './explorers/strains/strain-explorer/strain-explorer.component';
-import {CarouselModule} from "angular2-carousel";
 import { StrainCarouselComponent } from './browsers/strains/strain-carousel/strain-carousel.component';
 import { GeneticsFooterComponent } from './users/genetics-footer/genetics-footer.component';
 import { MoodWizardsComponent } from './wizards/mood-wizards/mood-wizards.component';
@@ -110,8 +109,7 @@ export const firebaseConfig = {
     RatingModule,
     FormsModule,
     BsModalModule,
-    ChartsModule,
-    CarouselModule
+    ChartsModule
 
   ],
   providers: [UserDaoService, StrainDaoService, AuthService, AngularFireDatabase, AngularFireAuth, EventBusService],
