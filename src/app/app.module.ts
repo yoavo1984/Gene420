@@ -42,6 +42,7 @@ import { StrainExplorerComponent } from './explorers/strains/strain-explorer/str
 import {CarouselModule} from "angular2-carousel";
 import { StrainCarouselComponent } from './browsers/strains/strain-carousel/strain-carousel.component';
 import { GeneticsFooterComponent } from './users/genetics-footer/genetics-footer.component';
+import { MoodWizardsComponent } from './wizards/mood-wizards/mood-wizards.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
@@ -98,7 +99,8 @@ export const firebaseConfig = {
     StrainTypeSelectorComponent,
     StrainExplorerComponent,
     StrainCarouselComponent,
-    GeneticsFooterComponent
+    GeneticsFooterComponent,
+    MoodWizardsComponent
 
   ],
   imports: [
