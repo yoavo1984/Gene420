@@ -1,14 +1,18 @@
+<div style="text-align: center;">
+  <gene420-loading [loaded]="loaded"></gene420-loading>
+</div>
 
-    <!-- Indicators -->
-    <div
-      ng2-carouselamos
-      [width]="1500"
-      [items]="strains"
-      [$item]="itemTemplate"
-      [$prev]="prevTemplate"
-      [$next]="nextTemplate"
-      (onSelectedItem)="selectedItem = $event.item; selectedIndex = $event.index"
-      ></div>
+<!-- Indicators -->
+
+  <div *ngIf="loaded"
+    ng2-carouselamos
+    [width]="1500"
+    [items]="strains"
+    [$item]="itemTemplate"
+    [$prev]="prevTemplate"
+    [$next]="nextTemplate"
+    (onSelectedItem)="selectedItem = $event.item; selectedIndex = $event.index"
+  ></div>
 
 
   <ng-template #prevTemplate>
@@ -37,5 +41,7 @@
       (onHover)="strainHovered($event)"
       (onHoverEnded)="strainHoverEnded($event)"
     >
-      </gene420-strain>
+    </gene420-strain>
   </ng-template>
+
+
