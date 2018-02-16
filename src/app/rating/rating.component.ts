@@ -9,7 +9,7 @@ export class RatingComponent implements OnInit {
 
   @Input() stars;
 
-  private MAX_STARS:number = 5;
+  private MAX_STARS:number = 4;
   private filledStars;
   private emptyStars;
   private hasHalfStars;
@@ -29,6 +29,9 @@ export class RatingComponent implements OnInit {
 
     this.filledStars = this.getRange(Math.floor(this.stars));
     this.emptyStars = this.getRange(this.MAX_STARS-Math.floor(this.stars));
+    if (!this.hasHalfStars){
+      this.emptyStars+1;
+    }
   }
 
   getRange(length){

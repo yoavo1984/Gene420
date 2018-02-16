@@ -1,5 +1,5 @@
-@media only screen and (max-device-width: 480px) {
-  aside {
-    display:none;
+@media only screen and (max-width : 510px) {
+  .genetics-details {
+    display:none !important;
   }
 }

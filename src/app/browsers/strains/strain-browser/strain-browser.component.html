@@ -1,6 +1,6 @@
 <div style="text-align: center;clear:none;">
-
-  <div style="height:35px; align-items: stretch; background-color: #f6f6f6;">
+  <!--filter-->
+  <div class="filter" style="height:35px;width:100%; align-items: stretch; background-color: #f6f6f6;position:fixed;">
     <div style="margin:5px;display: inline-block;">
       <b>Type</b>
       <select>
@@ -10,7 +10,6 @@
         <option>Hybrid</option>
       </select>
     </div>
-
     <div style="margin:5px;display: inline-block;">
       <b>THC Content</b>
       <select>
@@ -21,7 +20,6 @@
         <option>31+%</option>
       </select>
     </div>
-
     <div style="margin:5px;display: inline-block;">
       <b>CBD Content</b>
       <select>
@@ -39,12 +37,15 @@
     </div>
 
   </div>
-  <!--strain list-->
+
+
+  <!--loading-->
   <div style="display:inline-block;">
     <gene420-loading [loaded]="loaded"></gene420-loading>
   </div>
 
-  <div style="width:100%;display:block; overflow-y: auto;" *ngIf="loaded">
+  <!--strain list-->
+  <div style="width:100%;display:inline-block;" *ngIf="loaded">
 
     <ul class="list-inline" style="text-align: center" >
       <!--<li *ngFor="let strain of strains | async | strainType:'Indica';">-->

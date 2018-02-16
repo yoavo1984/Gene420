@@ -41,7 +41,8 @@ import { StrainTypeSelectorComponent } from './browsers/strains/strain-type-sele
 import { StrainExplorerComponent } from './explorers/strains/strain-explorer/strain-explorer.component';
 import { StrainCarouselComponent } from './browsers/strains/strain-carousel/strain-carousel.component';
 import { GeneticsFooterComponent } from './users/genetics-footer/genetics-footer.component';
-import { MoodWizardsComponent } from './wizards/mood-wizards/mood-wizards.component';
+import {Ng2CarouselamosModule} from "ng2-carouselamos";
+//import { MoodWizardsComponent } from './wizards/mood-wizards/mood-wizards.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
@@ -99,7 +100,7 @@ export const firebaseConfig = {
     StrainExplorerComponent,
     StrainCarouselComponent,
     GeneticsFooterComponent,
-    MoodWizardsComponent
+    //MoodWizardsComponent
 
   ],
   imports: [
@@ -109,7 +110,8 @@ export const firebaseConfig = {
     RatingModule,
     FormsModule,
     BsModalModule,
-    ChartsModule
+    ChartsModule,
+    Ng2CarouselamosModule
 
   ],
   providers: [UserDaoService, StrainDaoService, AuthService, AngularFireDatabase, AngularFireAuth, EventBusService],
