@@ -1,4 +1,4 @@
-import {Component, OnInit, Input, ChangeDetectorRef} from '@angular/core';
+import {Component, OnInit, Input, ChangeDetectorRef, Output, EventEmitter} from '@angular/core';
 import * as firebase from 'firebase/app';
 import {AngularFireAuth} from "angularfire2/auth";
 import {AuthService} from "../authentication/services/auth-service";
@@ -21,6 +21,7 @@ export class AvatarComponent implements OnInit {
   private uid;
 
   @Input() showBasicNavigation = true;
+  @Output() collapse = new EventEmitter<any>();
 
   constructor(private authService:AuthService, private changeDetector:ChangeDetectorRef, private router:Router) {
     this.registerOnAuthStateChange();
@@ -42,7 +43,8 @@ export class AvatarComponent implements OnInit {
   }
 
   navigateToPrivateArea() {
-    this.router.navigateByUrl('/dashboard');
+    this.collapse.emit({});
+    this.router.navigateByUrl('/wizard');
   }
 
   resolvePhotoUrl(user){

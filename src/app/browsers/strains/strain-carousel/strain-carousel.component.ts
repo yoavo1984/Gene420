@@ -46,4 +46,8 @@ export class StrainCarouselComponent implements OnInit {
 
   }
 
+  onSelectedStrain(item){
+    this.eventBus.publish("StrainHovered", {name:item.name});
+  }
+
 }

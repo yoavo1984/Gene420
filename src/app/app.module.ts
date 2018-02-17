@@ -104,7 +104,7 @@ export const firebaseConfig = {
     StrainCarouselComponent,
     GeneticsFooterComponent,
     StrainViewComponent,
-    //MoodWizardsComponent
+    MoodWizardsComponent
 
   ],
   imports: [
