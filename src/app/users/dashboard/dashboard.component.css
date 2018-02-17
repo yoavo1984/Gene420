@@ -13,6 +13,7 @@ footer {
   left: 0;
   width:100%;
   position: fixed;
+  vertical-align: middle;
   text-align: center;
   bottom: 0px;
   height: 250px;
