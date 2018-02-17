@@ -1,0 +1,32 @@
+h1 {
+  text-align: center;
+}
+
+h3 {
+  text-align: center;
+}
+
+.row-example {
+  display:flex;
+  /*border: 1px solid #000;*/
+  /*height: 200px;*/
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.child {
+  flex: 0 0 28%;
+  margin: 10px;
+  align-self : center;
+  /*background-color: rgba(0, 0, 255, 0.25);*/
+}
+
+.myFlexedImage {
+  width: 200px;
+  height: 200px;
+  display: block;
+  margin:auto;
+}
+
