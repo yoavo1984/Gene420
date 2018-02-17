@@ -6,7 +6,7 @@
 
   <div *ngIf="loaded"
     ng2-carouselamos
-    [width]="1500"
+    [width]="410"
     [items]="strains"
     [$item]="itemTemplate"
     [$prev]="prevTemplate"
@@ -15,7 +15,7 @@
   ></div>
 
 
-  <ng-template #prevTemplate>
+  <!--<ng-template #prevTemplate>
     <div class="navigator" style="font-size:5em;">
       <i class="fa fa-arrow-left" aria-hidden="true"></i>
     </div>
@@ -26,7 +26,7 @@
     <div class="navigator" style="font-size:5em;">
       <i class="fa fa-arrow-right" aria-hidden="true"></i>
     </div>
-  </ng-template>
+  </ng-template>-->
 
   <ng-template let-item let-i="index" #itemTemplate>
     <gene420-strain
@@ -34,8 +34,8 @@
       [imageUrl]="item['image']"
       [thc]="item['thc']"
       [strainType]="item['type']"
-      [width]="400"
-      [height]="320"
+      [width]="230"
+      [height]="160"
       [margin]="15"
       (onReview)="reviewStrain($event)"
       (onHover)="strainHovered($event)"

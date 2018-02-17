@@ -42,6 +42,7 @@ import { StrainExplorerComponent } from './explorers/strains/strain-explorer/str
 import { StrainCarouselComponent } from './browsers/strains/strain-carousel/strain-carousel.component';
 import { GeneticsFooterComponent } from './users/genetics-footer/genetics-footer.component';
 import {Ng2CarouselamosModule} from "ng2-carouselamos";
+import { StrainViewComponent } from './users/strain-view/strain-view.component';
 //import { MoodWizardsComponent } from './wizards/mood-wizards/mood-wizards.component';
 
 const appRoutes: Routes = [
@@ -53,7 +54,7 @@ const appRoutes: Routes = [
   {path: 'sign-up', component: SignUpComponent},
   {path: 'dashboard', component: DashboardComponent,
     children: [
-    { path: '', component:StrainCarouselComponent},
+    { path: '', component:StrainViewComponent},
     { path: 'strain-browser', component:StrainBrowserComponent},
     { path: 'type-browser', component:StrainTypeSelectorComponent},
     { path: 'carousel-browser', component:StrainCarouselComponent}
@@ -100,6 +101,7 @@ export const firebaseConfig = {
     StrainExplorerComponent,
     StrainCarouselComponent,
     GeneticsFooterComponent,
+    StrainViewComponent,
     //MoodWizardsComponent
 
   ],

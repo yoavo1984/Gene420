@@ -35,7 +35,7 @@ export class StrainComponent implements OnInit {
   }
 
   computeRating(){
-    return Math.random()*4;
+    return Math.random()*5;
   }
 
   getDnaMatch(){
