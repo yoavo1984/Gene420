@@ -21,6 +21,10 @@ export class StrainDaoService {
     return this.angularFire.list('/strains/').valueChanges();
   }
 
+  getStrainsFromToIndex(start:number, end:number){
+    return this.angularFire.list('/strains/',ref => ref.startAt(start).endAt(end)).valueChanges();
+  }
+
   getStrainAtIndex(index:number){
     return this.angularFire.list('/strains/',ref => ref.startAt(index).endAt(index)).valueChanges();
   }

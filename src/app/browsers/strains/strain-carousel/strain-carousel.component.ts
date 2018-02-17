@@ -1,5 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {StrainDaoService} from "../../../cannabis/services/strain-dao.service";
+import {EventBusService} from "../../../services/event-bus.service";
 
 @Component({
   selector: 'gene420-strain-carousel',
@@ -8,11 +9,41 @@ import {StrainDaoService} from "../../../cannabis/services/strain-dao.service";
 })
 export class StrainCarouselComponent implements OnInit {
 
-  private strains;
-  constructor(private strainDaoService:StrainDaoService) { }
+  private strainsRemote;
+  private strains = [];
+  private loaded = false;
+  constructor(private strainDaoService:StrainDaoService, private eventBus:EventBusService) {
+
+  }
 
   ngOnInit() {
-    this.strains = this.strainDaoService.getAllStrains();
+    this.strainsRemote = this.strainDaoService.getAllStrains();
+    this.strainsRemote.subscribe((strains)=>{
+      this.strains = strains.slice(0,5);
+      this.loaded = true;
+    })
+  }
+
+
+
+  reviewStrain(event){
+    //this.reviewStrainModal.open(event.name, event.imageUrl);
+  }
+
+  strainHovered(data){
+    this.eventBus.publish("StrainHovered", {name:data.name});
+  }
+
+  strainHoverEnded(data){
+    this.eventBus.publish("StrainHoverEnded", {name:data.name});
+  }
+
+  next(){
+
+  }
+
+  prev(){
+
   }
 
 }

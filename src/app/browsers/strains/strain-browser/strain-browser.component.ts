@@ -15,20 +15,49 @@ export class StrainBrowserComponent implements OnInit {
   private loaded = false;
   private shouldShowFilterPane = true;
   private innerWidth;
+  private strainsRemote;
+  private allStrains = [];
+
+  //filtering
+  private strainType = "All";
+  private thc = "All";
+
 
   constructor(private strainDao:StrainDaoService, private eventBus:EventBusService) { }
 
 
   ngOnInit() {
-    this.strains = this.strainDao.getAllStrains();
-    this.innerWidth = window.innerWidth;
-    this.eventBus.subscribe("StrainsLoaded", ()=>{
-      //TODO: slow load, just an effect for now
-      window.setTimeout(()=>{
-        this.loaded = true;
-      }, 4000);
-
+    this.strainsRemote = this.strainDao.getAllStrains();
+    this.strainsRemote.subscribe((strains)=>{
+      this.strains = strains;
+      this.allStrains = strains;
+      this.loaded = true;
     });
+
+    this.innerWidth = window.innerWidth;
+  }
+
+  //TODO: implement filters
+  applyFilter(){
+    this.strains = this.filter();
+  }
+
+  filter(){
+    let strains = [];
+    if (this.strainType == "All"){
+      return this.allStrains;
+    }
+    for (let strain of this.allStrains){
+      if (strain['type'] == this.strainType){
+        strains.push(strain);
+      }
+    }
+    return strains;
+  }
+
+
+  reset(){
+    this.strains = this.allStrains;
   }
 
 

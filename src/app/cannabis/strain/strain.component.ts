@@ -11,6 +11,10 @@ export class StrainComponent implements OnInit {
   @Input() imageUrl;
   @Input() thc;
   @Input() strainType;
+  @Input() width = 100;
+  @Input() height = 80;
+  @Input() margin = 2;
+
   @Output() onReview = new EventEmitter<any>();
   @Output() onHover = new EventEmitter<any>();
   @Output() onHoverEnded = new EventEmitter<any>();
@@ -31,7 +35,7 @@ export class StrainComponent implements OnInit {
   }
 
   computeRating(){
-    return Math.random()*4;
+    return Math.random()*5;
   }
 
   getDnaMatch(){

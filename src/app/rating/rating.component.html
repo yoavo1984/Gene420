@@ -1,10 +1,16 @@
 <ul class="list-inline" style="text-align: center">
   <li *ngFor="let number of filledStars">
-    <i class="fa fa-star" aria-hidden="true"></i>
+    <div class="stars">
+      <i class="fa fa-star" aria-hidden="true"></i>
+    </div>
   </li>
-  <i *ngIf = "hasHalfStars" class="fa fa-star-half-o" aria-hidden="true"></i>
+  <div class="stars">
+    <i *ngIf = "hasHalfStars" class="fa fa-star-half-o" aria-hidden="true"></i>
+  </div>
   <li *ngFor="let number of emptyStars">
-    <i class="fa fa-star-o" aria-hidden="true"></i>
+    <div class="stars">
+      <i class="fa fa-star-o" aria-hidden="true"></i>
+    </div>
   </li>
 
 </ul>

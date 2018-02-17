@@ -1,19 +1,18 @@
 <div style="text-align: center;clear:none;">
-
-  <div style="height:35px; align-items: stretch; background-color: #f6f6f6;">
+  <!--filter-->
+  <div class="filter" style="height:35px;width:100%; align-items: stretch; background-color: #f6f6f6;position:fixed;">
     <div style="margin:5px;display: inline-block;">
       <b>Type</b>
-      <select>
+      <select [(ngModel)]="strainType">
         <option>All</option>
         <option>Indica</option>
         <option>Sativa</option>
         <option>Hybrid</option>
       </select>
     </div>
-
     <div style="margin:5px;display: inline-block;">
       <b>THC Content</b>
-      <select>
+      <select [(ngModel)]="thc">
         <option>All</option>
         <option>0-10%</option>
         <option>11-20%</option>
@@ -21,10 +20,9 @@
         <option>31+%</option>
       </select>
     </div>
-
     <div style="margin:5px;display: inline-block;">
       <b>CBD Content</b>
-      <select>
+      <select >
         <option>All</option>
         <option>0-10%</option>
         <option>11-20%</option>
@@ -33,25 +31,31 @@
       </select>
     </div>
     <div style="margin-left:50px;display: inline-block;">
-      <button>Reset</button>
-      <button>Apply</button>
+      <button (click)="reset()">Reset</button>
+      <button (click)="applyFilter()">Apply</button>
 
     </div>
 
   </div>
-  <!--strain list-->
+
+
+  <!--loading-->
   <div style="display:inline-block;">
     <gene420-loading [loaded]="loaded"></gene420-loading>
   </div>
 
-  <div style="width:100%;display:block; overflow-y: auto;" *ngIf="loaded">
+  <!--strain list-->
+  <div style="width:100%;display:inline-block;" *ngIf="loaded">
 
     <ul class="list-inline" style="text-align: center" >
       <!--<li *ngFor="let strain of strains | async | strainType:'Indica';">-->
-      <li *ngFor="let strain of strains | async;">
+      <li *ngFor="let strain of strains">
         <gene420-strain
           [name]="strain['name']"
           [imageUrl]="strain['image']"
+          [width]="200"
+          [height]="160"
+          [margin]="15"
           [thc]="strain['thc']"
           [strainType]="strain['type']"
           (onReview)="reviewStrain($event)"
