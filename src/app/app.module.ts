@@ -42,6 +42,7 @@ import { StrainExplorerComponent } from './explorers/strains/strain-explorer/str
 import { StrainCarouselComponent } from './browsers/strains/strain-carousel/strain-carousel.component';
 import { GeneticsFooterComponent } from './users/genetics-footer/genetics-footer.component';
 import { MoodWizardsComponent } from './wizards/mood-wizards/mood-wizards.component';
+import { FlexLayoutModule} from '@angular/flex-layout';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
@@ -50,6 +51,7 @@ const appRoutes: Routes = [
   {path: 'contact', component: ContactComponent},
   {path: 'sign-in', component: SignInComponent},
   {path: 'sign-up', component: SignUpComponent},
+  {path: 'wizard', component: MoodWizardsComponent},
   {path: 'dashboard', component: DashboardComponent,
     children: [
     { path: '', component:StrainCarouselComponent},
@@ -109,7 +111,8 @@ export const firebaseConfig = {
     RatingModule,
     FormsModule,
     BsModalModule,
-    ChartsModule
+    ChartsModule,
+    FlexLayoutModule
 
   ],
   providers: [UserDaoService, StrainDaoService, AuthService, AngularFireDatabase, AngularFireAuth, EventBusService],
