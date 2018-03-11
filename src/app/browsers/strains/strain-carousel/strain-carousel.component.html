@@ -37,7 +37,7 @@
         [thc]="item['thc']"
         [strainType]="item['type']"
         [width]="230"
-        [height]="150"
+        [height]="getStrainHeight()"
         [margin]="15"
         (onReview)="reviewStrain($event)"
         (onHover)="strainHovered($event)"

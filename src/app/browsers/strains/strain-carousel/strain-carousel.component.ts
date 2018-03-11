@@ -12,6 +12,9 @@ export class StrainCarouselComponent implements OnInit {
   private strainsRemote;
   private strains = [];
   private loaded = false;
+  private innerHeight;
+  private innerWidth;
+  private strainHeight;
   constructor(private strainDaoService:StrainDaoService, private eventBus:EventBusService) {
 
   }
@@ -22,6 +25,11 @@ export class StrainCarouselComponent implements OnInit {
       this.strains = strains.slice(0,5);
       this.loaded = true;
     })
+
+  }
+
+  getStrainHeight(){
+    return window.screen.height-550; //TODO: currently very specific
   }
 
 

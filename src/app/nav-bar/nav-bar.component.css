@@ -1,5 +1,6 @@
 .navbar {
   min-height: 80px;
+  background-color: #6ccde4;
 }
 .verticalLine {
   border-left: thick solid #ff0000;
@@ -7,5 +8,5 @@
 
 .nav-button {
   font-size: x-large;
-  margin-top: 7px;
+  margin-top: 0px;
 }
