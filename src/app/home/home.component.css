@@ -63,19 +63,39 @@
 .text-area::placeholder {
   color: #9b9b9b;
 }
-
-.main-title {
-  display: block;
-  color:white;
-  font-size: 64px;
+@media only screen and (max-width : 510px) {
+  .main-title {
+    display: block;
+    color: white;
+    font-size: 28px;
+  }
 }
 
-.title {
-  display: block;
-  color:black;
-  font-weight:300;
-  font-size: 36px;
+@media only screen and (min-width : 511px) {
+  .main-title {
+    display: block;
+    color: white;
+    font-size: 64px;
+  }
 }
+@media only screen and (max-width : 510px) {
+  .title {
+    display: block;
+    color:black;
+    font-weight:300;
+    font-size: 10px;
+  }
+}
+
+@media only screen and (max-width : 511px) {
+  .title {
+    display: block;
+    color:black;
+    font-weight:300;
+    font-size: 36px;
+  }
+}
+
 
 .description {
   display: block;
