@@ -1,9 +1,10 @@
 <div *ngIf="loggedIn" style="text-align: center">
-  <div style="display: block">
-    <img [src]="photoUrl" width="30" height="30"/> {{displayName}}
+  <div style="display: inline">
+    <img [src]="photoUrl" width="30" height="30"/> <span class="display-name">{{displayName}}</span>
   </div>
-  <div style="display: block" *ngIf="showBasicNavigation">
-    <button (click)="logout()">Logout</button> <button (click)="navigateToPrivateArea()">My Strains</button>
+  <div style="display: inline" *ngIf="showBasicNavigation">
+    <a (click)="logout()"><i class="fa fa-sign-out" style="color:white;" aria-hidden="true"></i></a>
+    <a (click)="navigateToPrivateArea()"><i class="fa fa-envira" style="color:white;" aria-hidden="true"></i></a>
   </div>
 </div>
 

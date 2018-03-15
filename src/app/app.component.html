@@ -3,11 +3,7 @@
     <div *ngIf="shouldShowNavBar()" >
       <gene420-nav-bar ></gene420-nav-bar>
     </div>
-
-    <!--TODO: kind of hacky to get the margin top needed, check how to do this correctly with styling in blocks-->
-    <div class="page" [style.margin-top]="getTopMargin()">
-      <router-outlet></router-outlet>
-    </div>
+    <router-outlet></router-outlet>
   </div>
 </div>
 
