@@ -4,6 +4,12 @@
   border:0px;
 }
 
+.brand{
+  font-family: Georgia;
+  color:white;
+  font-size: 34px;
+  font-weight: 700;
+}
 
 .verticalLine {
   border-left: thick solid #ff0000;
