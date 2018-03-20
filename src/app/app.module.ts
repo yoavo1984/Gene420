@@ -45,6 +45,8 @@ import { MoodWizardsComponent } from './wizards/mood-wizards/mood-wizards.compon
 import { FlexLayoutModule} from '@angular/flex-layout';
 import {Ng2CarouselamosModule} from "ng2-carouselamos";
 import { StrainViewComponent } from './users/strain-view/strain-view.component';
+import {ContactService} from "./contact/contact.service";
+import { SubmitModalComponent } from './contact/submit-modal/submit-modal.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
@@ -104,7 +106,8 @@ export const firebaseConfig = {
     StrainCarouselComponent,
     GeneticsFooterComponent,
     StrainViewComponent,
-    MoodWizardsComponent
+    MoodWizardsComponent,
+    SubmitModalComponent
 
   ],
   imports: [
@@ -119,7 +122,7 @@ export const firebaseConfig = {
     Ng2CarouselamosModule
 
   ],
-  providers: [UserDaoService, StrainDaoService, AuthService, AngularFireDatabase, AngularFireAuth, EventBusService],
+  providers: [UserDaoService, StrainDaoService, AuthService, AngularFireDatabase, AngularFireAuth, EventBusService, ContactService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

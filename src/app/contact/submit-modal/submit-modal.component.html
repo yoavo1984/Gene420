@@ -1,0 +1,17 @@
+<bs-modal #submitModal>
+  <form #modalForm="ngForm">
+    <bs-modal-header [showDismiss]="true">
+      <h4 class="modal-title">{{message}}</h4>
+
+    </bs-modal-header>
+    <bs-modal-body style="text-align: center;">
+      <div *ngIf="showSpinner">
+        <img src="assets/loading.gif"/>
+      </div>
+
+      <div *ngIf="!showSpinner">
+        Thank you for reaching out! We will get back to you as soon as possible!
+      </div>
+    </bs-modal-body>
+  </form>
+</bs-modal>

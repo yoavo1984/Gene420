@@ -1,5 +1,5 @@
 <div class="container-fluid" style="background-color: #76B51B;margin-top: 0;">
-  <div class="motto">
+  <div class="motto" id="home">
     <h1 class="main-title">DNA TELLS YOUR STORY</h1>
     <div style="display: flex;align-items: center;">
       <!--<h4 class="description">Ever wondered what strain of cannabis is best for you <i>personally</i>?</h4>-->
@@ -7,7 +7,7 @@
         <img src="assets/dna-helix2.png" align="middle">
       </div>-->
       <div style="display: block">
-      <h4 class="description">We provide a personal science based</h4>
+      <h4 class="description">We provide a personal, science based</h4>
         <h4 class="description">strain recommendation according to your DNA</h4>
       </div>
       <div style="display: block;margin-left:50px;" >
@@ -17,16 +17,16 @@
               I'm interested in Personalized marijuana.&body=Please tell me more on how I can find my perfect matching strains!">
           <i class="fa fa-play-circle fa-5x" style="color:white;" aria-hidden="true"></i>
           </a>-->
-        <a style="width:200px;"
+        <!--<a style="width:200px;"
            href="#getInTouch">
           <i class="fa fa-play-circle fa-5x" style="color:white;" aria-hidden="true"></i>
-        </a>
+        </a>-->
       </div>
     </div>
 
 
     <div style="display: block;margin-top:50px;">
-      <img src="assets/tube.png" style="height:350px;position:inherit;"/>
+      <img src="assets/tube.png" class="tube"/>
     </div>
   </div>
 </div>
@@ -76,18 +76,29 @@
     </div>
     <p>Gene 420 will be available soon.</p>
     <p>In the meantime, if you have any questions or ideas, please let us know!</p>
-    <div style="display: block">
-      <p>
-        <input type="text" placeholder="Your Name" class="input-field">
-      </p>
-      <p>
-        <input type="text" placeholder="Email Address" class="input-field">
-      </p>
-      <p>
-        <textarea placeholder="Your Message" class="text-area"></textarea>
-      </p>
+    <form (ngSubmit)="onSubmit()" #getInTouchForm="ngForm">
+      <div class="form-group">
+        <input type="text" class="form-control" id="name"
+               required placeholder="Your Full Name" class="input-field" [(ngModel)]="getInTouchInformation.name" name="name">
+      </div>
 
-      <button class="btn btn-success btn-lg" style="width:200px;margin: 10px;">Send</button>
-    </div>
+      <div class="form-group">
+        <input type="text" class="form-control" id="email"
+               required
+               pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,6})+$"
+               placeholder="Email Address" class="input-field" [(ngModel)]="getInTouchInformation.email" name="email">
+      </div>
+
+      <div class="form-group">
+        <textarea class="text-area" id="message"
+                  required placeholder="Email Address" placeholder="Your Message"
+                  [(ngModel)]="getInTouchInformation.message" name="message"></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-success btn-lg" style="width:200px;margin: 10px;" [disabled]="!getInTouchForm.form.valid">Submit</button>
+
+    </form>
   </div>
 </div>
+
+<gene420-submit-modal #submitModal></gene420-submit-modal>

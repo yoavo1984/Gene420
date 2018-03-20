@@ -10,9 +10,9 @@
         <span class="icon-bar"></span>
       </button>
       <div style="margin-left:100px;">
-        <a class="navbar-brand" href="#" class="align-bottom">
-          <span class="brand">GENE420</span>
-          <!--<img src="/assets/logo_white.jpg" width="80" height="80"  alt="">-->
+        <a class="navbar-brand" [routerLink]="'/home'" class="align-bottom">
+          <span class="brand"><img src="assets/dna-helix2.png" width="30" height="30" style="margin-right:5px;">GENE420</span>
+
         </a>
       </div>
 
@@ -20,13 +20,17 @@
     <div class="collapse navbar-collapse"
          [ngClass]="{ 'in': isIn }">
       <ul class="nav navbar-nav">
-        <li class="nav-button"><a [routerLink]="'/home'" style="color:white;font-size:14px;font-weight: 100;">Home</a></li>
-        <li class="nav-button"><a [routerLink]="'/science'" style="color:white;font-size:14px;font-weight: 100;">Science</a></li>
-        <li class="nav-button"><a [routerLink]="'/contact'" style="color:white;font-size:14px;font-weight: 100;">Contact</a></li>
+        <!--disabled for now -->
+        <li class="nav-button"><a href="#home" style="color:white;font-size:14px;font-weight: 100;">Home</a></li>
+        <!--<li class="nav-button"><a [routerLink]="'/science'" style="color:white;font-size:14px;font-weight: 100;">Science</a></li>-->
+        <li class="nav-button"><a href="#getInTouch" style="color:white;font-size:14px;font-weight: 100;">Contact</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right" style="margin:20px;">
+        <!-- disabled for now -->
+        <!--
         <gene420-sign-in-up-nav></gene420-sign-in-up-nav>
         <gene420-avatar (collapse)="toggleState()"></gene420-avatar>
+        -->
       </ul>
     </div>
 
