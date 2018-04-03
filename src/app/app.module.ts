@@ -47,10 +47,12 @@ import {Ng2CarouselamosModule} from "ng2-carouselamos";
 import { StrainViewComponent } from './users/strain-view/strain-view.component';
 import {ContactService} from "./contact/contact.service";
 import { SubmitModalComponent } from './contact/submit-modal/submit-modal.component';
+import { BetaTesterComponent } from './beta-tester/beta-tester.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'home', component: HomeComponent},
+  {path: 'beta-tester', component: BetaTesterComponent},
   {path: 'science', component: ScienceComponent},
   {path: 'contact', component: ContactComponent},
   {path: 'sign-in', component: SignInComponent},
@@ -107,7 +109,8 @@ export const firebaseConfig = {
     GeneticsFooterComponent,
     StrainViewComponent,
     MoodWizardsComponent,
-    SubmitModalComponent
+    SubmitModalComponent,
+    BetaTesterComponent
 
   ],
   imports: [

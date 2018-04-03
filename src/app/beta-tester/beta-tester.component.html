@@ -1,0 +1,57 @@
+
+<div style="display:block;">
+  <div class="container-fluid beta" id="betaTesting">
+    <div style="display: block;margin-top:50px;">
+      <h1>Beta Testing</h1>
+    </div>
+    <p>Would you like to be the first to try our services, for free?</p>
+    <p>Sign up below and we promise to contact you shortly!</p>
+    <form (ngSubmit)="onBetaTestingSubmit()" #betaTestingForm="ngForm">
+      <div class="form-group">
+        <input type="text" class="input-field" id="betaTesterName"
+               required placeholder="Your Full Name" [(ngModel)]="betaTesterInformation.name" name="name">
+      </div>
+
+      <div class="form-group">
+        <input type="text" class="input-field" id="betaTesterEmail"
+               required
+               pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,6})+$"
+               placeholder="Email Address" [(ngModel)]="betaTesterInformation.email" name="email">
+      </div>
+
+      <div class="form-group">
+        <label class="testerAgeLabel" for="betaTesterAge">Your Age</label>
+        <select class="input-field" id="betaTesterAge"
+                required
+                [(ngModel)]="betaTesterInformation.age" name="age">
+          <option [value]="18-30">18-30</option>
+          <option [value]="31-40">31-40</option>
+          <option [value]="41-50">41-50</option>
+          <option [value]="51-60">51-60</option>
+          <option [value]="60-120">60+</option>
+        </select>
+        <!--<div [hidden]="betaTesterInformation.age.valid || betaTesterInformation.age.pristine" class="alert alert-danger">
+          Age is required
+        </div>-->
+      </div>
+
+      <div class="form-group">
+        <label class="testerAgeLabel" for="betaTesterCountry">Your Country</label>
+        <select class="input-field" id="betaTesterCountry"
+                required
+                [(ngModel)]="betaTesterInformation.country" name="country">
+          <option [value]="18-30">Israel</option>
+          <option [value]="31-40">Germany</option>
+        </select>
+        <!--<div [hidden]="betaTesterInformation.age.valid || betaTesterInformation.age.pristine" class="alert alert-danger">
+          Age is required
+        </div>-->
+      </div>
+
+      <button type="submit" class="btn btn-success btn-lg" style="width:250px;margin: 10px;" [disabled]="!betaTestingForm.form.valid">Become A Beta Tester</button>
+
+    </form>
+  </div>
+</div>
+
+<gene420-submit-modal #submitModal></gene420-submit-modal>

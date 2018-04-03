@@ -9,6 +9,7 @@
       <div style="display: block; text-align: center;">
       <h4 class="description">We provide a personal, science based</h4>
         <h4 class="description">strain recommendation according to your DNA</h4>
+        <button type="button" class="btn btn-light" (click)="onBetaTesterApply()" >Apply to Beta Test</button>
       </div>
       <div style="display: block;margin-left:50px;" >
 
@@ -69,6 +70,12 @@
     </div>
   </div>
 </div>
+
+<!--<div class="container-fluid beta">
+  <h1>Would you like to be the first to try?</h1>
+  <button type="submit" class="btn btn-success btn-lg" style="width:250px;margin: 10px;">Become A Beta Tester</button>
+</div>-->
+
 <div style="display:block;">
   <div class="container-fluid get-in-touch" id="getInTouch">
     <div style="display: block;margin-top:50px;">
@@ -76,7 +83,7 @@
     </div>
     <p>Gene 420 will be available soon.</p>
     <p>In the meantime, if you have any questions or ideas, please let us know!</p>
-    <form (ngSubmit)="onSubmit()" #getInTouchForm="ngForm">
+    <form (ngSubmit)="onGetInTouchSubmit()" #getInTouchForm="ngForm">
       <div class="form-group">
         <input type="text" class="form-control" id="name"
                required placeholder="Your Full Name" class="input-field" [(ngModel)]="getInTouchInformation.name" name="name">
@@ -100,5 +107,7 @@
     </form>
   </div>
 </div>
+
+
 
 <gene420-submit-modal #submitModal></gene420-submit-modal>

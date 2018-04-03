@@ -1,6 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {ContactService} from "../contact/contact.service";
 import {SubmitModalComponent} from "../contact/submit-modal/submit-modal.component";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'gene420-home',
@@ -15,9 +16,9 @@ export class HomeComponent implements OnInit {
 
   @ViewChild ('submitModal') submitModal:SubmitModalComponent;
 
-  constructor(private contactService:ContactService) { }
+  constructor(private contactService:ContactService, private router:Router) { }
 
-  onSubmit() {
+  onGetInTouchSubmit() {
     this.submitted = true;
     let success = this.contactService.submitMessage(
       this.getInTouchInformation.name,
@@ -32,12 +33,20 @@ export class HomeComponent implements OnInit {
 
 
 
+
+
+
+
   ngOnInit() {
     this.initializeGetInTouchInformation();
   }
 
   initializeGetInTouchInformation(){
     this.getInTouchInformation = {name: "", email:"", message:""};
+  }
+
+  onBetaTesterApply(){
+    this.router.navigateByUrl('/beta-tester');
   }
 
 }
