@@ -22,7 +22,7 @@ export class BetaTesterComponent implements OnInit {
 
 
   initializeBetaTesterInformation(){
-    this.betaTesterInformation = {name: "", email:"", age:"", country:"", smokingExperience:"", city: "", cannabisExperience:"", cannabisPurpose: ""};
+    this.betaTesterInformation = {name: "", email:"", age:"", country:"", smokingExperience:"", zipCode: "", cannabisExperience:"", cannabisPurpose: ""};
   }
 
   onBetaTestingSubmit() {
@@ -32,6 +32,7 @@ export class BetaTesterComponent implements OnInit {
       this.betaTesterInformation.email,
       this.betaTesterInformation.age,
       this.betaTesterInformation.country,
+      this.betaTesterInformation.zipCode,
       this.betaTesterInformation.cannabisExperience,
       this.betaTesterInformation.cannabisPurpose
 

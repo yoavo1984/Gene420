@@ -13,9 +13,10 @@ export class ContactService {
     return messages.push({name:name, email:email, message:message});
   }
 
-  signupForBetaTesting(name, email, age, country, experience, purpose){
+  signupForBetaTesting(name, email, age, country, zipCode, experience, purpose){
     let betaTesters = this.angularFire.list('betaTesters');
-    return betaTesters.push({name:name, email:email, age:age, country:country, cannabisExperience:experience, cannabisPurpose: purpose});
+    return betaTesters.push({name:name, email:email, age:age,
+      country:country, zipCode:zipCode, cannabisExperience:experience, cannabisPurpose: purpose});
   }
 
 }
