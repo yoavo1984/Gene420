@@ -20,6 +20,10 @@ export class NavBarComponent implements OnInit {
     this.isIn = bool === false ? true : false;
   }
 
+  onBetaTesting(){
+    this.router.navigateByUrl('/beta-tester');
+  }
+
 
 
 

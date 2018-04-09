@@ -4,8 +4,8 @@
     <div style="display: block;margin-top:50px;">
       <h1>Beta Testing</h1>
     </div>
-    <p>Would you like to be the first to try our services, for free?</p>
-    <p>Sign up below and we promise to contact you shortly!</p>
+    <p>Would you like to be the first to try our free beta testing?</p>
+    <p>Sign up below and we will contact you shortly!</p>
     <form (ngSubmit)="onBetaTestingSubmit()" #betaTestingForm="ngForm">
       <div class="form-group">
         <input type="text" class="input-field" id="betaTesterName"
@@ -61,7 +61,7 @@
       </div>
 
       <div class="form-group">
-        <label class="beta-tester-label" for="betaTesterAge">Experience With Cannabis</label>
+        <label class="beta-tester-label" for="betaTesterAge">Cannabis Experience</label>
         <select class="input-field" id="betaTesterCannabisExperience"
                 required
                 [(ngModel)]="betaTesterInformation.cannabisExperience" name="cannabisExperience">
