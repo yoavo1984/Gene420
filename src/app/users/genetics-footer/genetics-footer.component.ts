@@ -16,6 +16,7 @@ export class GeneticsFooterComponent implements OnInit {
   constructor(
               private eventBus:EventBusService,
               private strainDao:StrainDaoService
+              
 
   ) { }
 
@@ -32,6 +33,10 @@ export class GeneticsFooterComponent implements OnInit {
       this.genetics.resetToUserData();
     });
 
+  }
+
+  getDnaMatch(){
+    return 15;
   }
 
 }

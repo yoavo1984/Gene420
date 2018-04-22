@@ -41,11 +41,17 @@ export class AuthService {
       displayName: name, photoURL:photoUrl?photoUrl:""
     });
     this.userDao.updateUserGenetics(this.getCurrentUserUid(), {
-      "craving": 2,
-        "psychosis": 3,
-        "memory": 0,
-        "dependence": 1,
-        "decision": 4
+      "creative":0,
+      "funny": 1,
+      "energetic": 0,
+      "desire": 0,
+      "stimulation": 2,
+      "anxious": 0,
+      "paranoia": 0,
+      "obesity": 0,
+      "narcolapsy": 1,
+      "pain": 0,
+      "dependence": 0
     })
   }
 

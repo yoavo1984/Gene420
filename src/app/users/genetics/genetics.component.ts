@@ -60,12 +60,15 @@ export class GeneticsComponent implements OnInit {
     responsive: true
 
   };
-  public geneticsChartLabels:any[] = ["Craving", 'Decision', 'Dependence', 'Memory', 'Psychosis'];
+
+
+  public geneticsChartLabels:any[] = ["Creative", 'Funny', 'Energetic', 'Desire', 'Stimulation', 'Anxious',
+  'Paranoid', 'Obesity', 'Narcolapsy', 'Pain', 'Dependence'];
   public geneticsChartType:string = 'radar';
   public geneticsChartLegend:boolean = false;
 
   public geneticsChartData:any[] = [
-    {data: [0, 0, 0, 0, 0], label: ''}
+    {data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], label: ''}
     //{data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'}
   ];
 

@@ -8,7 +8,7 @@ import {EventBusService} from "../../../services/event-bus.service";
   styleUrls: ['./strain-browser.component.css']
 })
 export class StrainBrowserComponent implements OnInit {
-  private strains;
+  private strains = [];
   private showList = false;
   @Input() navigation;
   @ViewChild('reviewStrainModal') reviewStrainModal;
@@ -29,12 +29,17 @@ export class StrainBrowserComponent implements OnInit {
   ngOnInit() {
     this.strainsRemote = this.strainDao.getAllStrains();
     this.strainsRemote.subscribe((strains)=>{
+      if (this.loaded){
+        return;
+      }
       this.strains = strains;
       this.allStrains = strains;
       this.loaded = true;
+      this.applyFilter();
     });
 
     this.innerWidth = window.innerWidth;
+
   }
 
   //TODO: implement filters
@@ -45,10 +50,16 @@ export class StrainBrowserComponent implements OnInit {
   filter(){
     let strains = [];
     if (this.strainType == "All"){
-      return this.allStrains;
+      for (let strain of this.allStrains){
+        if (strain["show"]){
+          strains.push(strain);
+        }
+      }
+      return strains;
+
     }
     for (let strain of this.allStrains){
-      if (strain['type'] == this.strainType){
+      if (strain['type'] == this.strainType && strain['show']){
         strains.push(strain);
       }
     }
