@@ -48,6 +48,7 @@ import { StrainViewComponent } from './users/strain-view/strain-view.component';
 import {ContactService} from "./contact/contact.service";
 import { SubmitModalComponent } from './contact/submit-modal/submit-modal.component';
 import { BetaTesterComponent } from './beta-tester/beta-tester.component';
+import {MatcherService} from "./cannabis/services/matcher.service";
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
@@ -125,7 +126,16 @@ export const firebaseConfig = {
     Ng2CarouselamosModule
 
   ],
-  providers: [UserDaoService, StrainDaoService, AuthService, AngularFireDatabase, AngularFireAuth, EventBusService, ContactService],
+  providers: [
+    AuthService,
+    UserDaoService,
+    StrainDaoService,
+    AngularFireDatabase,
+    AngularFireAuth,
+    EventBusService,
+    ContactService,
+    MatcherService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

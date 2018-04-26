@@ -21,6 +21,19 @@ export class StrainDaoService {
     return this.angularFire.list('/strains/').valueChanges();
   }
 
+  getStrainsEffectsDefined(){
+    if (!this.strains){
+      return [];
+    }
+    let strainsWithEffects = [];
+    for (let strain of this.strains){
+      if (strain.show){
+        strainsWithEffects.push(strain);
+      }
+    }
+    return strainsWithEffects;
+  }
+
   getStrainsFromToIndex(start:number, end:number){
     return this.angularFire.list('/strains/',ref => ref.startAt(start).endAt(end)).valueChanges();
   }

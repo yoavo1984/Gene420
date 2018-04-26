@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
 import {AngularFireDatabase} from "angularfire2/database";
 import {Genetics} from "../model/Genetics";
+import {AuthService} from "../../authentication/services/auth-service";
 
 @Injectable()
 export class UserDaoService {
+  public genetics;
 
-  constructor(private angularFire: AngularFireDatabase) { }
+  constructor(private angularFire: AngularFireDatabase) {
+  }
 
   getUser(uid){
     return this.angularFire.object('/users/'+uid).valueChanges();
@@ -14,6 +17,8 @@ export class UserDaoService {
   getGenetics(uid){
     return this.angularFire.object('/users/'+uid+'/genetics/').valueChanges();
   }
+
+
 
   updateUserGenetics(uid, genetics:Genetics){
     let remoteGenetics = this.angularFire.object('/users/'+uid+'/genetics/');

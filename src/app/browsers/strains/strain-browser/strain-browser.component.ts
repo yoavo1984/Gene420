@@ -1,6 +1,7 @@
 import {Component, OnInit, ViewChild, Input, Output, EventEmitter, HostListener} from '@angular/core';
 import {StrainDaoService} from "../../../cannabis/services/strain-dao.service";
 import {EventBusService} from "../../../services/event-bus.service";
+import {MatcherService} from "../../../cannabis/services/matcher.service";
 
 @Component({
   selector: 'gene420-strain-browser',
@@ -23,7 +24,7 @@ export class StrainBrowserComponent implements OnInit {
   private thc = "All";
 
 
-  constructor(private strainDao:StrainDaoService, private eventBus:EventBusService) { }
+  constructor(private strainDao:StrainDaoService, private eventBus:EventBusService, private matchService:MatcherService) { }
 
 
   ngOnInit() {
@@ -36,6 +37,15 @@ export class StrainBrowserComponent implements OnInit {
       this.allStrains = strains;
       this.loaded = true;
       this.applyFilter();
+      setTimeout(()=>{
+        for (let strain of strains){
+          if (strain.show){
+            let match = this.matchService.calculateMatchOfStrain(strain);
+            let a = 1;
+          }
+        }
+      }, 3000);
+
     });
 
     this.innerWidth = window.innerWidth;

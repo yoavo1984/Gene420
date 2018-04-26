@@ -16,7 +16,7 @@ export class GeneticsFooterComponent implements OnInit {
   constructor(
               private eventBus:EventBusService,
               private strainDao:StrainDaoService
-              
+
 
   ) { }
 
