@@ -49,6 +49,7 @@ import {ContactService} from "./contact/contact.service";
 import { SubmitModalComponent } from './contact/submit-modal/submit-modal.component';
 import { BetaTesterComponent } from './beta-tester/beta-tester.component';
 import {MatcherService} from "./cannabis/services/matcher.service";
+import { GeneticsModalComponent } from './users/modals/genetics-modal/genetics-modal.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
@@ -111,7 +112,8 @@ export const firebaseConfig = {
     StrainViewComponent,
     MoodWizardsComponent,
     SubmitModalComponent,
-    BetaTesterComponent
+    BetaTesterComponent,
+    GeneticsModalComponent
 
   ],
   imports: [

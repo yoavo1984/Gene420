@@ -3,11 +3,13 @@
   <div class="card-block">
     <h4 class="card-title">
       {{name}}
+      <button (click) ="dnaInfo()"><i class="fa fa-flask" aria-hidden="true"></i></button>
       <i class="fa fa-share-alt" aria-hidden="true"></i>
       <button (click) ="review()"><i class="fa fa-pencil" aria-hidden="true"></i></button>
     </h4>
     <p class="card-text">THC: {{thc}}</p>
     <p class="card-text">{{strainType}}</p>
+    <p class="card-text">Match: {{dnaMatch}}</p>
     <p><gene420-rating [stars]="getRating()"></gene420-rating></p>
   </div>
 </div>

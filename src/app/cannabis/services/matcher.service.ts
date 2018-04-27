@@ -8,8 +8,11 @@ import {AuthService} from "../../authentication/services/auth-service";
 export class MatcherService {
 
   private effects;
+  private effectsReady:boolean;
   private phenotypes;
+  private phenotypesReady:boolean;
   private userGenetics;
+  private userGeneticsReady:boolean;
 
   constructor(private strainDao:StrainDaoService,
               private userDao:UserDaoService,
@@ -27,6 +30,7 @@ export class MatcherService {
     let effects = this.angularFire.object('/effects').valueChanges();
     effects.subscribe((effects)=>{
       this.effects = effects;
+      this.effectsReady = true;
     })
   }
 
@@ -34,6 +38,7 @@ export class MatcherService {
     let effects = this.angularFire.object('/phenotypes').valueChanges();
     effects.subscribe((phenotypes)=>{
       this.phenotypes = phenotypes;
+      this.phenotypesReady = true;
     })
   }
 
@@ -46,6 +51,7 @@ export class MatcherService {
         }
         this.userGenetics[phenotype] = geneticData[phenotype];
       }
+      this.userGeneticsReady = true;
     });
   }
 
@@ -84,5 +90,10 @@ export class MatcherService {
   capitalizeFirstLetter(str:string) {
     return str.charAt(0).toUpperCase() + str.slice(1);
   }
+
+  isReady(){
+    return this.phenotypesReady && this.effectsReady && this.userGeneticsReady;
+  }
+
 
 }

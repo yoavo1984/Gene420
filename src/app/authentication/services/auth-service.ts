@@ -40,7 +40,7 @@ export class AuthService {
     firebase.auth().currentUser.updateProfile({
       displayName: name, photoURL:photoUrl?photoUrl:""
     });
-    this.userDao.updateUserGenetics(this.getCurrentUserUid(), {
+    this.userDao.updateUserGenetics(this.getCurrentUserUid(), { //TODO: mock with random data
       "creative":0,
       "funny": 1,
       "energetic": 0,

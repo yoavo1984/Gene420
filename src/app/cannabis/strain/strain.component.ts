@@ -14,14 +14,15 @@ export class StrainComponent implements OnInit {
   @Input() width = 100;
   @Input() height = 80;
   @Input() margin = 2;
+  @Input() dnaMatch = 0;
 
   @Output() onReview = new EventEmitter<any>();
+  @Output() onDnaInfo = new EventEmitter<any>();
   @Output() onHover = new EventEmitter<any>();
   @Output() onHoverEnded = new EventEmitter<any>();
 
   private dnaMatchComputed:boolean;
   private ratingComputed:boolean;
-  private dnaMatch;
   private rating;
   private currentStrainName;
 
@@ -31,7 +32,7 @@ export class StrainComponent implements OnInit {
   }
 
   computeDnaMatch(){
-   return Math.round(Math.min(100,Math.random()*100+30));
+   return this.dnaMatch;
   }
 
   computeRating(){
@@ -39,10 +40,6 @@ export class StrainComponent implements OnInit {
   }
 
   getDnaMatch(){
-    if (!this.dnaMatchComputed){
-      this.dnaMatch = this.computeDnaMatch();
-      this.dnaMatchComputed = true;
-    }
     return this.dnaMatch;
   }
 
@@ -57,6 +54,10 @@ export class StrainComponent implements OnInit {
 
   review(){
     this.onReview.emit({name:this.name, imageUrl:this.imageUrl});
+  }
+
+  dnaInfo(){
+    this.onDnaInfo.emit({name:this.name});
   }
 
   mouseEnter(){

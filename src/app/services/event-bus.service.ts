@@ -11,7 +11,10 @@ export class EventBusService {
 
   publish(name, data?){
     if (this.observableByName[name]){
-      this.observerByName[name].next(data);
+      if (this.observerByName[name]){
+        this.observerByName[name].next(data);
+      }
+
     }
     else {
       this.observableByName[name] = new Observable(observer => {

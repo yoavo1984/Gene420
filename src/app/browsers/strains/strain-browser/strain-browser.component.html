@@ -45,7 +45,7 @@
   </div>
 
   <!--strain list-->
-  <div style="width:100%;display:inline-block;" *ngIf="loaded">
+  <div style="width:100%;display:inline-block;margin-top: 10px;" *ngIf="loaded">
 
     <ul class="list-inline" style="text-align: center" >
       <!--<li *ngFor="let strain of strains | async | strainType:'Indica';">-->
@@ -58,7 +58,9 @@
           [margin]="15"
           [thc]="strain['thc']"
           [strainType]="strain['type']"
+          [dnaMatch]="strain['match']"
           (onReview)="reviewStrain($event)"
+          (onDnaInfo)="dnaInfoStrain($event)"
           (onHover)="strainHovered($event)"
           (onHoverEnded)="strainHoverEnded($event)"
         >
@@ -73,3 +75,4 @@
 </div>-->
 
 <gene420-review-strain-modal #reviewStrainModal></gene420-review-strain-modal>
+<gene420-genetics-modal #geneticsModal></gene420-genetics-modal>

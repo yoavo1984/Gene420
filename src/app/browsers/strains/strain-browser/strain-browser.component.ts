@@ -13,6 +13,7 @@ export class StrainBrowserComponent implements OnInit {
   private showList = false;
   @Input() navigation;
   @ViewChild('reviewStrainModal') reviewStrainModal;
+  @ViewChild('geneticsModal') geneticsModal;
   private loaded = false;
   private shouldShowFilterPane = true;
   private innerWidth;
@@ -33,19 +34,48 @@ export class StrainBrowserComponent implements OnInit {
       if (this.loaded){
         return;
       }
+      setTimeout(()=>{
+        let matches = [];
+        let i=0;
+        for (let strain of strains){
+          if (strain.show){
+
+            let match = this.matchService.calculateMatchOfStrain(strain);
+            matches[i] = match;
+            i++;
+          }
+        }
+        matches.sort((a,b)=>{return a-b});
+        let min = matches[0];
+        for (let i=0; i<matches.length; i++){
+          if (min<0){
+            matches[i] = matches[i] + Math.abs(min)
+          }
+          else {
+            matches[i] = matches[i] - min;
+          }
+        }
+        for (let strain of strains){
+          if (!strain.show){
+            continue;
+          }
+          let match = this.matchService.calculateMatchOfStrain(strain);
+          if (min<0){
+            match = match + Math.abs(min);
+          }
+          else {
+            match = match - min;
+          }
+
+          match =(match*100)/matches[matches.length-1];
+          strain.match = match;
+        }
+
+      }, 3000);
       this.strains = strains;
       this.allStrains = strains;
       this.loaded = true;
       this.applyFilter();
-      setTimeout(()=>{
-        for (let strain of strains){
-          if (strain.show){
-            let match = this.matchService.calculateMatchOfStrain(strain);
-            let a = 1;
-          }
-        }
-      }, 3000);
-
     });
 
     this.innerWidth = window.innerWidth;
@@ -84,6 +114,10 @@ export class StrainBrowserComponent implements OnInit {
 
   reviewStrain(event){
     this.reviewStrainModal.open(event.name, event.imageUrl);
+  }
+
+  dnaInfoStrain(event){
+    this.geneticsModal.open(event.name);
   }
 
   strainHovered(data){

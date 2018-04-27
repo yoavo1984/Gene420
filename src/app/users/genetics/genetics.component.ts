@@ -4,6 +4,7 @@ import {AuthService} from "../../authentication/services/auth-service";
 import {Genetics} from "../model/Genetics";
 import {BaseChartDirective} from "ng2-charts";
 import {Router} from "@angular/router";
+import {MatcherService} from "../../cannabis/services/matcher.service";
 
 @Component({
   selector: 'gene420-genetics',
@@ -22,7 +23,10 @@ export class GeneticsComponent implements OnInit {
     "decision": "fa fa-lightbulb-o"
   };
   private initFlag;
-  constructor(private userDao:UserDaoService, private authService:AuthService, private router:Router) { }
+  constructor(private userDao:UserDaoService,
+              private authService:AuthService,
+              private router:Router,
+              private matcherService:MatcherService) { }
 
   ngOnInit() {
     //TODO: check how to unify this to all user related components
@@ -30,7 +34,7 @@ export class GeneticsComponent implements OnInit {
       this.router.navigateByUrl('/home');
       return;
     }
-    this.getUserGenetics();
+    this.setupUserGenetics();
     this.reloadChart();
   }
 
@@ -52,6 +56,7 @@ export class GeneticsComponent implements OnInit {
   public geneticsChartOptions:any = {
     scale: {
       ticks: {
+        suggestedMin: 0,
         display:false,
         //showLabelBackdrop: false
       }
@@ -62,13 +67,12 @@ export class GeneticsComponent implements OnInit {
   };
 
 
-  public geneticsChartLabels:any[] = ["Creative", 'Funny', 'Energetic', 'Desire', 'Stimulation', 'Anxious',
-  'Paranoid', 'Obesity', 'Narcolapsy', 'Pain', 'Dependence'];
+  public geneticsChartLabels:any[] = [];
   public geneticsChartType:string = 'radar';
   public geneticsChartLegend:boolean = false;
 
   public geneticsChartData:any[] = [
-    {data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], label: ''}
+    {data: [1, 2, 3, 4, 5], label: 'series1'}
     //{data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'}
   ];
 
@@ -81,14 +85,20 @@ export class GeneticsComponent implements OnInit {
     console.log(e);
   }
 
-  getUserGenetics():void{
+  setupUserGenetics():void{
     let geneticArray = [];
     let genetics = this.userDao.getGenetics(this.authService.getCurrentUserUid());
     genetics.subscribe((geneticData)=>{
+      this.geneticsChartLabels = [];
       for (let phenotype in geneticData){
-        geneticArray.push(geneticData[phenotype]);
+        let power = parseInt(geneticData[phenotype]);
+        if (power>0){
+          geneticArray.push(power);
+          this.geneticsChartLabels.push(phenotype);
+        }
       }
-      this.geneticsChartData = JSON.parse(JSON.stringify([{data:geneticArray}]));
+      this.geneticsChartData = JSON.parse(JSON.stringify([{data:geneticArray, label:''}]));
+      this.reloadChart();
     });
   }
 
@@ -99,7 +109,7 @@ export class GeneticsComponent implements OnInit {
   }
 
   resetToUserData(){
-    this.geneticsChartData = JSON.parse(JSON.stringify([{data: this.geneticsChartData[0].data}]));
+    this.geneticsChartData = JSON.parse(JSON.stringify([{data: this.geneticsChartData[0].data, label:''}]));
     this.reloadChart();
   }
 
