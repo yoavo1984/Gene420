@@ -20,7 +20,7 @@ export class GeneticsModalComponent implements OnInit {
     this.name = name;
     this.geneticsModal.open();
     this.genetics.reloadChart();
-    this.genetics.resetToUserData();
+    this.genetics.addStrainEffectsData(name);
 
   }
 

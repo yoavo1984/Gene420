@@ -55,6 +55,53 @@ export class MatcherService {
     });
   }
 
+  //TODO: merge these
+  getMostAffectingPositiveEffectForPhenotype(strain, phenotypeName){
+    let maxEffect;
+    let max = 0;
+    let genetics = this.userGenetics;
+
+      let power = genetics[phenotypeName];
+      let phenotypeValues = this.phenotypes[this.capitalizeFirstLetter(phenotypeName)].split(",");
+      for (let i=0; i<phenotypeValues.length; i++){
+        let value = parseInt(phenotypeValues[i]);
+        let effect = this.effects[i].substring(0, this.effects[i].length-3);
+        if (strain.effects[effect]){
+           if (value<0){
+              continue;
+           }
+           if (value*strain.effects[effect]>max){
+              max = value*strain.effects[effect];
+              maxEffect= effect;
+           }
+        }
+      }
+      return {"value":max, "effect":maxEffect};
+  }
+
+  getMostAffectingNegativeEffectForPhenotype(strain, phenotypeName){
+    let minEffect;
+    let min = 0;
+    let genetics = this.userGenetics;
+
+    let power = genetics[phenotypeName];
+    let phenotypeValues = this.phenotypes[this.capitalizeFirstLetter(phenotypeName)].split(",");
+    for (let i=0; i<phenotypeValues.length; i++){
+      let value = parseInt(phenotypeValues[i]);
+      let effect = this.effects[i].substring(0, this.effects[i].length-3);
+      if (strain.effects[effect]){
+        if (value>0){
+          continue;
+        }
+        if (value*strain.effects[effect]<min){
+          min = value*strain.effects[effect];
+          minEffect= effect;
+        }
+      }
+    }
+    return {"value": min, "effect": minEffect};
+  }
+
   calculateMatchOfStrain(strain):number{
 
     let match = 0;

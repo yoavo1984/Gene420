@@ -5,6 +5,7 @@ import {Genetics} from "../model/Genetics";
 import {BaseChartDirective} from "ng2-charts";
 import {Router} from "@angular/router";
 import {MatcherService} from "../../cannabis/services/matcher.service";
+import {StrainDaoService} from "../../cannabis/services/strain-dao.service";
 
 @Component({
   selector: 'gene420-genetics',
@@ -23,10 +24,12 @@ export class GeneticsComponent implements OnInit {
     "decision": "fa fa-lightbulb-o"
   };
   private initFlag;
+  private baseGeneticChartLabels;
   constructor(private userDao:UserDaoService,
               private authService:AuthService,
               private router:Router,
-              private matcherService:MatcherService) { }
+              private matcherService:MatcherService,
+              private strainDao:StrainDaoService) { }
 
   ngOnInit() {
     //TODO: check how to unify this to all user related components
@@ -98,8 +101,31 @@ export class GeneticsComponent implements OnInit {
         }
       }
       this.geneticsChartData = JSON.parse(JSON.stringify([{data:geneticArray, label:''}]));
+      this.baseGeneticChartLabels = JSON.parse(JSON.stringify(this.geneticsChartLabels));
       this.reloadChart();
     });
+  }
+
+  addStrainEffectsData(strainName:string){
+      let effectData = [];
+      let strain = this.strainDao.getStrainByName(strainName);
+      if (!strain){
+        return; //error -was not loaded
+      }
+      for (let i=0; i<this.baseGeneticChartLabels.length; i++){
+        let phenotype = this.baseGeneticChartLabels[i];
+        let effectTuple = this.matcherService.getMostAffectingNegativeEffectForPhenotype(strain, phenotype);
+        effectData.push(effectTuple);
+        this.geneticsChartLabels[i] = this.baseGeneticChartLabels[i]+ " "+effectTuple["effect"];
+
+      }
+      let dataArray = [];
+
+      for (let i=0; i<effectData.length; i++){
+        dataArray.push(Math.abs(Math.round(effectData[i]["value"]/100)));
+      }
+      this.addStrainData(dataArray);
+
   }
 
   addStrainData(data:number[]){
