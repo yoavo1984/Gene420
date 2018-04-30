@@ -11,6 +11,7 @@ export class AuthService {
 
   private callbacks;
   private loggedIn:boolean;
+  private user;
 
   constructor(public af: AngularFireAuth, private router:Router, private userDao:UserDaoService) {
     this.callbacks = [];
@@ -37,7 +38,7 @@ export class AuthService {
 
   updateUserDetails(name, photoUrl){
     console.log("updating profile with "+name +" photoUrl"+photoUrl);
-    firebase.auth().currentUser.updateProfile({
+    this.user.updateProfile({
       displayName: name, photoURL:photoUrl?photoUrl:""
     });
     this.userDao.updateUserGenetics(this.getCurrentUserUid(), { //TODO: mock with random data
@@ -57,7 +58,7 @@ export class AuthService {
 
   sendVerificationEmail(){
     //noinspection TypeScriptUnresolvedFunction
-    firebase.auth().currentUser.sendEmailVerification().then(function() {
+    this.user.sendEmailVerification().then(function() {
       console.log("verification email sent");
     }).catch((error)=> {
       console.log("error in sending verification email: "+error)
@@ -114,27 +115,27 @@ export class AuthService {
   }
 
   isEmailVerified(){
-    return firebase.auth().currentUser.emailVerified;
+    return this.user.emailVerified;
   }
 
   getCurrentUser(){
-    return firebase.auth().currentUser;
+    return this.user;
   }
 
   getCurrentUserUid(){
-    return firebase.auth().currentUser.uid;
+    return this.user.uid;
   }
 
   getCurrentUserEmail(){
-    return firebase.auth().currentUser.email;
+    return this.user.email;
   }
 
   getCurrentUserDisplayName(){
-    return firebase.auth().currentUser.displayName;
+    return this.user.displayName;
   }
 
   getCurrentUserPhotoUrl(){
-    let photoUrl = firebase.auth().currentUser.photoURL;
+    let photoUrl = this.user.photoURL;
     if (!photoUrl || photoUrl == ""){
       photoUrl = "/assets/photo.jpg";
     }
@@ -149,11 +150,29 @@ export class AuthService {
     firebase.auth().onAuthStateChanged((user)=> {
       if (user && user.emailVerified) {
         this.loggedIn = true;
+        this.user = user;
       }
       else {
         this.loggedIn = false;
       }
     });
+  }
+
+  onAuthStateChange(){
+    return new Promise<any>((resolve, reject)=>{
+      if (this.isLoggedIn()){
+        resolve(this.user);
+      }
+      else {
+        firebase.auth().onAuthStateChanged((user)=> {
+          resolve({
+            displayName: this.getCurrentUserDisplayName(),
+            photoUrl: this.getCurrentUserPhotoUrl(),
+            email: this.getCurrentUserEmail()
+          });
+        });
+      }
+    })
   }
 
 

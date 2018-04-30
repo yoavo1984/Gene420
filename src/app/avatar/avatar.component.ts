@@ -11,7 +11,7 @@ import {Router} from "@angular/router";
 })
 export class AvatarComponent implements OnInit {
 
-  private loggedIn = false;
+  public loggedIn = false;
 
   //user details
   private displayName;
@@ -45,15 +45,6 @@ export class AvatarComponent implements OnInit {
   navigateToPrivateArea() {
     this.collapse.emit({});
     this.router.navigateByUrl('/wizard');
-  }
-
-  resolvePhotoUrl(user){
-    if (!user.photoUrl || user.photoUrl ==""){
-      return "/assets/photo.jpg"
-    }
-    else {
-      return user.photoUrl;
-    }
   }
 
   registerOnAuthStateChange(){

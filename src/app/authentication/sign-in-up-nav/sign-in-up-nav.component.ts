@@ -8,7 +8,7 @@ import {AuthService} from "../services/auth-service";
   styleUrls: ['./sign-in-up-nav.component.css']
 })
 export class SignInUpNavComponent implements OnInit {
-  private loggedIn = false;
+  public loggedIn = false;
 
 
   constructor(private authService:AuthService, private changeDetector:ChangeDetectorRef) {

@@ -11,7 +11,7 @@ export class StrainCarouselComponent implements OnInit {
 
   private strainsRemote;
   private strains = [];
-  private loaded = false;
+  public loaded = false;
   private innerHeight;
   private innerWidth;
   private strainHeight;

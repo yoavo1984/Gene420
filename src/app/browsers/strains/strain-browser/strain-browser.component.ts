@@ -14,15 +14,15 @@ export class StrainBrowserComponent implements OnInit {
   @Input() navigation;
   @ViewChild('reviewStrainModal') reviewStrainModal;
   @ViewChild('geneticsModal') geneticsModal;
-  private loaded = false;
+  public loaded = false;
   private shouldShowFilterPane = true;
   private innerWidth;
   private strainsRemote;
   private allStrains = [];
 
   //filtering
-  private strainType = "All";
-  private thc = "All";
+  public strainType = "All";
+  public thc = "All";
 
 
   constructor(private strainDao:StrainDaoService, private eventBus:EventBusService, private matchService:MatcherService) { }
@@ -40,7 +40,7 @@ export class StrainBrowserComponent implements OnInit {
         for (let strain of strains){
           if (strain.show){
 
-            let match = this.matchService.calculateMatchOfStrain(strain);
+            let match = this.matchService.resolvePoints(strain);
             matches[i] = match;
             i++;
           }
@@ -59,7 +59,7 @@ export class StrainBrowserComponent implements OnInit {
           if (!strain.show){
             continue;
           }
-          let match = this.matchService.calculateMatchOfStrain(strain);
+          let match = this.matchService.resolvePoints(strain);
           if (min<0){
             match = match + Math.abs(min);
           }

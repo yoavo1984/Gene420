@@ -10,9 +10,9 @@ export class RatingComponent implements OnInit {
   @Input() stars;
 
   private MAX_STARS:number = 5;
-  private filledStars;
-  private emptyStars;
-  private hasHalfStars;
+  public filledStars;
+  public emptyStars;
+  public hasHalfStars;
 
 
 

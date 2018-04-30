@@ -59,6 +59,7 @@ const appRoutes: Routes = [
   {path: 'contact', component: ContactComponent},
   {path: 'sign-in', component: SignInComponent},
   {path: 'sign-up', component: SignUpComponent},
+  {path: 'user', component: UserComponent},
   {path: 'wizard', component: MoodWizardsComponent},
   {path: 'dashboard', component: DashboardComponent,
     children: [

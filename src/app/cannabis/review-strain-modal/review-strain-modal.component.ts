@@ -7,8 +7,8 @@ import {Component, OnInit, Input, ViewChild} from '@angular/core';
 })
 export class ReviewStrainModalComponent implements OnInit {
 
-  private name;
-  private imageUrl;
+  public name;
+  public imageUrl;
   @ViewChild ('reviewStrainModal') reviewStrainModal;
 
   private rating = 4.44;

@@ -11,7 +11,7 @@ export class BetaTesterComponent implements OnInit {
 
   betaTesterInformation;
   private submitted;
-  private countryList;
+  public countryList;
   @ViewChild ('submitModal') submitModal:SubmitModalComponent;
   constructor(private contactService:ContactService) { }
 

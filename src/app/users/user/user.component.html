@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default" style="display:flex;">
+<!--<nav class="navbar navbar-default" style="display:flex;">
   <div class="container-fluid" style="margin-top:0px;">
     <div class="navbar-header"></div>
     <div class="collapse navbar-collapse" style="align-items:stretch;width:500px;">
@@ -9,4 +9,45 @@
       </ul>
     </div>
   </div>
-</nav>
+</nav>-->
+<div class="ui four column centered grid" style="margin-top: 25px;">
+  <div class="column">
+
+  </div>
+  <div class="column">
+    <div class="ui card centered">
+      <div class="image">
+        <img [src]="photoUrl" height="100" width="100">
+      </div>
+      <div class="content">
+        <a class="header">{{displayName}}</a>
+
+        <div class="description">
+          {{email}}
+        </div>
+      </div>
+      <div class="extra content">
+
+      </div>
+    </div>
+  </div>
+  <div class="column">
+
+      <canvas baseChart
+              [data]="doughnutChartData"
+              [labels]="doughnutChartLabels"
+              [chartType]="doughnutChartType"
+              (chartHover)="chartHovered($event)"
+              (chartClick)="chartClicked($event)"></canvas>
+  </div>
+  <div class="column">
+
+  </div>
+
+</div>
+
+
+
+
+
+

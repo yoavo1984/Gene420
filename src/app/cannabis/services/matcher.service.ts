@@ -3,6 +3,7 @@ import {StrainDaoService} from "./strain-dao.service";
 import {UserDaoService} from "../../users/services/user-dao.service";
 import {AngularFireDatabase} from "angularfire2/database";
 import {AuthService} from "../../authentication/services/auth-service";
+import {TextUtils} from "../../utils/TextUtils";
 
 @Injectable()
 export class MatcherService {
@@ -62,7 +63,7 @@ export class MatcherService {
     let genetics = this.userGenetics;
 
       let power = genetics[phenotypeName];
-      let phenotypeValues = this.phenotypes[this.capitalizeFirstLetter(phenotypeName)].split(",");
+      let phenotypeValues = this.phenotypes[TextUtils.capitalizeFirstLetter(phenotypeName)].split(",");
       for (let i=0; i<phenotypeValues.length; i++){
         let value = parseInt(phenotypeValues[i]);
         let effect = this.effects[i].substring(0, this.effects[i].length-3);
@@ -85,7 +86,7 @@ export class MatcherService {
     let genetics = this.userGenetics;
 
     let power = genetics[phenotypeName];
-    let phenotypeValues = this.phenotypes[this.capitalizeFirstLetter(phenotypeName)].split(",");
+    let phenotypeValues = this.phenotypes[TextUtils.capitalizeFirstLetter(phenotypeName)].split(",");
     for (let i=0; i<phenotypeValues.length; i++){
       let value = parseInt(phenotypeValues[i]);
       let effect = this.effects[i].substring(0, this.effects[i].length-3);
@@ -102,40 +103,31 @@ export class MatcherService {
     return {"value": min, "effect": minEffect};
   }
 
-  calculateMatchOfStrain(strain):number{
+  resolvePoints(strain):number{
 
-    let match = 0;
+    let points = 0;
     let genetics = this.userGenetics;
     for (let geneticPhenotype in genetics){
       let power = genetics[geneticPhenotype];
-      let phenotypeValues = this.phenotypes[this.capitalizeFirstLetter(geneticPhenotype)].split(",");
+      let phenotypeValues = this.phenotypes[TextUtils.capitalizeFirstLetter(geneticPhenotype)].split(",");
       for (let i=0; i<phenotypeValues.length; i++){
         let value = parseInt(phenotypeValues[i]);
         let effect = this.effects[i].substring(0, this.effects[i].length-3);
         if (strain.effects[effect]){
-          match = match + value*power*strain.effects[effect];
+          points = points + value*power*strain.effects[effect];
         }
       }
     }
-    return match;
+    return points;
   }
 
   calculateMatchOfAllStrains(){
     let match = {};
     let strains = this.strainDao.getStrainsEffectsDefined();
     for (let strain of strains){
-      let match = this.calculateMatchOfStrain(strain);
+      let match = this.resolvePoints(strain);
     }
 
-  }
-
-  /**
-   * TODO: should be in some string utils.
-   * @param str
-   * @return {string}
-   */
-  capitalizeFirstLetter(str:string) {
-    return str.charAt(0).toUpperCase() + str.slice(1);
   }
 
   isReady(){
