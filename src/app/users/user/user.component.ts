@@ -12,9 +12,9 @@ export class UserComponent implements OnInit {
   private uid;
   private user;
 
-  private email= "";
-  private displayName = "";
-  private photoUrl="";
+  public email= "";
+  public displayName = "";
+  public photoUrl="";
   private currentStrainView;
   private loggedIn:boolean = false;
   public barChartOptions:any = {

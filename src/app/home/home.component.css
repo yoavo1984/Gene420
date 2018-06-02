@@ -72,12 +72,12 @@
 
 @media only screen and (max-height : 550px) {
   .tube {
-    height:120px;
+    height:150px;
   }
 }
 @media only screen and (min-height : 550px) {
   .tube {
-    height:250px;
+    height:300px;
   }
 }
 

@@ -1,6 +1,6 @@
 <div *ngIf="loggedIn" style="text-align: center">
   <div style="display: inline">
-    <img [src]="photoUrl" width="30" height="30"/> <span class="display-name"><a [routerLink]="'/user'">{{displayName}}</a></span>
+    <img [src]="photoUrl" width="30" height="30"/> <span><a [routerLink]="'/user'" class="display-name">{{displayName}}</a></span>
   </div>
   <div style="display: inline" *ngIf="showBasicNavigation">
     <a (click)="logout()"><i class="fa fa-sign-out" style="color:white;" aria-hidden="true"></i></a>

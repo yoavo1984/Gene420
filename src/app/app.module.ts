@@ -50,6 +50,9 @@ import { SubmitModalComponent } from './contact/submit-modal/submit-modal.compon
 import { BetaTesterComponent } from './beta-tester/beta-tester.component';
 import {MatcherService} from "./cannabis/services/matcher.service";
 import { GeneticsModalComponent } from './users/modals/genetics-modal/genetics-modal.component';
+import { UploadComponent } from './users/upload/upload/upload.component';
+import {GeneticsDataUploaderService} from "./users/services/genetics-data-uploader.service";
+import {HttpClientModule} from "@angular/common/http";
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
@@ -59,17 +62,17 @@ const appRoutes: Routes = [
   {path: 'contact', component: ContactComponent},
   {path: 'sign-in', component: SignInComponent},
   {path: 'sign-up', component: SignUpComponent},
-  {path: 'user', component: UserComponent},
+  {path: 'user-details', component: UserComponent},
   {path: 'wizard', component: MoodWizardsComponent},
-  {path: 'dashboard', component: DashboardComponent,
+  {path: 'user', component: DashboardComponent,
     children: [
-    { path: '', component:StrainViewComponent},
+    { path: '', redirectTo: 'strain-browser', pathMatch: 'full' },
+    { path: 'user', component:UserComponent},
     { path: 'strain-browser', component:StrainBrowserComponent},
     { path: 'type-browser', component:StrainTypeSelectorComponent},
-    { path: 'carousel-browser', component:StrainCarouselComponent}
-  ]},
-
-  //{ path: '**', redirectTo: 'pageNotFound', pathMatch: 'full' }
+    { path: 'carousel-browser', component:StrainCarouselComponent},
+    { path: 'upload', component:UploadComponent}
+  ]}
 ];
 
 export const firebaseConfig = {
@@ -114,7 +117,8 @@ export const firebaseConfig = {
     MoodWizardsComponent,
     SubmitModalComponent,
     BetaTesterComponent,
-    GeneticsModalComponent
+    GeneticsModalComponent,
+    UploadComponent
 
   ],
   imports: [
@@ -126,7 +130,8 @@ export const firebaseConfig = {
     BsModalModule,
     ChartsModule,
     FlexLayoutModule,
-    Ng2CarouselamosModule
+    Ng2CarouselamosModule,
+    HttpClientModule
 
   ],
   providers: [
@@ -137,7 +142,8 @@ export const firebaseConfig = {
     AngularFireAuth,
     EventBusService,
     ContactService,
-    MatcherService
+    MatcherService,
+    GeneticsDataUploaderService
   ],
   bootstrap: [AppComponent]
 })
