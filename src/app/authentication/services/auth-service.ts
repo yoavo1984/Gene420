@@ -20,13 +20,20 @@ export class AuthService {
 
   }
 
-  signUp(email:string, password:string, name:string, photoUrl?:string){
+  signUp(email:string, password:string, name:string, photoUrl?:string, shouldNavigate?:boolean){
     //noinspection TypeScriptUnresolvedFunction
     firebase.auth().createUserWithEmailAndPassword(email, password)
       .then(()=>{
-        this.sendVerificationEmail();
-        this.updateUserDetails(name, photoUrl);
-        this.router.navigate(['home']);
+        this.internalLogin(email, password).then(()=>{
+          this.updateUserDetails(name, photoUrl);
+          this.sendVerificationEmail();
+          this.handleInternalSuccessfulLogin();
+        });
+
+        if (shouldNavigate){
+          //this.router.navigate(['home']);
+        }
+
       })
       .catch(function(error) {
       var errorCode = error.code;
@@ -37,11 +44,12 @@ export class AuthService {
   }
 
   updateUserDetails(name, photoUrl){
-    console.log("updating profile with "+name +" photoUrl"+photoUrl);
+    console.log("updating profile with "+name +" photoUrl "+photoUrl);
     this.user.updateProfile({
       displayName: name, photoURL:photoUrl?photoUrl:""
     });
-    this.userDao.updateUserGenetics(this.getCurrentUserUid(), { //TODO: mock with random data
+    //genetics will be updated upon upload of genetic data
+    /*this.userDao.updateUserGenetics(this.getCurrentUserUid(), { //TODO: mock with random data
       "creative":0,
       "funny": 1,
       "energetic": 0,
@@ -50,10 +58,10 @@ export class AuthService {
       "anxious": 0,
       "paranoia": 0,
       "obesity": 0,
-      "narcolapsy": 1,
+      "narcolepsy": 1,
       "pain": 0,
       "dependence": 0
-    })
+    })*/
   }
 
   sendVerificationEmail(){
@@ -63,6 +71,10 @@ export class AuthService {
     }).catch((error)=> {
       console.log("error in sending verification email: "+error)
     });
+  }
+
+  internalLogin(email, password):Promise<any>{
+    return firebase.auth().signInWithEmailAndPassword(email, password);
   }
 
   login(email, password){
@@ -98,15 +110,20 @@ export class AuthService {
 
   }
 
+  handleInternalSuccessfulLogin(){
+    this.loggedIn = true;
+  }
+
   handleSuccessfulLogin(){
-    if (this.isEmailVerified()){
-      this.loggedIn = true;
+    //if (this.isEmailVerified()){
+
       this.router.navigate(['dashboard']);
-    }
+      //TODO: handle email not verified
+    /*}
     else {
       alert("Please verify your email before logging in");
       this.router.navigate(['home']);
-    }
+    }*/
 
   }
 
@@ -148,7 +165,8 @@ export class AuthService {
    */
   registerOnAuthStateChange(){
     firebase.auth().onAuthStateChanged((user)=> {
-      if (user && user.emailVerified) {
+      //TODO: currently no need to verify email
+      if (user /*&& user.emailVerified*/) {
         this.loggedIn = true;
         this.user = user;
       }

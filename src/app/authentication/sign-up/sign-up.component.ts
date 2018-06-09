@@ -6,6 +6,8 @@ import {HttpClient} from "@angular/common/http";
 import {ServerMockService} from "../../services/server-mock.service";
 import {UserDaoService} from "../../users/services/user-dao.service";
 import {DnaDataUtils} from "../../utils/DnaDataUtils";
+import {Genetics} from "../../users/model/Genetics";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'gene420-sign-up',
@@ -16,7 +18,7 @@ export class SignUpComponent implements OnInit {
 
   private vendorList = ["23AndMe"]
 
-  private form;
+  private initialForm;
   public stage: number = 0;
   private questionnaire;
   private dna;
@@ -30,7 +32,8 @@ export class SignUpComponent implements OnInit {
   constructor(private authService: AuthService,
               private httpClient: HttpClient,
               private serverMockService: ServerMockService,
-              private userDao: UserDaoService) {
+              private userDao: UserDaoService,
+              private router:Router) {
   }
 
   ngOnInit() {
@@ -45,7 +48,7 @@ export class SignUpComponent implements OnInit {
   }
 
   submitInitialForm(form: any) {
-    this.form = form;
+    this.initialForm = form;
     this.stage = 1;
   }
 
@@ -57,17 +60,47 @@ export class SignUpComponent implements OnInit {
   submitQuestionnaire(form: any) {
     this.questionnaire = form;
     this.stage = 3;
-    this.signUp(form)
+    this.signUp()
   }
 
 
-  signUp(form: any) {
+  signUp() {
+    this.authService.signUp(this.initialForm.email, this.initialForm.password, this.initialForm.firstName + " " + this.initialForm.lastName);
     if (this.dna) {
       this.resolveAndUpdateDnaData();
     }
+  }
 
-    //this.authService.signUp(form.email, form.password, form.firstName + " " + form.lastName);
+  updatePhenotypes(phenotypes:Genetics){
+    this.userDao.updateUserGenetics(this.authService.getCurrentUserUid(), phenotypes);
+    setTimeout(()=>{
+      this.router.navigate(['user','strain-browser']);
+    }, 4000)
+  }
 
+
+
+  resolvePhenotypes(phenotypesData:Genetics[]){
+    let phenotypes:Genetics = {
+      "creative":0,
+      "funny": 0,
+      "energetic": 0,
+      "desire": 0,
+      "stimulation": 0,
+      "anxious": 0,
+      "paranoia": 0,
+      "obesity": 0,
+      "narcolepsy": 0,
+      "pain": 0,
+      "dependence": 0
+    };
+    for (let dataset of phenotypesData){
+      for (let phenotype in dataset){
+        phenotypes[phenotype] = phenotypes[phenotype] + dataset[phenotype];
+      }
+    }
+    console.log("Updating user genetics with: "+JSON.stringify(phenotypes));
+    return phenotypes;
   }
 
   resolveAndUpdateDnaData() {
@@ -87,7 +120,7 @@ export class SignUpComponent implements OnInit {
         })
       };
 
-      let phenotypesData = [];
+      let phenotypesData:Genetics[] = [];
 
       for (let i = 0; i < chunks.length; i++) {
         let chunk = chunks[i];
@@ -96,23 +129,30 @@ export class SignUpComponent implements OnInit {
           //let response = this.httpClient.post("https://us-central1-gene420site.cloudfunctions.net/resolveGenetics", data, httpOptions).toPromise();
           let response = this.serverMockService.resolveGenetics(data);
           response.then((phenotypes)=> {
-            console.log(phenotypes);
+
             this.dnaLoadingProgress++;
             phenotypesData.push(phenotypes);
 
             if (this.dnaLoadingProgress == this.dnaTotalSize) {
-              this.userDao.updateUserGenetics(this.authService.getCurrentUserUid(), phenotypes);
+              let phenotypes = this.resolvePhenotypes(phenotypesData);
+              this.updatePhenotypes(phenotypes);
               this.dnaLoaded = true;
             }
           }).catch((error)=> {
+            this.dnaLoadingProgress++;
             console.log(error);
           })
-        }, i * 20)
+        }, i * 10)
       }
-
-
     };
 
+  }
+
+  getLoadingProgress():number{
+    if (this.dnaTotalSize==0){
+      return 0;
+    }
+    return Math.floor((this.dnaLoadingProgress/this.dnaTotalSize)*100)
   }
 
 }

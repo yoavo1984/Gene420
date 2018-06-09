@@ -49,7 +49,7 @@ export class AvatarComponent implements OnInit {
 
   registerOnAuthStateChange(){
     firebase.auth().onAuthStateChanged((user)=> {
-      if (user && user.emailVerified) {
+      if (user /*&& user.emailVerified*/) {
         this.loggedIn = true;
         this.displayName = this.authService.getCurrentUserDisplayName();
         this.email = this.authService.getCurrentUserEmail();

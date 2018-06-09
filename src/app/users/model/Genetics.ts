@@ -7,7 +7,7 @@ export interface Genetics{
   anxious:number;
   paranoia:number;
   obesity:number;
-  narcolapsy:number;
+  narcolepsy:number;
   pain:number;
   dependence:number;
 }

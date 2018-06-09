@@ -30,7 +30,7 @@ export class UserDaoService {
         "anxious": genetics.anxious || 0,
         "paranoia": genetics.paranoia || 0,
         "obesity": genetics.obesity || 0,
-        "narcolepsy": genetics.narcolapsy || 0,
+        "narcolepsy": genetics.narcolepsy || 0,
         "pain": genetics.pain || 0,
         "dependence": genetics.dependence || 0
       }
