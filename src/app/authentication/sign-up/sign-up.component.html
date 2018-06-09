@@ -3,9 +3,14 @@
     <h1>Sign Up</h1>
   </div>
 
-  <div class="sign-in-form">
-    <form #form="ngForm" (ngSubmit)="signUp(form.value)">
+
+
+  <div *ngIf="stage == 0" class="sign-up-form">
+    <form #initialForm="ngForm" (ngSubmit)="submitInitialForm(initialForm.value)">
       <div style="display: block;">
+        <p>
+          Please fill in some basic personal details...
+        </p>
         First Name
         <p><input type="text" name="firstName" class="form-control" style="width:200px;" ngModel required/></p>
         Last Name
@@ -15,13 +20,77 @@
         Password
         <p><input type="password" name="password" class="form-control" style="width:200px;" ngModel required/></p>
         <p>
-          <button type="submit" style="width:200px">
-            Sign Up
+          <button type="submit" style="width:200px" [disabled]="!initialForm.form.valid">
+            Continue
           </button>
         </p>
 
       </div>
     </form>
   </div>
+
+  <div *ngIf="stage == 1" class="sign-up-form">
+
+    <form #uploadDnaForm="ngForm" (ngSubmit)="submitDNA(uploadDnaForm.value)">
+      <div style="display: block;">
+        <p>
+          For best tailoring your cannabis strains, please upload your DNA data...
+        </p>
+
+        <label class="beta-tester-label" for="betaTesterCountry">Vendor</label>
+        <p>
+          <select class="input-field" id="betaTesterCountry"
+                  required
+                  [(ngModel)]="uploadDnaForm.vendor" name="vendor">
+            <option *ngFor="let vendor of vendorList" [value]="vendor">{{vendor}}</option>
+          </select>
+        </p>
+        File
+        <p><input type="file" (change)="detectFiles($event)" name="file" class="form-control" style="width:350px;" ngModel required/></p>
+        <p>
+          <button style="width:200px" (click)="skipUploading()">
+            Skip
+          </button>
+          <button type="submit" style="width:200px" [disabled]="!uploadDnaForm.form.valid">
+            Continue
+          </button>
+        </p>
+
+      </div>
+    </form>
+
+  </div>
+
+  <div *ngIf="stage == 2" class="sign-up-form">
+    <form #questionnaireForm="ngForm" (ngSubmit)="submitQuestionnaire(questionnaireForm.value)">
+      <div style="display: block;">
+        <p>
+          Please answer a few more questions, so we can further enhance our understanding of your specific needs...
+        </p>
+        <p>
+          <button type="submit" style="width:200px" [disabled]="!questionnaireForm.form.valid">
+            Continue
+          </button>
+        </p>
+      </div>
+    </form>
+  </div>
+
+  <div *ngIf="stage == 3" class="sign-up-form">
+    <div *ngIf="!dnaLoaded">
+      <p>
+        Loading... {{(dnaLoadingProgress/dnaTotalSize)*100}}%/100%
+      </p>
+
+    </div>
+    <div *ngIf="dnaLoaded">
+      <p>
+        You are good to go...! Enjoy!
+        <button [routerLink]="'/user/dashboard'">Browse Strains</button>
+      </p>
+
+    </div>
+  </div>
+
 
 </div>

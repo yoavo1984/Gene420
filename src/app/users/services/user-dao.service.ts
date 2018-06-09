@@ -18,23 +18,21 @@ export class UserDaoService {
     return this.angularFire.object('/users/'+uid+'/genetics/').valueChanges();
   }
 
-
-
   updateUserGenetics(uid, genetics:Genetics){
     let remoteGenetics = this.angularFire.object('/users/'+uid+'/genetics/');
     remoteGenetics.update(
       {
-        "creative": genetics.creative,
-        "funny": genetics.funny,
-        "energetic": genetics.energetic,
-        "desire": genetics.desire,
-        "stimulation": genetics.stimulation,
-        "anxious": genetics.anxious,
-        "paranoia": genetics.paranoia,
-        "obesity": genetics.obesity,
-        "narcolapsy": genetics.narcolapsy,
-        "pain": genetics.pain,
-        "dependence": genetics.dependence
+        "creative": genetics.creative || 0,
+        "funny": genetics.funny || 0,
+        "energetic": genetics.energetic || 0,
+        "desire": genetics.desire || 0,
+        "stimulation": genetics.stimulation|| 0,
+        "anxious": genetics.anxious || 0,
+        "paranoia": genetics.paranoia || 0,
+        "obesity": genetics.obesity || 0,
+        "narcolepsy": genetics.narcolapsy || 0,
+        "pain": genetics.pain || 0,
+        "dependence": genetics.dependence || 0
       }
     )
 

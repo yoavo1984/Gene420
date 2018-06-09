@@ -53,6 +53,7 @@ import { GeneticsModalComponent } from './users/modals/genetics-modal/genetics-m
 import { UploadComponent } from './users/upload/upload/upload.component';
 import {GeneticsDataUploaderService} from "./users/services/genetics-data-uploader.service";
 import {HttpClientModule} from "@angular/common/http";
+import {ServerMockService} from "./services/server-mock.service";
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
@@ -143,7 +144,8 @@ export const firebaseConfig = {
     EventBusService,
     ContactService,
     MatcherService,
-    GeneticsDataUploaderService
+    GeneticsDataUploaderService,
+    ServerMockService
   ],
   bootstrap: [AppComponent]
 })

@@ -37,6 +37,8 @@ export class GeneticsDataUploaderService {
 
 
 
+
+
   // Writes the file details to the realtime db
   private saveFileData(upload: Upload) {
     this.db.list(`${this.basePath}/`).push(upload);

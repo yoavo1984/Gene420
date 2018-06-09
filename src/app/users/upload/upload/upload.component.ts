@@ -6,6 +6,7 @@ import {HttpHeaders} from "@angular/common/http";
 import {HttpParams} from "@angular/common/http";
 import {HttpResponse} from "@angular/common/http";
 import {Response} from "@angular/http";
+import {ServerMockService} from "../../../services/server-mock.service";
 
 @Component({
   selector: 'gene420-upload',
@@ -17,7 +18,7 @@ export class UploadComponent implements OnInit {
   selectedFiles: FileList;
   currentUpload: Upload;
 
-  constructor(private upSvc: GeneticsDataUploaderService, private httpClient: HttpClient) {
+  constructor(private upSvc: GeneticsDataUploaderService, private httpClient: HttpClient, private serverMock:ServerMockService) {
   }
 
   ngOnInit() {
@@ -47,7 +48,8 @@ export class UploadComponent implements OnInit {
         })
       };
 
-      let response = this.httpClient.post("https://us-central1-gene420site.cloudfunctions.net/resolveGenetics", data, httpOptions).toPromise();
+      //let response = this.httpClient.post("https://us-central1-gene420site.cloudfunctions.net/resolveGenetics", data, httpOptions).toPromise();
+      let response = this.serverMock.resolveGenetics(data);
 
       response.then((phenotypes)=>{
         console.log(phenotypes)
