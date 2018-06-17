@@ -14,9 +14,10 @@ import {Router} from "@angular/router";
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.css']
 })
+//Stages: 1 - initial form, 2 - DNA, 3 - Questionnaire
 export class SignUpComponent implements OnInit {
 
-  private vendorList = ["23AndMe"]
+  private vendorList = ["23AndMe"];
 
   private initialForm;
   public stage: number = 0;
@@ -26,8 +27,6 @@ export class SignUpComponent implements OnInit {
   private dnaLoadingProgress: number = 0;
   private dnaTotalSize: number = 0;
   private dnaLoaded;
-  //1 - initial form, 2 - DNA, 3 - Questionnaire
-
 
   constructor(private authService: AuthService,
               private httpClient: HttpClient,
@@ -40,7 +39,7 @@ export class SignUpComponent implements OnInit {
   }
 
   skipUploading() {
-    this.stage = 4;
+    this.stage = 3;
   }
 
   detectFiles(event) {

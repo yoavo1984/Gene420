@@ -37,9 +37,9 @@
           For best tailoring your cannabis strains, please upload your DNA data...
         </p>
 
-        <label class="beta-tester-label" for="betaTesterCountry">Vendor</label>
+        <label class="vendor-label" for="vendor">Vendor</label>
         <p>
-          <select class="input-field" id="betaTesterCountry"
+          <select class="input-field" id="vendor"
                   required
                   [(ngModel)]="uploadDnaForm.vendor" name="vendor">
             <option *ngFor="let vendor of vendorList" [value]="vendor">{{vendor}}</option>
@@ -67,6 +67,89 @@
         <p>
           Please answer a few more questions, so we can further enhance our understanding of your specific needs...
         </p>
+
+        <!-- birth day -->
+        <label class="bday-label" for="vendor">Birth Day:</label>
+        <p>
+          <input class="form-control" type="date" name="bday" ([ngModel])="questionnaireForm.bday" ngModel required>
+        </p>
+
+        <!-- gender -->
+        <label class="gender-label" for="gender">Gender</label>
+        <p>
+          <select class="input-field" id="gender"
+                  required
+                  [(ngModel)]="questionnaireForm.gender" name="gender">
+            <option [value]="'male'">Male</option>
+            <option [value]="'female'">Female</option>
+          </select>
+        </p>
+
+        <!-- wieght -->
+        <label class="weight-label" for="weight">Weight (Kgs)</label>
+        <p><input type="text" id="weight" name="weight" class="form-control" style="width:200px;" ngModel required/></p>
+
+        <!-- height -->
+        <label class="height-label" for="weight">Height (Cms)</label>
+        <p><input type="text" id="height" name="weight" class="form-control" style="width:200px;" ngModel required/></p>
+
+        <!-- mental issues -->
+        <label class="mental-disorders-label">Have you ever suffered from the following mental disorders?</label>
+
+        <p>
+          <input type="checkbox" id="anxiety" name="anxiety"/> Anxiety Attacks
+        </p>
+        <p>
+          <input type="checkbox" id="depression" name="depression"/> Depression
+        </p>
+        <p>
+          <input type="checkbox" id="psychosis" name="psychosis"/> Psychosis
+        </p>
+        <p>
+          <input type="checkbox" id="insomnia" name="insomnia"/> Insomnia
+        </p>
+        <p>
+          <input type="checkbox" id="other-issue" name="other-issue"/> Other
+        </p>
+
+        <!-- tastes-->
+        <label class="tastes-label" for="tastes">Select your preferred tastes</label>
+        <p>
+          <select class="input-field" id="tastes"
+                  required
+                  [(ngModel)]="questionnaireForm.tastes" name="tastes" multiple>
+            <option [value]="'sweet'">Sweet</option>
+            <option [value]="'sour'">Sour</option>
+            <option [value]="'spicy'">Spicy</option>
+            <option [value]="'bitter'">Bitter</option>
+          </select>
+        </p>
+
+        <!-- Consumption -->
+        <label class="consumption-label">How do you consume the varieties/products?</label>
+
+        <p>
+          <input type="checkbox" id="smoking" name="smoking"/> Smoking
+        </p>
+        <p>
+          <input type="checkbox" id="oil" name="oil"/> Liquid Oil Droplets
+        </p>
+        <p>
+          <input type="checkbox" id="evaporation" name="evaporation"/> Evaporation
+        </p>
+        <p>
+          <input type="checkbox" id="oil-capsules" name="oil-capsules"/> Oil Capsules
+        </p>
+        <p>
+          <input type="checkbox" id="rectal" name="rectal"/> Rectal Candles
+        </p>
+        <p>
+          <input type="checkbox" id="honey" name="honey"/> Honey
+        </p>
+        <p>
+          <input type="checkbox" id="other-consumption" name="other-consumption"/> Other
+        </p>
+
         <p>
           <button type="submit" style="width:200px" [disabled]="!questionnaireForm.form.valid">
             Continue
