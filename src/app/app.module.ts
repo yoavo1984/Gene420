@@ -67,8 +67,6 @@ const appRoutes: Routes = [
   {path: 'wizard', component: MoodWizardsComponent},
   {path: 'user', component: DashboardComponent,
     children: [
-    { path: '', redirectTo: 'strain-browser', pathMatch: 'full' },
-    { path: 'user', component:UserComponent},
     { path: 'strain-browser', component:StrainBrowserComponent},
     { path: 'type-browser', component:StrainTypeSelectorComponent},
     { path: 'carousel-browser', component:StrainCarouselComponent},

@@ -11,3 +11,7 @@ export interface Genetics{
   pain:number;
   dependence:number;
 }
+
+export const PHENOTYPE_NAMES = [
+  "Creative", "Funny", "Energetic", "Desire", "Stimulation", "Anxious", "Paranoia", "Obesity", "Narcolepsy", "Pain", "Dependence"
+];

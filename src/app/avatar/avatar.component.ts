@@ -44,7 +44,7 @@ export class AvatarComponent implements OnInit {
 
   navigateToPrivateArea() {
     this.collapse.emit({});
-    this.router.navigateByUrl('/user');
+    this.router.navigate(['user', 'strain-browser']);
   }
 
   registerOnAuthStateChange(){

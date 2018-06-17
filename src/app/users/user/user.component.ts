@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild, ChangeDetectorRef} from '@angular/core';
 import {AuthService} from "../../authentication/services/auth-service";
 import {UserDaoService} from "../services/user-dao.service";
 import {Router} from "@angular/router";
+import {PHENOTYPE_NAMES} from "../model/Genetics";
+import {BaseChartDirective} from "ng2-charts";
 
 @Component({
   selector: 'gene420-user',
@@ -9,6 +11,8 @@ import {Router} from "@angular/router";
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
+
+  @ViewChild("baseChart") chart: BaseChartDirective;
   private uid;
   private user;
 
@@ -21,20 +25,20 @@ export class UserComponent implements OnInit {
     scaleShowVerticalLines: false,
     responsive: true
   };
-  public barChartLabels:string[] = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
+  public barChartLabels:string[] = PHENOTYPE_NAMES;
   public barChartType:string = 'bar';
   public barChartLegend:boolean = true;
 
   public barChartData:any[] = [
-    {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
-    {data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'}
+    {data: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], label: 'Phenotypes'}
   ];
 
-  constructor(private authService:AuthService, private usersDao:UserDaoService, private router:Router) {
+  constructor(private authService:AuthService, private usersDao:UserDaoService, private router:Router, private ref: ChangeDetectorRef) {
+    this.fetchUserDetails();
   }
 
   ngOnInit() {
-    this.fetchUserDetails();
+    this.reloadChart();
 
 
   }
@@ -69,18 +73,28 @@ export class UserComponent implements OnInit {
     console.log(e);
   }
 
-  fetchGenetics(uid){
+  fetchGenetics(uid) {
     let genetics = this.usersDao.getGenetics(uid);
-    genetics.subscribe((geneticData)=>{
-      /*for (let phenotype in geneticData){
-        if (!this.userGenetics){
-          this.userGenetics = {};
-        }
-        this.userGenetics[phenotype] = geneticData[phenotype];
+    genetics.subscribe((geneticData)=> {
+      // {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'}
+      let phenotypesDataSeries = {data:[], label: 'Phenotypes'};
+      for (let phenotype in geneticData) {
+        phenotypesDataSeries.data.push(geneticData[phenotype]);
       }
-      this.userGeneticsReady = true;
-    });*/
+      this.barChartData[0]=JSON.parse(JSON.stringify(phenotypesDataSeries));
+      this.reloadChart();
     });
+  }
+
+  reloadChart() {
+    if (this.chart !== undefined && this.chart.chart!==undefined) {
+      this.chart.chart.destroy();
+      this.chart.chart = 0;
+
+      this.chart.datasets = this.barChartData;
+      this.chart.labels = this.barChartLabels;
+      this.chart.ngOnInit();
+    }
   }
 
 }

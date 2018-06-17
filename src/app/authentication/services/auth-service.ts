@@ -171,18 +171,16 @@ export class AuthService {
 
   onAuthStateChange(){
     return new Promise<any>((resolve, reject)=>{
-      if (this.isLoggedIn()){
-        resolve(this.user);
-      }
-      else {
+
         firebase.auth().onAuthStateChanged((user)=> {
           resolve({
             displayName: this.getCurrentUserDisplayName(),
             photoUrl: this.getCurrentUserPhotoUrl(),
-            email: this.getCurrentUserEmail()
+            email: this.getCurrentUserEmail(),
+            uid: this.getCurrentUserUid()
           });
         });
-      }
+      
     })
   }
 
