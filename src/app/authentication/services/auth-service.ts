@@ -55,20 +55,6 @@ export class AuthService {
     this.user.updateProfile({
       displayName: name, photoURL:photoUrl?photoUrl:""
     });
-    //genetics will be updated upon upload of genetic data
-    /*this.userDao.updateUserGenetics(this.getCurrentUserUid(), { //TODO: mock with random data
-      "creative":0,
-      "funny": 1,
-      "energetic": 0,
-      "desire": 0,
-      "stimulation": 2,
-      "anxious": 0,
-      "paranoia": 0,
-      "obesity": 0,
-      "narcolepsy": 1,
-      "pain": 0,
-      "dependence": 0
-    })*/
   }
 
   sendVerificationEmail(){
@@ -124,7 +110,7 @@ export class AuthService {
   handleSuccessfulLogin(){
     //if (this.isEmailVerified()){
 
-      this.router.navigate(['dashboard']);
+      this.router.navigate(['user']);
       //TODO: handle email not verified
     /*}
     else {

@@ -28,7 +28,7 @@ export class SignUpComponent implements OnInit {
   private dnaTotalSize: number = 0;
   private dnaLoaded;
   private skipped:boolean;
-  private errorSignupMessage:string;
+  private errorSignupMessage:string = "";
 
   constructor(private authService: AuthService,
               private httpClient: HttpClient,
@@ -38,6 +38,7 @@ export class SignUpComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.stage = 0;
   }
 
   skipUploading() {
