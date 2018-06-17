@@ -37,8 +37,12 @@ export class SignUpComponent implements OnInit {
               private router:Router) {
   }
 
-  ngOnInit() {
+  resetStage(){
     this.stage = 0;
+  }
+
+  ngOnInit() {
+    this.resetStage();
   }
 
   skipUploading() {
@@ -86,6 +90,23 @@ export class SignUpComponent implements OnInit {
     setTimeout(()=>{
       this.router.navigate(['user','strain-browser']);
     }, 4000)
+  }
+
+  resolvePhenotypesDataOfQuestionnaire(){
+    let phenotypes:Genetics = {
+      "creative":this.questionnaire.insomnia? 1:0,
+      "funny": 0,
+      "energetic": this.questionnaire.insomnia? 1:0,
+      "desire": this.questionnaire.male? 2:0,
+      "stimulation": 0,
+      "anxious": this.questionnaire.anxiety? 1:0,
+      "paranoia": this.questionnaire.depression? 1:0 + this.questionnaire.psychosis? 1:0,
+      "obesity": 0,
+      "narcolepsy": -this.questionnaire.insomnia? 1:0,
+      "pain": this.questionnaire.depression? 1:0,
+      "dependence": this.questionnaire.depression? 1:0
+    };
+    return phenotypes;
   }
 
 
@@ -144,6 +165,9 @@ export class SignUpComponent implements OnInit {
             phenotypesData.push(phenotypes);
 
             if (this.dnaLoadingProgress == this.dnaTotalSize) {
+
+              phenotypesData.push(this.resolvePhenotypesDataOfQuestionnaire());
+
               let phenotypes = this.resolvePhenotypes(phenotypesData);
               this.updatePhenotypes(phenotypes);
               this.dnaLoaded = true;
@@ -163,6 +187,18 @@ export class SignUpComponent implements OnInit {
       return 0;
     }
     return Math.floor((this.dnaLoadingProgress/this.dnaTotalSize)*100)
+  }
+
+  goToPrivateArea(){
+    this.resetStage();
+    setTimeout(()=>{
+      this.router.navigate(['user', 'strain-browser']);
+    }, 300);
+
+  }
+
+  startOver(){
+    this.resetStage();
   }
 
 }

@@ -26,8 +26,8 @@ export class UserComponent implements OnInit {
     responsive: true
   };
   public barChartLabels:string[] = PHENOTYPE_NAMES;
-  public barChartType:string = 'bar';
-  public barChartLegend:boolean = true;
+  public barChartType:string = 'horizontalBar';
+  public barChartLegend:boolean = false;
 
   public barChartData:any[] = [
     {data: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], label: 'Phenotypes'}
