@@ -28,7 +28,7 @@ export class SignUpComponent implements OnInit {
   private dnaTotalSize: number = 0;
   private dnaLoaded;
   private skipped:boolean;
-  private errorSignupMessage;
+  private errorSignupMessage:string;
 
   constructor(private authService: AuthService,
               private httpClient: HttpClient,
@@ -67,12 +67,17 @@ export class SignUpComponent implements OnInit {
 
 
   signUp() {
-    this.authService.signUp(this.initialForm.email, this.initialForm.password, this.initialForm.firstName + " " + this.initialForm.lastName).catch((error)=>{
+
+
+    this.authService.signUp(this.initialForm.email, this.initialForm.password, this.initialForm.firstName + " " + this.initialForm.lastName)
+    .then(()=>{
+      if (this.dna) {
+        this.resolveAndUpdateDnaData();
+      }
+    })
+    .catch((error)=>{
       this.errorSignupMessage = error;
     });
-    if (this.dna) {
-      this.resolveAndUpdateDnaData();
-    }
   }
 
   updatePhenotypes(phenotypes:Genetics){

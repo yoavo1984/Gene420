@@ -160,12 +160,12 @@
   </div>
 
   <div *ngIf="stage == 3" class="sign-up-form">
-    <div *ngIf="!dnaLoaded && !skipped">
+    <div *ngIf="!dnaLoaded && !skipped && errorSignupMessage==''">
 
       <h2>Analyzing your DNA... This might take a few minutes... {{getLoadingProgress()}}%</h2>
 
     </div>
-    <div *ngIf="dnaLoaded || skipped && !errorSignupMessage">
+    <div *ngIf="dnaLoaded || skipped && errorSignupMessage==''">
 
       <h2>You are good to go...! Enjoy!</h2>
       <p>
@@ -177,7 +177,7 @@
 
     </div>
 
-    <div *ngIf="errorSignupMessage">
+    <div *ngIf="errorSignupMessage!=''">
       <h2>There was an error with the signup!</h2>
       <p>
         {{errorSignupMessage}}
