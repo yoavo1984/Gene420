@@ -93,6 +93,28 @@
         <label class="height-label" for="height">Height (Cms)</label>
         <p><input type="text" id="height" name="height" class="form-control" style="width:200px;" ngModel required/></p>
 
+        <!-- objective -->
+
+        <!-- mental issues -->
+        <label class="usage-objective-label">Cannabis usage objective:</label>
+
+        <p>
+          <input type="checkbox" id="pain-objective" name="pain-objective" [(ngModel)]="questionnaireForm.painObjective"/> Pain Relief
+        </p>
+        <p>
+          <input type="checkbox" id="stress-objective" name="stress-objective" [(ngModel)]="questionnaireForm.stressRelief"/> Stress Relief
+        </p>
+        <p>
+          <input type="checkbox" id="insomnia-objective" name="insomnia-objective" [(ngModel)]="questionnaireForm.insomniaObjective"/> Insomnia
+        </p>
+        <p>
+          <input type="checkbox" id="recreational" name="recreational" [(ngModel)]="questionnaireForm.recrational"/> Recreational
+        </p>
+        <p>
+          <input type="checkbox" id="other-objective" name="other-objective" [(ngModel)]="questionnaireForm.otherIssue"/> Other Objective
+        </p>
+        
+
         <!-- mental issues -->
         <label class="mental-disorders-label">Have you ever suffered from the following mental disorders?</label>
 
