@@ -20,26 +20,33 @@ export class AuthService {
 
   }
 
-  signUp(email:string, password:string, name:string, photoUrl?:string, shouldNavigate?:boolean){
-    //noinspection TypeScriptUnresolvedFunction
-    firebase.auth().createUserWithEmailAndPassword(email, password)
-      .then(()=>{
-        this.internalLogin(email, password).then(()=>{
-          this.updateUserDetails(name, photoUrl);
-          this.sendVerificationEmail();
-          this.handleInternalSuccessfulLogin();
+  signUp(email:string, password:string, name:string, photoUrl?:string, shouldNavigate?:boolean):Promise<any>{
+
+    let promise= new Promise<any>((resolve, reject)=>{
+      firebase.auth().createUserWithEmailAndPassword(email, password)
+        .then(()=>{
+          this.internalLogin(email, password).then(()=>{
+            this.updateUserDetails(name, photoUrl);
+            this.sendVerificationEmail();
+            this.handleInternalSuccessfulLogin();
+            resolve();
+          });
+
+          if (shouldNavigate){
+            //this.router.navigate(['home']);
+          }
+
+        })
+        .catch(function(error) {
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          //alert("error in signup "+errorMessage);
+          reject(error.message);
         });
-
-        if (shouldNavigate){
-          //this.router.navigate(['home']);
-        }
-
-      })
-      .catch(function(error) {
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      console.log("error in signup "+errorMessage);
     });
+    return promise;
+    //noinspection TypeScriptUnresolvedFunction
+
 
   }
 

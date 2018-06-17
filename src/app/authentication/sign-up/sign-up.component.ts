@@ -27,6 +27,8 @@ export class SignUpComponent implements OnInit {
   private dnaLoadingProgress: number = 0;
   private dnaTotalSize: number = 0;
   private dnaLoaded;
+  private skipped:boolean;
+  private errorSignupMessage;
 
   constructor(private authService: AuthService,
               private httpClient: HttpClient,
@@ -39,7 +41,8 @@ export class SignUpComponent implements OnInit {
   }
 
   skipUploading() {
-    this.stage = 3;
+    this.skipped = true;
+    this.stage = 2;
   }
 
   detectFiles(event) {
@@ -64,7 +67,9 @@ export class SignUpComponent implements OnInit {
 
 
   signUp() {
-    this.authService.signUp(this.initialForm.email, this.initialForm.password, this.initialForm.firstName + " " + this.initialForm.lastName);
+    this.authService.signUp(this.initialForm.email, this.initialForm.password, this.initialForm.firstName + " " + this.initialForm.lastName).catch((error)=>{
+      this.errorSignupMessage = error;
+    });
     if (this.dna) {
       this.resolveAndUpdateDnaData();
     }

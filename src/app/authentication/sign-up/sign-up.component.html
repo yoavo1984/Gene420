@@ -62,7 +62,7 @@
   </div>
 
   <div *ngIf="stage == 2" class="sign-up-form">
-    <form #questionnaireForm="ngForm" (ngSubmit)="submitQuestionnaire()">
+    <form #questionnaireForm="ngForm" (ngSubmit)="submitQuestionnaire(questionnaireForm.value)">
       <div style="display: block;">
         <p>
           Please answer a few more questions, so we can further enhance our understanding of your specific needs...
@@ -90,26 +90,26 @@
         <p><input type="text" id="weight" name="weight" class="form-control" style="width:200px;" ngModel required/></p>
 
         <!-- height -->
-        <label class="height-label" for="weight">Height (Cms)</label>
-        <p><input type="text" id="height" name="weight" class="form-control" style="width:200px;" ngModel required/></p>
+        <label class="height-label" for="height">Height (Cms)</label>
+        <p><input type="text" id="height" name="height" class="form-control" style="width:200px;" ngModel required/></p>
 
         <!-- mental issues -->
         <label class="mental-disorders-label">Have you ever suffered from the following mental disorders?</label>
 
         <p>
-          <input type="checkbox" id="anxiety" name="anxiety"/> Anxiety Attacks
+          <input type="checkbox" id="anxiety" name="anxiety" [(ngModel)]="questionnaireForm.anxiety"/> Anxiety Attacks
         </p>
         <p>
-          <input type="checkbox" id="depression" name="depression"/> Depression
+          <input type="checkbox" id="depression" name="depression" [(ngModel)]="questionnaireForm.depression"/> Depression
         </p>
         <p>
-          <input type="checkbox" id="psychosis" name="psychosis"/> Psychosis
+          <input type="checkbox" id="psychosis" name="psychosis" [(ngModel)]="questionnaireForm.psychosis"/> Psychosis
         </p>
         <p>
-          <input type="checkbox" id="insomnia" name="insomnia"/> Insomnia
+          <input type="checkbox" id="insomnia" name="insomnia" [(ngModel)]="questionnaireForm.insomnia"/> Insomnia
         </p>
         <p>
-          <input type="checkbox" id="other-issue" name="other-issue"/> Other
+          <input type="checkbox" id="other-issue" name="other-issue" [(ngModel)]="questionnaireForm.otherIssue"/> Other
         </p>
 
         <!-- tastes-->
@@ -129,25 +129,25 @@
         <label class="consumption-label">How do you consume the varieties/products?</label>
 
         <p>
-          <input type="checkbox" id="smoking" name="smoking"/> Smoking
+          <input type="checkbox" id="smoking" name="smoking" [(ngModel)]="questionnaireForm.smoking"/> Smoking
         </p>
         <p>
-          <input type="checkbox" id="oil" name="oil"/> Liquid Oil Droplets
+          <input type="checkbox" id="oil" name="oil" [(ngModel)]="questionnaireForm.oil"/> Liquid Oil Droplets
         </p>
         <p>
-          <input type="checkbox" id="evaporation" name="evaporation"/> Evaporation
+          <input type="checkbox" id="evaporation" name="evaporation" [(ngModel)]="questionnaireForm.evaporation"/> Evaporation
         </p>
         <p>
-          <input type="checkbox" id="oil-capsules" name="oil-capsules"/> Oil Capsules
+          <input type="checkbox" id="oil-capsules" name="oil-capsules" [(ngModel)]="questionnaireForm.oilCapsules"/> Oil Capsules
         </p>
         <p>
-          <input type="checkbox" id="rectal" name="rectal"/> Rectal Candles
+          <input type="checkbox" id="rectal" name="rectal" [(ngModel)]="questionnaireForm.rectalCandles"/> Rectal Candles
         </p>
         <p>
-          <input type="checkbox" id="honey" name="honey"/> Honey
+          <input type="checkbox" id="honey" name="honey" [(ngModel)]="questionnaireForm.honey"/> Honey
         </p>
         <p>
-          <input type="checkbox" id="other-consumption" name="other-consumption"/> Other
+          <input type="checkbox" id="other-consumption" name="other-consumption" [(ngModel)]="questionnaireForm.otherConsumption"/> Other
         </p>
 
         <p>
@@ -160,14 +160,33 @@
   </div>
 
   <div *ngIf="stage == 3" class="sign-up-form">
-    <div *ngIf="!dnaLoaded">
+    <div *ngIf="!dnaLoaded && !skipped">
 
       <h2>Analyzing your DNA... This might take a few minutes... {{getLoadingProgress()}}%</h2>
 
     </div>
-    <div *ngIf="dnaLoaded">
+    <div *ngIf="dnaLoaded || skipped && !errorSignupMessage">
 
       <h2>You are good to go...! Enjoy!</h2>
+      <p>
+        <button type="submit" style="width:200px">
+          Go To My Private Area
+        </button>
+      </p>
+
+
+    </div>
+
+    <div *ngIf="errorSignupMessage">
+      <h2>There was an error with the signup!</h2>
+      <p>
+        {{errorSignupMessage}}
+      </p>
+      <p>
+        <button type="submit" style="width:200px">
+          Start Over
+        </button>
+      </p>
 
 
     </div>
