@@ -58,6 +58,21 @@ export class ServerMockService {
       "rsid": "rs6994992",
       "genotypes": ["TT"],
       "phenotypes": ["creative"]
+    },
+    {
+      "rsid": "rs4986938",
+      "genotypes": ["A", "AA"],
+      "phenotypes": ["desire"]
+    },
+    {
+      "rsid": "rs2234693",
+      "genotypes": ["TT"],
+      "phenotypes": ["desire"]
+    },
+    {
+      "rsid": "rs324420",
+      "genotypes": ["AA"],
+      "phenotypes": ["dependence"]
     }
 
   ];
