@@ -65,8 +65,9 @@ const appRoutes: Routes = [
   {path: 'sign-up', component: SignUpComponent},
   {path: 'user-details', component: UserComponent},
   {path: 'wizard', component: MoodWizardsComponent},
-  {path: 'user', component: DashboardComponent,
+  {path: 'user', component: StrainBrowserComponent,
     children: [
+    { path: '', component:StrainBrowserComponent},
     { path: 'strain-browser', component:StrainBrowserComponent},
     { path: 'type-browser', component:StrainTypeSelectorComponent},
     { path: 'carousel-browser', component:StrainCarouselComponent},

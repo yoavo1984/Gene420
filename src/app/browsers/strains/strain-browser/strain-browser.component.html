@@ -1,6 +1,6 @@
 <div style="text-align: center;clear:none;">
   <!--filter-->
-  <div class="filter" style="height:35px;width:100%; align-items: stretch; background-color: #f6f6f6;position:fixed;">
+  <div class="filter" style="height:35px;width:100%; align-items: stretch; background-color: #f6f6f6;">
     <div style="margin:5px;display: inline-block;">
       <b>Type</b>
       <select [(ngModel)]="strainType">
@@ -8,6 +8,16 @@
         <option>Indica</option>
         <option>Sativa</option>
         <option>Hybrid</option>
+      </select>
+    </div>
+    <div style="margin:5px;display: inline-block;">
+      <b>Objective</b>
+      <select [(ngModel)]="useObjective">
+        <option>All</option>
+        <option>Pain Relief</option>
+        <option>Stress Reduction</option>
+        <option>Insomnia</option>
+        <option>Anti Depressive</option>
       </select>
     </div>
     <div style="margin:5px;display: inline-block;">

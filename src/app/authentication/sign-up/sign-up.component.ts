@@ -102,9 +102,9 @@ export class SignUpComponent implements OnInit {
       "anxious": this.questionnaire.anxiety? 1:0,
       "paranoia": this.questionnaire.depression? 1:0 + this.questionnaire.psychosis? 1:0,
       "obesity": 0,
-      "narcolepsy": -this.questionnaire.insomnia? 1:0,
+      "narcolepsy": this.questionnaire.insomnia? -1:0,
       "pain": this.questionnaire.depression? 1:0,
-      "dependence": this.questionnaire.depression? 1:0
+      "dependence": this.questionnaire.depression? 2:0
     };
     return phenotypes;
   }
