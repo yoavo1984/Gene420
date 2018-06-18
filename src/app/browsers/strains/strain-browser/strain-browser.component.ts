@@ -81,6 +81,8 @@ export class StrainBrowserComponent implements OnInit {
           match = (match * 100) / matches[matches.length - 1];
           strain.match = Math.round(match);
         }
+        this.changeDetector.detectChanges();
+        this.applyFilter();
 
       }, 3000);
       this.strains = strains;

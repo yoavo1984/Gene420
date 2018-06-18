@@ -4,6 +4,7 @@ import {UserDaoService} from "../../users/services/user-dao.service";
 import {AngularFireDatabase} from "angularfire2/database";
 import {AuthService} from "../../authentication/services/auth-service";
 import {TextUtils} from "../../utils/TextUtils";
+import * as firebase from 'firebase/app';
 
 @Injectable()
 export class MatcherService {
@@ -23,7 +24,16 @@ export class MatcherService {
 
     this.loadEffects();
     this.loadPhenotypes();
-    this.loadGeneticsForCurrentUser();
+    this.registerOnAuthStateChange();
+
+  }
+
+  registerOnAuthStateChange(){
+    firebase.auth().onAuthStateChanged((user)=> {
+      if (user /*&& user.emailVerified*/) {
+        this.loadGeneticsForCurrentUser();
+      }
+    });
   }
 
 
@@ -46,6 +56,7 @@ export class MatcherService {
   loadGeneticsForCurrentUser(){
     let genetics = this.userDaoService.getGenetics(this.authService.getCurrentUserUid());
     genetics.subscribe((geneticData)=>{
+
       for (let phenotype in geneticData){
         if (!this.userGenetics){
           this.userGenetics = {};
@@ -104,7 +115,7 @@ export class MatcherService {
   }
 
   resolvePoints(strain):number{
-
+    this.loadGeneticsForCurrentUser();
     let points = 0;
     let genetics = this.userGenetics;
     for (let geneticPhenotype in genetics){
