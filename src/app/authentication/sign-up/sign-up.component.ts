@@ -1,12 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../services/auth-service";
 import {HttpHeaders} from "@angular/common/http";
-import {Upload} from "../../users/model/Upload";
 import {HttpClient} from "@angular/common/http";
 import {ServerMockService} from "../../services/server-mock.service";
 import {UserDaoService} from "../../users/services/user-dao.service";
 import {DnaDataUtils} from "../../utils/DnaDataUtils";
-import {Genetics} from "../../users/model/Genetics";
+import {Phenome, createEmptyPhenome} from "../../users/model/Phenome";
 import {Router} from "@angular/router";
 
 @Component({
@@ -85,7 +84,7 @@ export class SignUpComponent implements OnInit {
     });
   }
 
-  updatePhenotypes(phenotypes:Genetics){
+  updatePhenotypes(phenotypes:Phenome){
     this.userDao.updateUserGenetics(this.authService.getCurrentUserUid(), phenotypes);
     setTimeout(()=>{
       this.router.navigate(['user','strain-browser']);
@@ -93,7 +92,7 @@ export class SignUpComponent implements OnInit {
   }
 
   resolvePhenotypesDataOfQuestionnaire(){
-    let phenotypes:Genetics = {
+    let phenotypes:Phenome = {
       "creative":this.questionnaire.insomnia? 1:0,
       "funny": 0,
       "energetic": this.questionnaire.insomnia? 1:0,
@@ -111,23 +110,11 @@ export class SignUpComponent implements OnInit {
 
 
 
-  resolvePhenotypes(phenotypesData:Genetics[]){
-    let phenotypes:Genetics = {
-      "creative":0,
-      "funny": 0,
-      "energetic": 0,
-      "desire": 0,
-      "stimulation": 0,
-      "anxious": 0,
-      "paranoia": 0,
-      "obesity": 0,
-      "narcolepsy": 0,
-      "pain": 0,
-      "dependence": 0
-    };
-    for (let dataset of phenotypesData){
-      for (let phenotype in dataset){
-        phenotypes[phenotype] = phenotypes[phenotype] + dataset[phenotype];
+  resolvePhenotypes(phenotypesData:Phenome[]){
+    let phenotypes:Phenome = createEmptyPhenome();
+    for (let dataSet of phenotypesData){
+      for (let phenotype in dataSet){
+        phenotypes[phenotype] = phenotypes[phenotype] + dataSet[phenotype];
       }
     }
     console.log("Updating user genetics with: "+JSON.stringify(phenotypes));
@@ -151,7 +138,7 @@ export class SignUpComponent implements OnInit {
         })
       };
 
-      let phenotypesData:Genetics[] = [];
+      let phenotypesData:Phenome[] = [];
 
       for (let i = 0; i < chunks.length; i++) {
         let chunk = chunks[i];

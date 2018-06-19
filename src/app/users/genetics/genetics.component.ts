@@ -1,7 +1,6 @@
 import {Component, OnInit, Input, SimpleChanges, ViewChild} from '@angular/core';
 import {UserDaoService} from "../services/user-dao.service";
 import {AuthService} from "../../authentication/services/auth-service";
-import {Genetics} from "../model/Genetics";
 import {BaseChartDirective} from "ng2-charts";
 import {Router} from "@angular/router";
 import {MatcherService} from "../../cannabis/services/matcher.service";
@@ -16,14 +15,6 @@ export class GeneticsComponent implements OnInit {
 
   @Input() user;
   @ViewChild("baseChart") chart: BaseChartDirective;
-  private iconByPhenotype = {
-    "craving": "fa fa-birthday-cake",
-    "psychosis": "fa fa-bullseye",
-    "memory": "fa fa-floppy-o",
-    "dependence": "fa fa-heart",
-    "decision": "fa fa-lightbulb-o"
-  };
-  private initFlag;
   private baseGeneticChartLabels;
   constructor(private userDao:UserDaoService,
               private authService:AuthService,
@@ -50,10 +41,6 @@ export class GeneticsComponent implements OnInit {
       this.chart.labels = this.geneticsChartLabels;
       this.chart.ngOnInit();
     }
-  }
-
-  getIconClass(phenotype){
-    return this.iconByPhenotype[phenotype] +' fa-3x';
   }
 
   public geneticsChartOptions:any = {

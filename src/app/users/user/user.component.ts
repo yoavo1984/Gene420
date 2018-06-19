@@ -2,7 +2,7 @@ import {Component, OnInit, ViewChild, ChangeDetectorRef} from '@angular/core';
 import {AuthService} from "../../authentication/services/auth-service";
 import {UserDaoService} from "../services/user-dao.service";
 import {Router} from "@angular/router";
-import {PHENOTYPE_NAMES} from "../model/Genetics";
+import {PHENOTYPE_NAMES} from "../model/Phenome";
 import {BaseChartDirective} from "ng2-charts";
 
 @Component({

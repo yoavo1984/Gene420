@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
-import {Genetics} from "../users/model/Genetics";
+import {Phenome} from "../users/model/Phenome";
+import {createEmptyPhenome} from "../users/model/Phenome";
 
 @Injectable()
 export class ServerMockService {
@@ -92,21 +93,7 @@ export class ServerMockService {
   }
 
   resolve(data: string, vendor?) {
-    //TODO build model
-    let phenotypes: Genetics =
-    {
-      "creative": 0,
-      "funny": 0,
-      "energetic": 0,
-      "desire": 0,
-      "stimulation": 0,
-      "anxious": 0,
-      "paranoia": 0,
-      "obesity": 0,
-      "narcolepsy": 0,
-      "pain": 0,
-      "dependence": 0
-    };
+    let phenotypes: Phenome = createEmptyPhenome();
 
     let dataLines = data.split("\n");
     let startingLine = 0;
