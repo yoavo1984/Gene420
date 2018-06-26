@@ -38,6 +38,5 @@ export const EFFECT_TYPE_BY_STRAIN_EFFECT_NAME = {
   "Anxious": EffectType.NEGATIVE,
   "Paranoid": EffectType.NEGATIVE,
   "Dizzy": EffectType.NEGATIVE,
-  "Headache": EffectType.NEGATIVE,
-  "Hungry": EffectType.NEGATIVE
+  "Headache": EffectType.NEGATIVE
 };
