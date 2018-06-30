@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Phenome} from "../users/model/Phenome";
+import {Phenome, PHENOTYPE} from "../users/model/Phenome";
 import {createEmptyPhenome} from "../users/model/Phenome";
 
 @Injectable()
@@ -9,71 +9,71 @@ export class ServerMockService {
     {
       "rsid": "rs2494732",
       "genotypes": ["CC", "CT"],
-      "phenotypes": ["anxious", "paranoia"]
+      "phenotypes": [PHENOTYPE.Anxious, PHENOTYPE.Paranoia]
     },
     {
       "rsid": "rs1154155",
       "genotypes": ["GG"],
-      "phenotypes": ["narcolepsy"]
+      "phenotypes": [PHENOTYPE.Narcolepsy]
     },
     {
       "rsid": "rs4570625",
       "genotypes": ["CC"],
-      "phenotypes": ["anxious"]
+      "phenotypes": [PHENOTYPE.Anxious]
     },
     {
       "rsid": "rs25532",
       "genotypes": ["CC"],
-      "phenotypes": ["anxious"]
+      "phenotypes": [PHENOTYPE.Anxious]
     },
     {
       "rsid": "rs6994992",
       "genotypes": ["TT"],
-      "phenotypes": ["creative", "stimulation", "funny"]
+      "phenotypes": [PHENOTYPE.Creative, PHENOTYPE.Stimulation, PHENOTYPE.Funny]
     },
     {
       "rsid": "rs2576573",
       "genotypes": ["A", "G"],
-      "phenotypes": ["dependence"]
+      "phenotypes": [PHENOTYPE.Dependence]
     },
     {
       "rsid": "rs2229616",
-      "phenotypes": ["obesity"]
+      "phenotypes": [PHENOTYPE.Obesity]
     },
     {
       "rsid": "rs5082",
       "genotypes": ["CC", "CT"],
-      "phenotypes": ["obesity"]
+      "phenotypes": [PHENOTYPE.Obesity]
     },
     {
       "rsid": "rs2023239",
       "genotypes": ["G", "C"],
-      "phenotypes": ["creative", "stimulation", "funny"]
+      "phenotypes": [PHENOTYPE.Creative, PHENOTYPE.Stimulation, PHENOTYPE.Funny]
     },
     {
       "rsid": "rs324420",
       "genotypes": ["G", "C"],
-      "phenotypes": ["creative", "stimulation", "funny"]
+      "phenotypes": [PHENOTYPE.Creative, PHENOTYPE.Stimulation, PHENOTYPE.Funny]
     },
     {
       "rsid": "rs6994992",
       "genotypes": ["TT"],
-      "phenotypes": ["creative"]
+      "phenotypes": [PHENOTYPE.Creative]
     },
     {
       "rsid": "rs4986938",
       "genotypes": ["A", "AA"],
-      "phenotypes": ["desire"]
+      "phenotypes": [PHENOTYPE.Desire]
     },
     {
       "rsid": "rs2234693",
       "genotypes": ["TT"],
-      "phenotypes": ["desire"]
+      "phenotypes": [PHENOTYPE.Desire]
     },
     {
       "rsid": "rs324420",
       "genotypes": ["AA"],
-      "phenotypes": ["dependence"]
+      "phenotypes": [PHENOTYPE.Dependence]
     }
 
   ];

@@ -19,6 +19,20 @@ export const PHENOTYPE_NAMES = [
   "Creative", "Funny", "Energetic", "Desire", "Stimulation", "Anxious", "Paranoia", "Obesity", "Narcolepsy", "Pain", "Dependence"
 ];
 
+export const PHENOTYPE = {
+  Creative: "creative",
+  Funny: "funny",
+  Energetic: "energetic",
+  Desire: "desire",
+  Stimulation: "stimulation",
+  Anxious: "anxious",
+  Paranoia: "paranoia",
+  Obesity: "obesity",
+  Narcolepsy: "narcolepsy",
+  Pain: "pain",
+  Dependence: "dependence"
+}
+
 export function createEmptyPhenome():Phenome {
   return {
     "creative": 0,
