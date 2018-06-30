@@ -12,7 +12,7 @@ export const STRAIN_EFFECT_NAMES = [
   "Happy", "Relaxed", "Euphoric", "Uplifted", "Giggly", "Energetic", "Sleepy", "Focused", "Creative", "Hungry", "Stress",
   "Insomnia", "Depression", "Pain", "Lack Of Appetite", "Fatigue", "Headaches", "Nausia", "Dry Mouth", "Dry Eyes", "Anxious",
   "Paranoid", "Dizzy", "Headache", "Hungry"
-]
+];
 
 export const EFFECT_TYPE_BY_STRAIN_EFFECT_NAME = {
   "Happy": EffectType.POSITIVE,
