@@ -71,8 +71,6 @@ export class SignUpComponent implements OnInit {
 
 
   signUp() {
-
-
     this.authService.signUp(this.initialForm.email, this.initialForm.password, this.initialForm.firstName + " " + this.initialForm.lastName)
     .then(()=>{
       if (this.dna) {
@@ -84,8 +82,8 @@ export class SignUpComponent implements OnInit {
     });
   }
 
-  updatePhenotypes(phenotypes:Phenome){
-    this.userDao.updateUserGenetics(this.authService.getCurrentUserUid(), phenotypes);
+  updatePhenome(phenotypes:Phenome){
+    this.userDao.updateUserPhenome(this.authService.getCurrentUserUid(), phenotypes);
     setTimeout(()=>{
       this.router.navigate(['user','strain-browser']);
     }, 4000)
@@ -156,7 +154,7 @@ export class SignUpComponent implements OnInit {
               phenotypesData.push(this.resolvePhenotypesDataOfQuestionnaire());
 
               let phenotypes = this.resolvePhenotypes(phenotypesData);
-              this.updatePhenotypes(phenotypes);
+              this.updatePhenome(phenotypes);
               this.dnaLoaded = true;
             }
           }).catch((error)=> {
@@ -176,7 +174,7 @@ export class SignUpComponent implements OnInit {
     return Math.floor((this.dnaLoadingProgress/this.dnaTotalSize)*100)
   }
 
-  goToPrivateArea(){
+  navigateToPrivateArea(){
     this.resetStage();
     setTimeout(()=>{
       this.router.navigate(['user', 'strain-browser']);

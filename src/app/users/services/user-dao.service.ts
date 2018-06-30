@@ -18,21 +18,21 @@ export class UserDaoService {
     return this.angularFire.object('/users/'+uid+'/genetics/').valueChanges();
   }
 
-  updateUserGenetics(uid, genetics:Phenome){
-    let remoteGenetics = this.angularFire.object('/users/'+uid+'/genetics/');
-    remoteGenetics.update(
+  updateUserPhenome(uid, phenome:Phenome){
+    let remotePhenome = this.angularFire.object('/users/'+uid+'/genetics/');
+    remotePhenome.update(
       {
-        "creative": genetics.creative || 0,
-        "funny": genetics.funny || 0,
-        "energetic": genetics.energetic || 0,
-        "desire": genetics.desire || 0,
-        "stimulation": genetics.stimulation|| 0,
-        "anxious": genetics.anxious || 0,
-        "paranoia": genetics.paranoia || 0,
-        "obesity": genetics.obesity || 0,
-        "narcolepsy": genetics.narcolepsy || 0,
-        "pain": genetics.pain || 0,
-        "dependence": genetics.dependence || 0
+        "creative": phenome.creative || 0,
+        "funny": phenome.funny || 0,
+        "energetic": phenome.energetic || 0,
+        "desire": phenome.desire || 0,
+        "stimulation": phenome.stimulation|| 0,
+        "anxious": phenome.anxious || 0,
+        "paranoia": phenome.paranoia || 0,
+        "obesity": phenome.obesity || 0,
+        "narcolepsy": phenome.narcolepsy || 0,
+        "pain": phenome.pain || 0,
+        "dependence": phenome.dependence || 0
       }
     )
 

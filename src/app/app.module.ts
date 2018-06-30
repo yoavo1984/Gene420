@@ -20,7 +20,6 @@ import { UserComponent } from './users/user/user.component';
 import { UidPipe } from './users/pipes/uid.pipe';
 import {UserDaoService} from "./users/services/user-dao.service";
 import {AngularFireDatabase} from "angularfire2/database";
-import { GeneticsPipe } from './users/pipes/genetics.pipe';
 import { UserNavBarComponent } from './users/user-nav-bar/user-nav-bar.component';
 import { AgePipe } from './users/pipes/age.pipe';
 import { GeneticsComponent } from './users/genetics/genetics.component';
@@ -40,7 +39,6 @@ import { StrainNamePipe } from './cannabis/pipes/strain-name.pipe';
 import { StrainTypeSelectorComponent } from './browsers/strains/strain-type-selector/strain-type-selector.component';
 import { StrainExplorerComponent } from './explorers/strains/strain-explorer/strain-explorer.component';
 import { StrainCarouselComponent } from './browsers/strains/strain-carousel/strain-carousel.component';
-import { GeneticsFooterComponent } from './users/genetics-footer/genetics-footer.component';
 import { MoodWizardsComponent } from './wizards/mood-wizards/mood-wizards.component';
 import { FlexLayoutModule} from '@angular/flex-layout';
 import {Ng2CarouselamosModule} from "ng2-carouselamos";
@@ -97,7 +95,6 @@ export const firebaseConfig = {
     SignInUpNavComponent,
     UserComponent,
     UidPipe,
-    GeneticsPipe,
     UserNavBarComponent,
     AgePipe,
     GeneticsComponent,
@@ -112,7 +109,6 @@ export const firebaseConfig = {
     StrainTypeSelectorComponent,
     StrainExplorerComponent,
     StrainCarouselComponent,
-    GeneticsFooterComponent,
     StrainViewComponent,
     MoodWizardsComponent,
     SubmitModalComponent,
