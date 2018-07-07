@@ -13,7 +13,8 @@ export class AppComponent {
   title = 'Gene420';
   public isLoggedIn: boolean;
   constructor(public afService: AuthService, private router: Router) {
-
+    //https://github.com/firebase/angularfire/issues/970
+    localStorage.removeItem('firebase:previous_websocket_failure');
   }
 
   shouldShowNavBar(){
