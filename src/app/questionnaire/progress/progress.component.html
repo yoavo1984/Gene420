@@ -1,0 +1,13 @@
+
+  <div style="display: inline-block;" *ngFor="let stage of stages; let i=index;">
+      <div>
+        <i class="{{getStageIconClassName(i)}}" aria-hidden="true" [style.color]=getStageIconColor(i)>
+          <span *ngIf="i!=stages.length-1" [style.color]="getStageIconColor(i)">--------</span>
+        </i>
+
+
+      </div>
+      <div>
+        {{stage}}
+      </div>
+  </div>
