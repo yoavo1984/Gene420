@@ -1,3 +1,7 @@
-<p>
-  questionnaire works!
-</p>
+<div class="container-fluid questionnaire">
+  <h1>Questionnaire</h1>
+  <gene420-progress [currentStage]="currentStage"></gene420-progress>
+  <gene420-personal-questionnaire [shouldShow]="currentStage==0"></gene420-personal-questionnaire>
+  <gene420-health-questionnaire [shouldShow]="currentStage==1"></gene420-health-questionnaire>
+  <gene420-preferences-questionnaire [shouldShow]="currentStage==2"></gene420-preferences-questionnaire>
+</div>

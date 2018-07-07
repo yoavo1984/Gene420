@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 
 @Component({
   selector: 'gene420-progress',
@@ -9,7 +9,7 @@ export class ProgressComponent implements OnInit {
 
   public stages; //TODO: should become @Input
   public icons;
-  public currentStage = 0;
+  @Input() currentStage = 0;
 
 
   constructor() {

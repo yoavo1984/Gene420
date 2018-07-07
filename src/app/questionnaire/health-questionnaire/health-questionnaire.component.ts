@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 
 @Component({
   selector: 'gene420-health-questionnaire',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./health-questionnaire.component.css']
 })
 export class HealthQuestionnaireComponent implements OnInit {
+
+  @Input() shouldShow;
 
   constructor() { }
 
