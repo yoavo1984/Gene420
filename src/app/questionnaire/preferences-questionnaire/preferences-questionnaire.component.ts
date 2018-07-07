@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 
 @Component({
   selector: 'gene420-preferences-questionnaire',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./preferences-questionnaire.component.css']
 })
 export class PreferencesQuestionnaireComponent implements OnInit {
+
+  @Input() shouldShow;
 
   constructor() { }
 
