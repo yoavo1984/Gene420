@@ -78,19 +78,26 @@ export class AuthService {
 
   login(email, password) {
     //noinspection TypeScriptUnresolvedFunction
-    firebase.auth().signInWithEmailAndPassword(email, password)
-      .then(()=> {
+    try{
+      firebase.auth().signInWithEmailAndPassword(email, password)
+        .then(()=> {
 
-        this.handleSuccessfulLogin();
-      })
-      .catch((error)=> {
-        // Handle Errors here.
+          this.handleSuccessfulLogin();
+        })
+        .catch((error)=> {
+          // Handle Errors here.
 
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        alert("could not sign in: " + errorMessage);
-        // ...
-      });
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          alert("could not sign in: " + errorMessage);
+          // ...
+        });
+    }
+    catch (error){
+      var errorMessage = error.message;
+      alert("could not sign in: " + errorMessage);
+    }
+
   }
 
   /**
