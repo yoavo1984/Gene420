@@ -57,6 +57,7 @@ import { HealthQuestionnaireComponent } from './questionnaire/health-questionnai
 import { ProgressComponent } from './questionnaire/progress/progress.component';
 import { PersonalQuestionnaireComponent } from './questionnaire/personal-questionnaire/personal-questionnaire.component';
 import { PreferencesQuestionnaireComponent } from './questionnaire/preferences-questionnaire/preferences-questionnaire.component';
+import { DnaUploadComponent } from './dna-upload/dna-upload.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
@@ -124,7 +125,8 @@ export const firebaseConfig = {
     HealthQuestionnaireComponent,
     ProgressComponent,
     PersonalQuestionnaireComponent,
-    PreferencesQuestionnaireComponent
+    PreferencesQuestionnaireComponent,
+    DnaUploadComponent
 
   ],
   imports: [

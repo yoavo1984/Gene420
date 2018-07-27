@@ -1,12 +1,10 @@
 <div>
-  <div style="display: block; text-align: center;">
-    <h1>Sign Up</h1>
-  </div>
-
-
 
   <div *ngIf="stage == 0" class="sign-up-form">
-    <form #initialForm="ngForm" (ngSubmit)="submitInitialForm(initialForm.value)">
+    <div style="display: block; text-align: center;">
+      <h1>Sign Up</h1>
+    </div>
+    <form #initialForm="ngForm" (ngSubmit)="submit(initialForm.value)">
       <div style="display: block;">
         <p>
           Please fill in some basic personal details...
@@ -29,36 +27,8 @@
     </form>
   </div>
 
-  <div *ngIf="stage == 1" class="sign-up-form">
-
-    <form #uploadDnaForm="ngForm" (ngSubmit)="submitDNA(uploadDnaForm.value)">
-      <div style="display: block;">
-        <p>
-          For best tailoring your cannabis strains, please upload your DNA data...
-        </p>
-
-        <label class="vendor-label" for="vendor">Vendor</label>
-        <p>
-          <select class="input-field" id="vendor"
-                  required
-                  [(ngModel)]="uploadDnaForm.vendor" name="vendor">
-            <option *ngFor="let vendor of vendorList" [value]="vendor">{{vendor}}</option>
-          </select>
-        </p>
-        File
-        <p><input type="file" (change)="detectFiles($event)" name="file" class="form-control" style="width:350px;" ngModel required/></p>
-        <p>
-          <button style="width:200px" (click)="skipUploading()">
-            Skip
-          </button>
-          <button type="submit" style="width:200px" [disabled]="!uploadDnaForm.form.valid">
-            Continue
-          </button>
-        </p>
-
-      </div>
-    </form>
-
+  <div *ngIf="stage == 1">
+    <gene420-dna-upload></gene420-dna-upload>
   </div>
 
   <div *ngIf="stage == 2" class="sign-up-form">
@@ -69,9 +39,9 @@
         </p>
 
         <!-- birth day -->
-        <label class="bday-label" for="vendor">Birth Day:</label>
+        <label class="bday-label" for="bday">Birth Day:</label>
         <p>
-          <input class="form-control" type="date" name="bday" ([ngModel])="questionnaireForm.bday" ngModel required>
+          <input class="form-control" id="bday" type="date" name="bday" ([ngModel])="questionnaireForm.bday" ngModel required>
         </p>
 
         <!-- gender -->

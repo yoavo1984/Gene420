@@ -1,3 +1,23 @@
-<p>
-  personal-questionnaire works!
-</p>
+<div *ngIf="shouldShow" class="sign-up-form">
+    <form #initialForm="ngForm" (ngSubmit)="submit(initialForm.value)">
+      <div style="display: block;">
+        <p>
+          Please fill in some basic personal details...
+        </p>
+        First Name
+        <p><input type="text" name="firstName" class="form-control" style="width:200px;" ngModel required/></p>
+        Last Name
+        <p><input type="text" name="lastName" class="form-control" style="width:200px;" ngModel required/></p>
+        E-mail address
+        <p><input type="text" name="email" class="form-control" style="width:200px;" ngModel required/></p>
+        Password
+        <p><input type="password" name="password" class="form-control" style="width:200px;" ngModel required/></p>
+        <p>
+          <button type="submit" style="width:200px" [disabled]="!initialForm.form.valid">
+            Continue
+          </button>
+        </p>
+
+      </div>
+    </form>
+</div>

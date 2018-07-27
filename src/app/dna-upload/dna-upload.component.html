@@ -1,0 +1,31 @@
+<div *ngIf="stage == 1" class="sign-up-form">
+
+  <form #uploadDnaForm="ngForm" (ngSubmit)="submitDNA(uploadDnaForm.value)">
+    <div style="display: block;">
+      <p>
+        For best tailoring your cannabis strains, please upload your DNA data...
+      </p>
+
+      <label class="vendor-label" for="vendor">Vendor</label>
+      <p>
+        <select class="input-field" id="vendor"
+                required
+                [(ngModel)]="uploadDnaForm.vendor" name="vendor">
+          <option *ngFor="let vendor of vendorList" [value]="vendor">{{vendor}}</option>
+        </select>
+      </p>
+      File
+      <p><input type="file" (change)="detectFiles($event)" name="file" class="form-control" style="width:350px;" ngModel required/></p>
+      <p>
+        <button style="width:200px" (click)="skipUploading()">
+          Skip
+        </button>
+        <button type="submit" style="width:200px" [disabled]="!uploadDnaForm.form.valid">
+          Continue
+        </button>
+      </p>
+
+    </div>
+  </form>
+
+</div>
