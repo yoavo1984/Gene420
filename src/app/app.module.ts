@@ -52,6 +52,11 @@ import { UploadComponent } from './users/upload/upload/upload.component';
 import {GeneticsDataUploaderService} from "./users/services/genetics-data-uploader.service";
 import {HttpClientModule} from "@angular/common/http";
 import {ServerMockService} from "./services/server-mock.service";
+import { QuestionnaireComponent } from './questionnaire/questionnaire.component';
+import { HealthQuestionnaireComponent } from './questionnaire/health-questionnaire/health-questionnaire.component';
+import { ProgressComponent } from './questionnaire/progress/progress.component';
+import { PersonalQuestionnaireComponent } from './questionnaire/personal-questionnaire/personal-questionnaire.component';
+import { PreferencesQuestionnaireComponent } from './questionnaire/preferences-questionnaire/preferences-questionnaire.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
@@ -60,7 +65,7 @@ const appRoutes: Routes = [
   {path: 'science', component: ScienceComponent},
   {path: 'contact', component: ContactComponent},
   {path: 'sign-in', component: SignInComponent},
-  {path: 'sign-up', component: SignUpComponent},
+  {path: 'sign-up', component: QuestionnaireComponent},
   {path: 'user-details', component: UserComponent},
   {path: 'wizard', component: MoodWizardsComponent},
   {path: 'user', component: StrainBrowserComponent,
@@ -114,7 +119,12 @@ export const firebaseConfig = {
     SubmitModalComponent,
     BetaTesterComponent,
     GeneticsModalComponent,
-    UploadComponent
+    UploadComponent,
+    QuestionnaireComponent,
+    HealthQuestionnaireComponent,
+    ProgressComponent,
+    PersonalQuestionnaireComponent,
+    PreferencesQuestionnaireComponent
 
   ],
   imports: [
